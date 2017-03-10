@@ -1,0 +1,25 @@
+
+.commentWrap {
+  display: flex;
+  padding: 8px;
+  border-bottom:1px dashed rgba(0, 0, 0, 0.18);
+}
+
+.commentAvatar {
+  margin: 5px;
+}
+
+.commentAuthor {
+  font-weight: bold;
+}
+
+.commentContent {
+  padding: 5px;
+  font-size: 15px;
+}
+
+.commentTime {
+  color: rgba(0, 0, 0, 0.4);
+  font-size: small;
+  font-weight: 500;
+}

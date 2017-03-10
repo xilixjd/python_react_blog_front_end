@@ -1,0 +1,43 @@
+.fixed-log-div {
+  position: fixed;
+  top: 645px;
+  left: 86px;
+}
+
+.fixed-log-div i {
+  font-Size: 32px ;
+  cursor: pointer;
+}
+
+.fixed-logreg-box {
+  display: flex;
+}
+
+.fixed-logreg-icon {
+  display: flex;
+  flex-direction: column;
+  margin: 0 2px;
+}
+
+.logreg-form-div {
+  position: absolute;
+  top: 200px;
+  background: #fff;
+  width: 450px;
+  padding: 30px 60px;
+  left: 50%;
+  box-shadow: 0 0 5px 0px rgba(0, 0, 0, 0.3);
+  margin-left: -225px;
+}
+
+.logRegModalBox-background {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
+}
