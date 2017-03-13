@@ -1,6 +1,6 @@
 {
   "name": "xilixjd",
-  "version": "0.1",
+  "version": "1.0.0",
   "description": "xilixjd's blog",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --port 9090 --hot --inline",
