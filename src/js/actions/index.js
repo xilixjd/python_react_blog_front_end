@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch';
-import { RECEIVE_TAGS, REQUEST_ISSUES, RECEIVE_BLOG, RECEIVE_ISSUES, ADD_COMMENT, RECEIVE_COMMENTS, LOG_IN, LOG_OUT } from '../constants/ActionTypes.js'
+import { DOMAIN, RECEIVE_TAGS, REQUEST_ISSUES, RECEIVE_BLOG, RECEIVE_ISSUES, ADD_COMMENT, RECEIVE_COMMENTS, LOG_IN, LOG_OUT } from '../constants/ActionTypes.js'
 import { LOGGING_SHOW, REG_SHOW, MODAL_CLOSE, LOGIN_SUBMIT, REG_SUBMIT} from '../constants/ActionTypes.js'
 import {CONFIG} from '../constants/Config.js'
 import { notification } from 'antd'
@@ -117,7 +117,7 @@ export function fetchIssues(filter, param) {
 
         switch (filter) {
             case 'all':
-                url = 'http://127.0.0.1:5000/api/blog/all'
+                url = DOMAIN + '/api/blog/all'
                 return fetch(url, {
                     credentials: 'include'
                 }).then(
@@ -132,7 +132,7 @@ export function fetchIssues(filter, param) {
                 })
 
             case 'blog':
-                url = 'http://127.0.0.1:5000/api/blog/' + param
+                url = DOMAIN + '/api/blog/' + param
                 return fetch(url, {
                     credentials: 'include'
                 }).then(
@@ -148,7 +148,7 @@ export function fetchIssues(filter, param) {
 
             case 'tags':
                 if (param) {
-                    url = 'http://127.0.0.1:5000/api/blog/tag/' + param
+                    url = DOMAIN + '/api/blog/tag/' + param
                     return fetch(url, {
                         credentials: 'include'
                     }).then(
@@ -162,7 +162,7 @@ export function fetchIssues(filter, param) {
                         }
                     )
                 } else {
-                    url = 'http://127.0.0.1:5000/api/blog/tag'
+                    url = DOMAIN + '/api/blog/tag'
                     return fetch(url, {
                         credentials: 'include'
                     }).then(
@@ -178,7 +178,7 @@ export function fetchIssues(filter, param) {
                 }
 
             case 'addComment':
-                url = 'http://127.0.0.1:5000/api/blog/' + param.blogId + '/comment'
+                url = DOMAIN + '/api/blog/' + param.blogId + '/comment'
                 data = `author=${param.author}&content=${param.content}`
                 return fetch(url, {
                     method: 'POST',
@@ -194,7 +194,7 @@ export function fetchIssues(filter, param) {
                 )
 
             case 'getComments':
-                url = 'http://127.0.0.1:5000/api/blog/' + param.blogId + '/comment'
+                url = DOMAIN + '/api/blog/' + param.blogId + '/comment'
                 return fetch(url, {
                     credentials: 'include'
                 }).then(
@@ -206,7 +206,7 @@ export function fetchIssues(filter, param) {
                 )
 
             case 'logIn':
-                url = 'http://127.0.0.1:5000/api/login'
+                url = DOMAIN + '/api/login'
                 data = `username=${param.username}`
                 return fetch(url, {
                     method: 'POST',
@@ -227,7 +227,7 @@ export function fetchIssues(filter, param) {
                 )
 
             case 'logOut':
-                url = 'http://127.0.0.1:5000/api/logout'
+                url = DOMAIN + '/api/logout'
                 return fetch(url, {
                     credentials: 'include'
                 }).then(
@@ -239,7 +239,7 @@ export function fetchIssues(filter, param) {
                 )
 
             case 'register':
-                url = 'http://127.0.0.1:5000/api/register'
+                url = DOMAIN + '/api/register'
                 data = `username=${param.username}&password=${param.password}`
                 return fetch(url, {
                     method: 'POST',
@@ -260,7 +260,7 @@ export function fetchIssues(filter, param) {
                 )
 
             case 'checkUser':
-                url = 'http://127.0.0.1:5000/api/user'
+                url = DOMAIN + '/api/user'
                 return fetch(url, {
                     credentials: 'include',
                 }).then(
