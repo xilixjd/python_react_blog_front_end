@@ -2,22 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13c27034-4c08-4eb3-8336-3b1b30faa8a6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/python_react_blog_front_end.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/index.33990e3d.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/index.eef5ffba.js" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/dist/index.eef5ffba.css" afterPath="$PROJECT_DIR$/dist/index.33990e3d.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/dist/post.chunk.4c3072d3.js" afterPath="$PROJECT_DIR$/dist/post.chunk.81311d03.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/vendor.db194b8e.js" afterPath="$PROJECT_DIR$/dist/vendor.db194b8e.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/css/article.scss" afterPath="$PROJECT_DIR$/src/css/article.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/css/list.scss" afterPath="$PROJECT_DIR$/src/css/list.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/css/loginingview.scss" afterPath="$PROJECT_DIR$/src/css/loginingview.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/containers/App.js" afterPath="$PROJECT_DIR$/src/js/containers/App.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -145,7 +131,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/js/actions/index.js" />
         <option value="$PROJECT_DIR$/package.json" />
@@ -155,6 +140,7 @@
         <option value="$PROJECT_DIR$/src/css/article.scss" />
         <option value="$PROJECT_DIR$/src/css/list.scss" />
         <option value="$PROJECT_DIR$/src/css/loginingview.scss" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -170,8 +156,8 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="21" />
-    <option name="y" value="43" />
+    <option name="x" value="83" />
+    <option name="y" value="50" />
     <option name="width" value="1342" />
     <option name="height" value="813" />
   </component>
@@ -345,7 +331,7 @@
       <workItem from="1489111973517" duration="9719000" />
       <workItem from="1489416095339" duration="4786000" />
       <workItem from="1489931906701" duration="1411000" />
-      <workItem from="1489933844807" duration="12000" />
+      <workItem from="1489933844807" duration="127000" />
     </task>
     <task id="LOCAL-00001" summary="gitignore">
       <created>1489112090990</created>
@@ -428,13 +414,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16623000" />
+    <option name="totallyTimeSpent" value="16738000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="21" y="43" width="1342" height="813" extended-state="0" />
-    <editor active="false" />
+    <frame x="83" y="50" width="1342" height="813" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24962743" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24962743" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293011" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -669,14 +655,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="13" lean-forward="false" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
@@ -784,6 +762,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="969">
           <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="245" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="6" lean-forward="true" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
           <folding />
         </state>
       </provider>
