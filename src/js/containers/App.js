@@ -100,7 +100,7 @@ class App extends Component {
                             {/*<Menu.Item key="4"><Link to="archive">归档</Link></Menu.Item>*/}
                             {/*<Menu.Item key="5"><Link to="tags">标签</Link></Menu.Item>*/}
                             <NavTag/>
-                            <Menu.Item key="6"><Link to="antd">Antd</Link></Menu.Item>
+                            {/*<Menu.Item key="6"><Link to="antd">Antd</Link></Menu.Item>*/}
                             <Menu.Item key="7"></Menu.Item>
                         </Menu>
                     </Header>

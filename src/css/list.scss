@@ -53,4 +53,9 @@ span.list-title:hover {
   .list-post:hover {
     background: none;
   }
+
+  .list {
+    min-width: 0;
+    padding: 0;
+  }
 }
