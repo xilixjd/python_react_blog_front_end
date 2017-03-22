@@ -6,3 +6,9 @@
     margin: 16px 24px 16px 0;
     float: left;
 }
+
+@media only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 240dpi), only screen and (min-resolution: 2dppx) {
+    li.ant-menu-item {
+        padding: 0 8px;
+    }
+}

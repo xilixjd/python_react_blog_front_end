@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import { LOGGING_SHOW, REG_SHOW, MODAL_CLOSE, LOGIN_SUBMIT, REG_SUBMIT} from '../constants/ActionTypes.js'
 import { logModalShow, fetchIssues } from '../actions/index.js'
 
-import { Icon } from 'antd'
+import { Icon, Popover } from 'antd'
 
 import '../../css/loginingview.scss'
 
@@ -22,6 +22,15 @@ class LoginingView extends Component {
         let { dispatch } = this.props
         let loggedIn = this.props.loggedIn
         let info = this.props.info
+        let newMessage = info.message
+        let messageLength
+        const content = (
+            <div>
+                <p>Content</p>
+                <p>Content</p>
+            </div>
+        )
+        messageLength = newMessage.length
         let loginIcon = <div className="fixed-logreg-icon"
                              onClick={ (e) => {dispatch(logModalShow(LOGGING_SHOW))} }
                              ><Icon type="login" /><span>登录</span></div>
@@ -31,7 +40,14 @@ class LoginingView extends Component {
         let logoutIcon = <div className="fixed-logreg-icon"
                                 onClick={ (e) => {dispatch(fetchIssues('logOut'))} }
                                 ><Icon type="logout" /><span>登出</span></div>
-        let logoutBox = <div className="fixed-logreg-box"><div className="fixed-logreg-icon"><Icon type="user" /><span>{info.username}</span></div>{logoutIcon}</div>
+        let logoutBox = <div className="fixed-logreg-box">
+                            <Popover content={content} title="New Message" trigger="click">
+                                <div className="fixed-logreg-icon"><Icon type="user" />
+                                    <span>{info.username + `(${messageLength})`}</span>
+                                </div>
+                            </Popover>
+                            {logoutIcon}
+                        </div>
         let logRegBox = <div className="fixed-logreg-box">{loginIcon}{registerIcon}</div>
         return (
             <div className="fixed-log-div" >

@@ -49,12 +49,24 @@ class CommentItem extends Component {
         return `${year}-${month}-${day} ${hour}:${min}:${sec}`
     }
 
+    scrollToAnchor = (anchorName) => {
+        if (anchorName) {
+            // 找到锚点
+            let anchorElement = document.getElementById(anchorName)
+            // 如果对应id的锚点存在，就跳转到锚点
+            if(anchorElement) {
+                anchorElement.scrollIntoView()
+            }
+        }
+    }
+
     render() {
         let md5 = require('md5')
         let md5Author = md5(this.props.author)
         let md5Url = `https://www.gravatar.com/avatar/${md5Author}?s=32`
         return (
-            <div className="commentWrap">
+            <div className="commentWrap" id={'comment' + this.props.id}>
+                <a onClick={()=>this.scrollToAnchor('comment' + this.props.id)}>#</a>
                 <div className="commentAvatar"><img src={md5Url}></img></div>
                 <div>
                     <div className="commentAuthor">{this.props.author}</div>

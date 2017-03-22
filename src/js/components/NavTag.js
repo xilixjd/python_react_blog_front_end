@@ -31,7 +31,7 @@ class NavTag extends Component {
         return (
             <Dropdown overlay={tags}>
                 <li className="ant-menu-item">
-                    <Link to="tags">标签<Icon type="down"/></Link>
+                    <a>标签<Icon style={{marginRight: '0'}} type="down"/></a>
                 </li>
             </Dropdown>
         )

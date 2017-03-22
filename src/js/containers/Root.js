@@ -80,6 +80,14 @@ var Antd = (location, cb) => {
     }, 'antd')
 }
 
+var Todo = (location, cb) => {
+    document.title = CONFIG.titleLoad;
+    NProgress.start();
+    require.ensure([], require => {
+        cb(null, require('../components/TodoTimeLine.js').default);
+    }, 'todo')
+}
+
 const routes = (
     <Route path="/" component={App}>
         <IndexRoute component={Menu}/>
@@ -89,6 +97,7 @@ const routes = (
         <Route path="tag/:id" getComponent={Tag}/>
         <Route path="post/:id" getComponent={Article}/>
         <Route path="antd" getComponent={Antd}/>
+        <Route path="todo" getComponent={Todo}/>
     </Route>
 );
 
