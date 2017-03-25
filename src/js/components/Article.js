@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import marked from 'marked';
 import hljs from 'highlight.js';
 import {CONFIG} from '../constants/Config.js'
-import { fetchIssuesIfNeeded } from '../actions/index.js'
+import { fetchIssuesIfNeeded, initBlog } from '../actions/index.js'
 import { BackTop } from 'antd'
 
 import '../../css/zenburn.scss';
@@ -38,6 +38,12 @@ class Article extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+    }
+
+    // 组件销毁前，将 reducer 中的缓存删除
+    componentWillUnmount() {
+        const { dispatch } = this.props
+        dispatch(initBlog())
     }
 
     // toggleDuoshuoComment() {
@@ -75,7 +81,6 @@ class Article extends Component {
             let anchorElement = document.getElementById(hash)
             if(anchorElement) {
                 anchorElement.scrollIntoView()
-                console.log('true')
             }
         }
     }

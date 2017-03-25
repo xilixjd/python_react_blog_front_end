@@ -22,15 +22,24 @@ class LoginingView extends Component {
         let { dispatch } = this.props
         let loggedIn = this.props.loggedIn
         let info = this.props.info
-        let newMessage = info.message
-        let messageLength
-        const content = (
-            <div>
-                <p>Content</p>
-                <p>Content</p>
-            </div>
-        )
-        messageLength = newMessage.length
+        let uncheckedMessage = info.messages
+        let messageLength, content, contentWrap
+        try {
+            messageLength = uncheckedMessage.length
+        } catch(e) {
+            messageLength = ''
+        }
+        if (uncheckedMessage) {
+            content = uncheckedMessage.map((item, index) =>
+                <p key={index}><a href="JavaScript:void(0)">@{item.sender}</a>: {item.content}</p>
+            )
+            contentWrap = (
+                <div>
+                    { content }
+                </div>
+            )
+        }
+
         let loginIcon = <div className="fixed-logreg-icon"
                              onClick={ (e) => {dispatch(logModalShow(LOGGING_SHOW))} }
                              ><Icon type="login" /><span>登录</span></div>
@@ -41,7 +50,7 @@ class LoginingView extends Component {
                                 onClick={ (e) => {dispatch(fetchIssues('logOut'))} }
                                 ><Icon type="logout" /><span>登出</span></div>
         let logoutBox = <div className="fixed-logreg-box">
-                            <Popover content={content} title="New Message" trigger="click">
+                            <Popover content={contentWrap} title="New Message" trigger="click">
                                 <div className="fixed-logreg-icon"><Icon type="user" />
                                     <span>{info.username + `(${messageLength})`}</span>
                                 </div>

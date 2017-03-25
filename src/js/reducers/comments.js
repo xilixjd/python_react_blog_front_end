@@ -20,7 +20,8 @@ const comments = (state=[], action) => {
                 id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
                 content: action.param.content,
                 author: action.param.author,
-                time: action.param.time
+                time: action.param.time,
+                receiver: action.param.receiver
             }]
 
         case RECEIVE_COMMENTS:

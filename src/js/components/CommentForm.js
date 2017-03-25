@@ -17,7 +17,16 @@ class CommentForm extends Component {
         }
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentDidMount() {
+    }
+
+    componentWillReceiveProps(nextProps, nextState) {
+        this.setState({
+            content: nextProps.replyAuthor
+        })
+    }
+
+    componentDidUpdate() {
     }
 
     openNotificationWithIcon = (type, message, description) => {
@@ -32,12 +41,14 @@ class CommentForm extends Component {
     }
 
     contentInputChange = (e) => {
-        this.setState({ content: e.target.value })
+        this.setState({
+            content: e.target.value
+        })
     }
 
     commentSubmit() {
         const { dispatch } = this.props
-        let author = this.state.author.trim()
+        let author = this.props.isLoggedIn.info.username || this.state.author.trim()
         let content = this.state.content.trim()
         if (author.length < 1) {
             this.openNotificationWithIcon('error', '发表评论', '姓名不能为空')
@@ -62,6 +73,7 @@ class CommentForm extends Component {
     render() {
         let isLoggedIn = this.props.isLoggedIn
         let name = isLoggedIn.info.username || ''
+        let content = this.state.content
         return (
             <div style={{margin: '10px'}}>
                 <form onSubmit={
@@ -82,7 +94,7 @@ class CommentForm extends Component {
                     <Input type="textarea" placeholder="content" name="content" rows={4}
                            style={{maxWidth: '410px', marginRight: '10px'}}
                            onChange={this.contentInputChange}
-                           value={this.state.content}
+                           value={content}
                     />
                     <Button type="primary" htmlType="submit" size="large">评论</Button>
                 </form>

@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import { DOMAIN, RECEIVE_TAGS, REQUEST_ISSUES, RECEIVE_BLOG, RECEIVE_ISSUES, ADD_COMMENT, RECEIVE_COMMENTS, LOG_IN, LOG_OUT } from '../constants/ActionTypes.js'
-import { LOGGING_SHOW, REG_SHOW, MODAL_CLOSE, LOGIN_SUBMIT, REG_SUBMIT} from '../constants/ActionTypes.js'
+import { LOGGING_SHOW, REG_SHOW, MODAL_CLOSE, LOGIN_SUBMIT, REG_SUBMIT, INIT_BLOG } from '../constants/ActionTypes.js'
 import {CONFIG} from '../constants/Config.js'
 import { notification } from 'antd'
 
@@ -101,6 +101,12 @@ export function logModalShow(type, json) {
     }
 }
 
+export function initBlog() {
+    return {
+        type: INIT_BLOG
+    }
+}
+
 // thunk action creater
 // @param 请求参数
 export function fetchIssues(filter, param) {
@@ -179,7 +185,7 @@ export function fetchIssues(filter, param) {
 
             case 'addComment':
                 url = DOMAIN + '/api/blog/' + param.blogId + '/comment'
-                data = `author=${param.author}&content=${param.content}`
+                data = `author=${param.author}&content=${param.content}&replyTo=${param.replyTo}`
                 return fetch(url, {
                     method: 'POST',
                     headers: { "Content-Type": "application/x-www-form-urlencoded" },

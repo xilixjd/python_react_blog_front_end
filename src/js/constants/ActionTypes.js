@@ -1,7 +1,7 @@
 // 后端地址
 // export const DOMAIN = 'http://127.0.0.1:5000'
-// export const DOMAIN = 'http://0.0.0.0:5000'
-export const DOMAIN = 'http://118.89.143.159:5000'
+export const DOMAIN = 'http://0.0.0.0:5000'
+// export const DOMAIN = 'http://118.89.143.159:5000'
 
 // 请求issues
 export const REQUEST_ISSUES = 'REQUEST_ISSUES'
@@ -32,6 +32,9 @@ export const LOG_IN = 'LOG_IN'
 
 // 登出
 export const LOG_OUT = 'LOG_OUT'
+
+// 清除博客 state
+export const INIT_BLOG = 'INIT_BLOG'
 
 // 登录/注册 modal show
 export const LOGGING_SHOW = 'LOGGING_SHOW'

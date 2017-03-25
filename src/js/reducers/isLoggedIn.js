@@ -4,14 +4,13 @@
 
 import { LOG_IN, LOG_OUT } from '../constants/ActionTypes.js'
 
-const isLoggedIn = (state={ loggedIn: false, info: { message: [{one: 1}, {two: 2}] } }, action) => {
+const isLoggedIn = (state={ loggedIn: false, info: {} }, action) => {
     switch (action.type) {
         case LOG_IN:
             return {
                 ...state,
                 loggedIn: true,
                 info: action.info
-                // info: { message: [{one: 1}, {two: 2}], username: 'xjd' }
             }
 
         case LOG_OUT:
