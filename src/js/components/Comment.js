@@ -87,6 +87,9 @@ class CommentItem extends Component {
             // 如果对应id的锚点存在，就跳转到锚点
             if(anchorElement) {
                 anchorElement.scrollIntoView()
+                // let timeOut = setTimeout(() => {
+                //     this.removeClass(anchorElement, anchorDivClassName)
+                // }, 1500)
             }
         }
     }

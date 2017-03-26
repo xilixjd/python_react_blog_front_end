@@ -9,19 +9,8 @@ import LogRegModal from '../components/logRegModal.js'
 
 import {Layout, Menu, Breadcrumb } from 'antd'
 const {Header, Content, Footer} = Layout
-// const tags = (
-//     <Menu>
-//         <Menu.Item>
-//             <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">1st menu item</a>
-//         </Menu.Item>
-//         <Menu.Item>
-//             <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">2nd menu item</a>
-//         </Menu.Item>
-//         <Menu.Item>
-//             <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">3d menu item</a>
-//         </Menu.Item>
-//     </Menu>
-// )
+
+import '../../css/antd.scss'
 
 
 class App extends Component {
@@ -104,8 +93,8 @@ class App extends Component {
                             <Menu.Item key="7"><Link to="todo">Todo</Link></Menu.Item>
                         </Menu>
                     </Header>
-                    <Content style={{padding: '0 50px'}}>
-                        <Breadcrumb style={{margin: '12px 0'}}>
+                    <Content className="layout-content">
+                        <Breadcrumb className="layout-breadcrumb">
                             {
                                 pathArray.map((item, index) => {
                                         if (item === '') {
@@ -116,15 +105,8 @@ class App extends Component {
                                 )
                             }
                         </Breadcrumb>
-                        <div style={{
-                            background: '#fff',
-                            padding: 24,
-                            minHeight: 600,
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center'
-                        }}>
-                            <div>
+                        <div className="layout-children">
+                            <div style={{width: '100%'}}>
                                 {this.props.children}
                             </div>
                         </div>

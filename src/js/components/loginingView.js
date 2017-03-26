@@ -10,6 +10,7 @@ import { logModalShow, fetchIssues } from '../actions/index.js'
 import { Icon, Popover } from 'antd'
 
 import '../../css/loginingview.scss'
+import '../../css/antd.scss'
 
 
 class LoginingView extends Component {
@@ -33,6 +34,28 @@ class LoginingView extends Component {
         })
     }
 
+    // 根据中英文不同判断其字符长度，使其长度更合理
+    strLength = (str) => {
+        var len = 0;
+        for (var i=0; i<str.length; i++) {
+            var c = str.charCodeAt(i);
+            //单字节加1
+            if ((c >= 0x0001 && c <= 0x007e) || (0xff60<=c && c<=0xff9f)) {
+                len++;
+            }
+            else {
+                len+=2;
+            }
+        }
+        return len;
+    }
+
+    timeFromNowLittleThan2Hour = (time) => {
+        const now = new Date().getTime()
+        const timeDifference = now - parseInt(time)
+        return timeDifference <= 60 * 1000 * 60
+    }
+
     render() {
         let { dispatch } = this.props
         let loggedIn = this.props.loggedIn
@@ -47,11 +70,17 @@ class LoginingView extends Component {
         }
         if (uncheckedMessage) {
             content = uncheckedMessage.map((item, index) =>
-                <p key={index}><a href="JavaScript:void(0)">@{item.sender}</a>: {item.content}</p>
+                <p key={index}
+                   className={(item.checked == '0' || this.timeFromNowLittleThan2Hour(item.time)) ? 'unchecked' : ''}>
+                    <a href="JavaScript:void(0)">@{item.sender}</a>
+                    <span>: <a href="/#/post/2#comment22">{this.strLength(item.content) > 16 ?
+                        item.content.substring(0, 8) + '..' : item.content}</a></span>
+                </p>
             )
             contentWrap = (
-                <div>
+                <div className="loginingView-div">
                     { content }
+                    <p className="footer"><a href="JavaScript:void(0)">查看全部</a></p>
                 </div>
             )
         }

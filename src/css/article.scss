@@ -1,5 +1,9 @@
-.article {
+.articleComment {
   max-width: 650px;
+  margin: auto;
+}
+
+.article {
   margin: auto;
   padding: 0 15px 20px 15px;
   line-height: 26px;
@@ -118,6 +122,6 @@
 
 @media only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 240dpi), only screen and (min-resolution: 2dppx) {
   .article {
-    max-width: 275px;
+    width: 100%;
   }
 }

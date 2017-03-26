@@ -15,7 +15,8 @@ class Article extends Component {
         super(props)
         this.state = {
             contentShow: false,
-            timer: ''
+            timer: '',
+            anchorDivClassName: ''
         }
     }
 
@@ -46,6 +47,9 @@ class Article extends Component {
         const { dispatch } = this.props
         dispatch(initBlog())
         clearInterval(this.state.timer)
+        this.setState({
+            anchorDivClassName: ''
+        })
     }
 
     formatTime(timeStamp) {
@@ -68,12 +72,24 @@ class Article extends Component {
         }
     }
 
+    removeClass = (ele, cls) => {
+        let reg = new RegExp("(\\s|^)" + cls + "(\\s|$)")
+        ele.className = ele.className.replace(reg, " ")
+    }
+
     scrollToHash() {
         let hash = this.getCheckHash()
         if (hash) {
             let anchorElement = document.getElementById(hash)
             if(anchorElement) {
                 anchorElement.scrollIntoView()
+                this.state.anchorDivClassName = 'showBackgroundColor'
+                let anchorDivClassName = this.state.anchorDivClassName
+                anchorElement.className += ` ${anchorDivClassName}`
+                anchorElement.scrollIntoView()
+                let timeOut = setTimeout(() => {
+                    this.removeClass(anchorElement, anchorDivClassName)
+                }, 2500)
             }
         }
     }
@@ -93,7 +109,7 @@ class Article extends Component {
             this.intervalScroll()
         }
         return (
-            <div>
+            <div className="articleComment">
                 <div className="article">
                     <h1 className="article-title">{this.props.blog.title}</h1>
                     <p className="article-time">{this.state.contentShow ? this.formatTime(time) : ''}</p>

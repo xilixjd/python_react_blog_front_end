@@ -5,7 +5,7 @@
 }
 
 .fixed-log-div i {
-  font-Size: 32px ;
+  font-Size: 32px;
   cursor: pointer;
 }
 
@@ -42,10 +42,50 @@
   cursor: pointer;
 }
 
+.loginingView-div {
+  font-size: larger;
+}
+
+.loginingView-div p {
+  padding: 3px 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.loginingView-div p.unchecked {
+  background-color: azure;
+}
+
+.loginingView-div p.footer {
+  text-align: center;
+}
+
+.loginingView-div p.footer a {
+  font:14px/0.75em Arial,'Times New Roman','Microsoft YaHei',SimHei;
+  color: #999;
+}
+
+.loginingView-div p span a {
+  font-family:Arial,'Times New Roman','Microsoft YaHei',SimHei;
+  font:bold 12px/0.75em Arial,'Times New Roman','Microsoft YaHei',SimHei;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.loginingView-div p span a:hover {
+  text-decoration: underline;
+}
+
 @media only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 240dpi), only screen and (min-resolution: 2dppx) {
   .fixed-log-div {
     position: fixed;
     top: 500px;
     left: 70px;
+  }
+
+  .fixed-log-div i {
+    font-Size: 27px;
+  }
+
+  .fixed-logreg-icon span {
+    font-size: small;
   }
 }

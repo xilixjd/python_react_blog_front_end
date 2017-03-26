@@ -7,8 +7,52 @@
     float: left;
 }
 
+.layout-content {
+    padding: 0 24px;
+}
+
+.layout-breadcrumb {
+    padding: 10px;
+}
+
+.layout-children {
+    background: rgb(255, 255, 255);
+    padding: 24px;
+    min-height: 600px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @media only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 240dpi), only screen and (min-resolution: 2dppx) {
     li.ant-menu-item {
         padding: 0 8px;
     }
+
+    .ant-layout-footer {
+        padding: 0px 25px;
+    }
+
+    .layout-content {
+        padding: 0;
+    }
+
+    .layout-breadcrumb {
+        padding: 0 5px;
+    }
+
+    .layout-children {
+        background: rgb(255, 255, 255);
+        padding: 10px;
+        min-height: 600px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
+
+.ant-popover-inner-content {
+    padding: 0;
+}
+
