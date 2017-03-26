@@ -36,6 +36,9 @@ export const LOG_OUT = 'LOG_OUT'
 // 清除博客 state
 export const INIT_BLOG = 'INIT_BLOG'
 
+// 查看消息
+export const CHECK_MESSAGES = 'CHECK_MESSAGES'
+
 // 登录/注册 modal show
 export const LOGGING_SHOW = 'LOGGING_SHOW'
 export const REG_SHOW = 'REG_SHOW'

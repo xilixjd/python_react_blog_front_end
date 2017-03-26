@@ -2,7 +2,7 @@
  * Created by xilixjd on 17/3/9.
  * */
 
-import { LOG_IN, LOG_OUT } from '../constants/ActionTypes.js'
+import { LOG_IN, LOG_OUT, CHECK_MESSAGES } from '../constants/ActionTypes.js'
 
 const isLoggedIn = (state={ loggedIn: false, info: {} }, action) => {
     switch (action.type) {
@@ -18,6 +18,16 @@ const isLoggedIn = (state={ loggedIn: false, info: {} }, action) => {
                 ...state,
                 loggedIn: false,
                 info: {}
+            }
+
+        case CHECK_MESSAGES:
+            return {
+                ...state,
+                info: {
+                    // 有没有更好的写法？
+                    username: state.info.username,
+                    messages: []
+                }
             }
 
         default:

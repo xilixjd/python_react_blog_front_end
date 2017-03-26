@@ -13,9 +13,24 @@ import '../../css/loginingview.scss'
 
 
 class LoginingView extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            checked: false
+        }
+    }
+
     componentDidMount() {
         const { dispatch } = this.props
         dispatch(fetchIssues('checkUser'))
+    }
+
+    checkMessages = () => {
+        const { dispatch } = this.props
+        dispatch(fetchIssues('checkMessages'))
+        this.setState({
+            checked: true
+        })
     }
 
     render() {
@@ -24,10 +39,11 @@ class LoginingView extends Component {
         let info = this.props.info
         let uncheckedMessage = info.messages
         let messageLength, content, contentWrap
+        let checked = this.state.checked
         try {
             messageLength = uncheckedMessage.length
         } catch(e) {
-            messageLength = ''
+            messageLength = 0
         }
         if (uncheckedMessage) {
             content = uncheckedMessage.map((item, index) =>
@@ -47,12 +63,18 @@ class LoginingView extends Component {
                                 onClick={ (e) => {dispatch(logModalShow(REG_SHOW))} }
                                 ><Icon type="user-add" /><span>注册</span></div>
         let logoutIcon = <div className="fixed-logreg-icon"
-                                onClick={ (e) => {dispatch(fetchIssues('logOut'))} }
+                                onClick={(e) => {
+                                    dispatch(fetchIssues('logOut'))
+                                    this.state.checked = false
+                                }}
                                 ><Icon type="logout" /><span>登出</span></div>
         let logoutBox = <div className="fixed-logreg-box">
-                            <Popover content={contentWrap} title="New Message" trigger="click">
+                            <Popover onClick={this.checkMessages}
+                                content={contentWrap} title="New Message" trigger="click">
                                 <div className="fixed-logreg-icon"><Icon type="user" />
-                                    <span>{info.username + `(${messageLength})`}</span>
+                                    <span>
+                                        {checked ? `${info.username}(0)` : `${info.username}(${messageLength})`}
+                                    </span>
                                 </div>
                             </Popover>
                             {logoutIcon}

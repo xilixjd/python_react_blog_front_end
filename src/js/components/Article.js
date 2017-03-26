@@ -11,6 +11,14 @@ import '../../css/zenburn.scss';
 import '../../css/article.scss';
 
 class Article extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            contentShow: false,
+            timer: ''
+        }
+    }
+
     componentWillMount() {
         // window.scrollTo(0, 0)
         // const { dispatch } = this.props
@@ -26,13 +34,6 @@ class Article extends Component {
     }
 
     componentDidMount() {
-        // 显示多说评论框
-        // this.toggleDuoshuoComment();
-        // 比较野鸡 看有没有更好的方法 1. 渲染完成后 调用 scrollToHash 或 2. 找出不能实现正常功能的原因
-        let timer = setInterval(() => {
-            this.scrollToHash()
-            clearInterval(timer)
-        }, 100)
         const { dispatch } = this.props
         dispatch(fetchIssuesIfNeeded('blog', this.props.params.id, 'receiveBlog'))
     }
@@ -44,16 +45,8 @@ class Article extends Component {
     componentWillUnmount() {
         const { dispatch } = this.props
         dispatch(initBlog())
+        clearInterval(this.state.timer)
     }
-
-    // toggleDuoshuoComment() {
-    //     let ele = this.refs['ds'];
-    //     try {
-    //         window.DUOSHUO.EmbedThread(ele);
-    //     } catch (e) {
-    //
-    //     }
-    // }
 
     formatTime(timeStamp) {
         let time = new Date(timeStamp)
@@ -85,20 +78,31 @@ class Article extends Component {
         }
     }
 
+    intervalScroll() {
+        // 比较野鸡 看有没有更好的方法 1. 渲染完成后 调用 scrollToHash 或 2. 找出不能实现正常功能的原因
+        this.state.timer = setInterval(() => {
+            this.scrollToHash()
+            clearInterval(this.state.timer)
+        }, 100)
+    }
+
     render() {
         let time = this.props.blog.time
+        if (this.props.blog.content) {
+            this.state.contentShow = true
+            this.intervalScroll()
+        }
         return (
             <div>
                 <div className="article">
                     <h1 className="article-title">{this.props.blog.title}</h1>
-                    <p className="article-time">{this.formatTime(time)}</p>
+                    <p className="article-time">{this.state.contentShow ? this.formatTime(time) : ''}</p>
                     <div className="article-desc article-content"
                          dangerouslySetInnerHTML={{__html: marked(this.props.blog.content || '')}}>
                     </div>
                 </div>
                 <div className="comment">
-                    {/*<div ref="ds" className="ds-thread" data-thread-key={this.props.number} data-title={this.props.title} data-url={window.location.href}></div>*/}
-                    <Comment {...this.props}/>
+                    {this.state.contentShow ? <Comment {...this.props}/> : ''}
                 </div>
                 <div>
                     <BackTop/>

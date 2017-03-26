@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import { DOMAIN, RECEIVE_TAGS, REQUEST_ISSUES, RECEIVE_BLOG, RECEIVE_ISSUES, ADD_COMMENT, RECEIVE_COMMENTS, LOG_IN, LOG_OUT } from '../constants/ActionTypes.js'
-import { LOGGING_SHOW, REG_SHOW, MODAL_CLOSE, LOGIN_SUBMIT, REG_SUBMIT, INIT_BLOG } from '../constants/ActionTypes.js'
+import { LOGGING_SHOW, REG_SHOW, MODAL_CLOSE, LOGIN_SUBMIT, REG_SUBMIT, INIT_BLOG, CHECK_MESSAGES } from '../constants/ActionTypes.js'
 import {CONFIG} from '../constants/Config.js'
 import { notification } from 'antd'
 
@@ -104,6 +104,12 @@ export function logModalShow(type, json) {
 export function initBlog() {
     return {
         type: INIT_BLOG
+    }
+}
+
+export function checkMessages() {
+    return {
+        type: CHECK_MESSAGES
     }
 }
 
@@ -281,6 +287,19 @@ export function fetchIssues(filter, param) {
                     }
                 ).catch(
                     e => {console.log(e)}
+                )
+
+            case 'checkMessages':
+                url = DOMAIN + '/api/checkMessages'
+                return fetch(url, {
+                    method: 'POST',
+                    credentials: 'include'
+                }).then(
+                    response => response.json()
+                ).then(
+                    json => {
+                        // dispatch(checkMessages())
+                    }
                 )
             // case 'archieve':
             //     url = 'http://127.0.0.1:5000/api/blog/archieve'
