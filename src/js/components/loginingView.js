@@ -38,6 +38,8 @@ class LoginingView extends Component {
     scrollToBottom = () => {
         const scrollHeight = document.documentElement.scrollHeight
         const eleScroll = document.body.scrollTop + document.documentElement.clientHeight
+        console.log('scrollheight', scrollHeight)
+        console.log('eleScroll', eleScroll)
         if (scrollHeight <= 1000) {
             this.setState({
                 scrollToBottom: false
