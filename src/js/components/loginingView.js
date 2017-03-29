@@ -17,16 +17,41 @@ class LoginingView extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            checked: false
+            checked: false,
+            scrollToBottom: false
         }
     }
 
     componentDidMount() {
         const { dispatch } = this.props
         dispatch(fetchIssues('checkUser'))
+        window.addEventListener('scroll', this.scrollToBottom.bind(this))
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps)
     }
 
     componentWillUnmount() {
+    }
+
+    scrollToBottom = () => {
+        const scrollHeight = document.documentElement.scrollHeight
+        const eleScroll = document.body.scrollTop + document.documentElement.clientHeight
+        if (scrollHeight <= 800) {
+            this.setState({
+                scrollToBottom: false
+            })
+        }
+        if (scrollHeight - eleScroll <= 100) {
+            this.setState({
+                scrollToBottom: true
+            })
+        } else {
+            this.setState({
+                scrollToBottom: false
+            })
+        }
     }
 
     checkMessages = () => {
@@ -120,7 +145,7 @@ class LoginingView extends Component {
                         </div>
         let logRegBox = <div className="fixed-logreg-box">{loginIcon}{registerIcon}</div>
         return (
-            <div className="fixed-log-div" >
+            <div className={"fixed-log-div " + (this.state.scrollToBottom ? "log-div-showInMobile" : "")} >
                 {loggedIn ? logoutBox : logRegBox}
             </div>
         )

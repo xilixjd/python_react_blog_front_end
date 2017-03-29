@@ -25,7 +25,6 @@ class ReplyForm extends Component {
 
     commentSubmit = () => {
         const { dispatch } = this.props
-        console.log(this.props)
         let author = this.props.isLoggedIn.info.username || 'Annoymous'
         let content = this.state.content.trim()
         let param = {

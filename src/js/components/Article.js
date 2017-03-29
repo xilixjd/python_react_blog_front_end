@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import marked from 'marked';
 import hljs from 'highlight.js';
 import {CONFIG} from '../constants/Config.js'
-import { fetchIssuesIfNeeded, initBlog } from '../actions/index.js'
+import { fetchIssues, fetchIssuesIfNeeded, initBlog } from '../actions/index.js'
 import { BackTop } from 'antd'
 
 import '../../css/zenburn.scss';
@@ -37,6 +37,7 @@ class Article extends Component {
     componentDidMount() {
         const { dispatch } = this.props
         dispatch(fetchIssuesIfNeeded('blog', this.props.params.id, 'receiveBlog'))
+        dispatch(fetchIssues('checkUser'))
     }
 
     componentWillReceiveProps(nextProps) {
