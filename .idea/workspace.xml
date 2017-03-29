@@ -1,32 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="13c27034-4c08-4eb3-8336-3b1b30faa8a6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/message.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/todo.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/js/containers/Message.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/js/reducers/mentions.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/js/reducers/messages.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/css/antd.scss" afterPath="$PROJECT_DIR$/src/css/antd.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/css/comment.scss" afterPath="$PROJECT_DIR$/src/css/comment.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/css/loginingview.scss" afterPath="$PROJECT_DIR$/src/css/loginingview.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/actions/index.js" afterPath="$PROJECT_DIR$/src/js/actions/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/components/CellView.js" afterPath="$PROJECT_DIR$/src/js/components/CellView.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/components/Comment.js" afterPath="$PROJECT_DIR$/src/js/components/Comment.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/components/CommentForm.js" afterPath="$PROJECT_DIR$/src/js/components/CommentForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/components/ReplyForm.js" afterPath="$PROJECT_DIR$/src/js/components/ReplyForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/components/TodoTimeLine.js" afterPath="$PROJECT_DIR$/src/js/components/TodoTimeLine.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/components/loginingView.js" afterPath="$PROJECT_DIR$/src/js/components/loginingView.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/constants/ActionTypes.js" afterPath="$PROJECT_DIR$/src/js/constants/ActionTypes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/constants/Config.js" afterPath="$PROJECT_DIR$/src/js/constants/Config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/containers/App.js" afterPath="$PROJECT_DIR$/src/js/containers/App.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/containers/Root.js" afterPath="$PROJECT_DIR$/src/js/containers/Root.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/reducers/getTags.js" afterPath="$PROJECT_DIR$/src/js/reducers/getTags.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/reducers/index.js" afterPath="$PROJECT_DIR$/src/js/reducers/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/reducers/isLoggedIn.js" afterPath="$PROJECT_DIR$/src/js/reducers/isLoggedIn.js" />
-    </list>
+    <list default="true" id="13c27034-4c08-4eb3-8336-3b1b30faa8a6" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -46,11 +21,10 @@
       <file leaf-file-name="loginingView.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/js/components/loginingView.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="15" column="38" lean-forward="true" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
+            <state relative-caret-position="95">
+              <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="e#42#80#0" expanded="true" />
                 <marker date="1490752829000" expanded="true" signature="4451:4522" ph="..." />
               </folding>
             </state>
@@ -73,7 +47,7 @@
         <entry file="file://$PROJECT_DIR$/src/js/components/CommentForm.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
-              <caret line="141" column="5" lean-forward="true" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="5" />
+              <caret line="141" column="5" lean-forward="false" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="5" />
               <folding>
                 <element signature="e#42#82#0" expanded="true" />
               </folding>
@@ -85,7 +59,7 @@
         <entry file="file://$PROJECT_DIR$/src/js/containers/Message.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="433">
-              <caret line="87" column="13" lean-forward="true" selection-start-line="87" selection-start-column="13" selection-end-line="87" selection-end-column="13" />
+              <caret line="87" column="13" lean-forward="false" selection-start-line="87" selection-start-column="13" selection-end-line="87" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -105,7 +79,7 @@
         <entry file="file://$PROJECT_DIR$/src/js/components/ReplyForm.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="190">
-              <caret line="33" column="39" lean-forward="true" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
+              <caret line="33" column="39" lean-forward="false" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -115,7 +89,7 @@
         <entry file="file://$PROJECT_DIR$/src/js/components/Comment.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1634">
-              <caret line="94" column="5" lean-forward="true" selection-start-line="94" selection-start-column="5" selection-end-line="94" selection-end-column="5" />
+              <caret line="94" column="5" lean-forward="false" selection-start-line="94" selection-start-column="5" selection-end-line="94" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -395,6 +369,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="python_react_blog_front_end" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="python_react_blog_front_end" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dist" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -604,7 +592,7 @@
       <workItem from="1489416095339" duration="4786000" />
       <workItem from="1489931906701" duration="1411000" />
       <workItem from="1489933844807" duration="268000" />
-      <workItem from="1489936823774" duration="93468000" />
+      <workItem from="1489936823774" duration="93679000" />
     </task>
     <task id="LOCAL-00001" summary="gitignore">
       <created>1489112090990</created>
@@ -722,11 +710,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="110347000" />
+    <option name="totallyTimeSpent" value="110558000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="30" y="89" width="1342" height="813" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293011" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
@@ -736,7 +724,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24962743" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24962743" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293011" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -1104,7 +1092,7 @@
         <state relative-caret-position="281">
           <caret line="19" column="4" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
           <folding>
-            <element signature="e#0#38#0" expanded="true" />
+            <element signature="e#0#38#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1138,7 +1126,7 @@
     <entry file="file://$PROJECT_DIR$/src/js/containers/Message.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="433">
-          <caret line="87" column="13" lean-forward="true" selection-start-line="87" selection-start-column="13" selection-end-line="87" selection-end-column="13" />
+          <caret line="87" column="13" lean-forward="false" selection-start-line="87" selection-start-column="13" selection-end-line="87" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -1162,7 +1150,7 @@
     <entry file="file://$PROJECT_DIR$/src/js/components/ReplyForm.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
-          <caret line="33" column="39" lean-forward="true" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
+          <caret line="33" column="39" lean-forward="false" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
           <folding />
         </state>
       </provider>
@@ -1170,7 +1158,7 @@
     <entry file="file://$PROJECT_DIR$/src/js/components/Comment.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1634">
-          <caret line="94" column="5" lean-forward="true" selection-start-line="94" selection-start-column="5" selection-end-line="94" selection-end-column="5" />
+          <caret line="94" column="5" lean-forward="false" selection-start-line="94" selection-start-column="5" selection-end-line="94" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -1178,7 +1166,7 @@
     <entry file="file://$PROJECT_DIR$/src/js/components/CommentForm.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
-          <caret line="141" column="5" lean-forward="true" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="5" />
+          <caret line="141" column="5" lean-forward="false" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="5" />
           <folding>
             <element signature="e#42#82#0" expanded="true" />
           </folding>
@@ -1190,7 +1178,7 @@
         <state relative-caret-position="171">
           <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1205,11 +1193,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/components/loginingView.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="38" lean-forward="true" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
+        <state relative-caret-position="95">
+          <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#42#80#0" expanded="true" />
             <marker date="1490752829000" expanded="true" signature="4451:4522" ph="..." />
           </folding>
         </state>
