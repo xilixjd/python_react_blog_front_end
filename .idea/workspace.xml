@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="13c27034-4c08-4eb3-8336-3b1b30faa8a6" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/dist/index.62ff0d02.css" afterPath="$PROJECT_DIR$/dist/index.a325159d.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/dist/index.62ff0d02.js" afterPath="$PROJECT_DIR$/dist/index.a325159d.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/vendor.db194b8e.js" afterPath="$PROJECT_DIR$/dist/vendor.db194b8e.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/css/antd.scss" afterPath="$PROJECT_DIR$/src/css/antd.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/components/loginingView.js" afterPath="$PROJECT_DIR$/src/js/components/loginingView.js" />
-    </list>
+    <list default="true" id="13c27034-4c08-4eb3-8336-3b1b30faa8a6" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -99,7 +91,7 @@
       <file leaf-file-name="antd.scss" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/css/antd.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
+            <state relative-caret-position="475">
               <caret line="47" column="0" lean-forward="true" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
               <folding />
             </state>
@@ -599,7 +591,7 @@
       <workItem from="1489416095339" duration="4786000" />
       <workItem from="1489931906701" duration="1411000" />
       <workItem from="1489933844807" duration="268000" />
-      <workItem from="1489936823774" duration="98384000" />
+      <workItem from="1489936823774" duration="98490000" />
     </task>
     <task id="LOCAL-00001" summary="gitignore">
       <created>1489112090990</created>
@@ -717,7 +709,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="115263000" />
+    <option name="totallyTimeSpent" value="115369000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="31" y="106" width="1342" height="813" extended-state="0" />
@@ -1206,7 +1198,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/css/antd.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
+        <state relative-caret-position="475">
           <caret line="47" column="0" lean-forward="true" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
           <folding />
         </state>
