@@ -26,6 +26,9 @@ class LoginingView extends Component {
         dispatch(fetchIssues('checkUser'))
     }
 
+    componentWillUnmount() {
+    }
+
     checkMessages = () => {
         const { dispatch } = this.props
         dispatch(fetchIssues('checkMessages'))
@@ -60,27 +63,34 @@ class LoginingView extends Component {
         let { dispatch } = this.props
         let loggedIn = this.props.loggedIn
         let info = this.props.info
-        let uncheckedMessage = info.messages
+        let messages = this.props.messages
         let messageLength, content, contentWrap
         let checked = this.state.checked
         try {
-            messageLength = uncheckedMessage.length
+            messageLength = info.uncheckedMessagesLen
         } catch(e) {
             messageLength = 0
         }
-        if (uncheckedMessage) {
-            content = uncheckedMessage.map((item, index) =>
-                <p key={index}
-                   className={(item.checked == '0' || this.timeFromNowLittleThan2Hour(item.time)) ? 'unchecked' : ''}>
-                    <a href="JavaScript:void(0)">@{item.sender}</a>
-                    <span>: <a href="/#/post/2#comment22">{this.strLength(item.content) > 16 ?
-                        item.content.substring(0, 8) + '..' : item.content}</a></span>
-                </p>
-            )
+        if (messages) {
+            const regStr = /(@.*?)\s/g
+            content = messages.map((item, index) =>{
+                if (index > 4) {
+                    return
+                }
+                let itemContent = item.content.replace(regStr, '')
+                return (
+                    <p key={index}
+                       className={(item.checked == '0' || this.timeFromNowLittleThan2Hour(item.time)) ? 'unchecked' : ''}>
+                        <a href="JavaScript:void(0)">@{item.sender}</a>
+                        <span>: <a href={'/#' + item.href}>{this.strLength(itemContent) > 16 ?
+                            itemContent.substring(0, 8) + '..' : itemContent}</a></span>
+                    </p>
+                )
+            })
             contentWrap = (
                 <div className="loginingView-div">
                     { content }
-                    <p className="footer"><a href="JavaScript:void(0)">查看全部</a></p>
+                    <p className="footer"><a href="/#/message">查看全部</a></p>
                 </div>
             )
         }
@@ -118,7 +128,7 @@ class LoginingView extends Component {
 }
 
 function mapStateToProps(state) {
-    const { isLoggedIn } = state
+    const { isLoggedIn, messages } = state
     const {
         loggedIn,
         info
@@ -129,7 +139,8 @@ function mapStateToProps(state) {
 
     return {
         loggedIn,
-        info
+        info,
+        messages
     }
 }
 

@@ -25,6 +25,7 @@ class ReplyForm extends Component {
 
     commentSubmit = () => {
         const { dispatch } = this.props
+        console.log(this.props)
         let author = this.props.isLoggedIn.info.username || 'Annoymous'
         let content = this.state.content.trim()
         let param = {
@@ -32,7 +33,8 @@ class ReplyForm extends Component {
             content: content,
             time: new Date().valueOf(),
             blogId: this.props.params.id,
-            replyTo: this.props.replyTo
+            replyTo: this.props.replyTo,
+            href: this.props.location.pathname
         }
         dispatch(fetchIssues('addComment', param))
         this.state.content = ''
@@ -49,7 +51,7 @@ class ReplyForm extends Component {
                     }
                 }>
                     <Input
-                        style={{width: '80%'}}
+                        style={{width: '75%'}}
                         type="textarea"
                         name="content"
                         placeholder="reply"

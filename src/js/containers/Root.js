@@ -88,6 +88,14 @@ var Todo = (location, cb) => {
     }, 'todo')
 }
 
+var Message = (location, cb) => {
+    document.title = CONFIG.titleLoad;
+    NProgress.start();
+    require.ensure([], require => {
+        cb(null, require('../containers/Message.js').default);
+    }, 'message')
+}
+
 const routes = (
     <Route path="/" component={App}>
         <IndexRoute component={Menu}/>
@@ -98,11 +106,12 @@ const routes = (
         <Route path="post/:id" getComponent={Article}/>
         <Route path="antd" getComponent={Antd}/>
         <Route path="todo" getComponent={Todo}/>
+        <Route path="message" getComponent={Message}/>
     </Route>
-);
+)
 
 export default class Root extends Component {
     render() {
         return <Router history={appHistory} routes={routes}/>
     }
-};
+}

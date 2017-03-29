@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import { DOMAIN, RECEIVE_TAGS, REQUEST_ISSUES, RECEIVE_BLOG, RECEIVE_ISSUES, ADD_COMMENT, RECEIVE_COMMENTS, LOG_IN, LOG_OUT } from '../constants/ActionTypes.js'
-import { LOGGING_SHOW, REG_SHOW, MODAL_CLOSE, LOGIN_SUBMIT, REG_SUBMIT, INIT_BLOG, CHECK_MESSAGES } from '../constants/ActionTypes.js'
+import { LOGGING_SHOW, REG_SHOW, MODAL_CLOSE, LOGIN_SUBMIT, REG_SUBMIT, INIT_BLOG, GET_MESSAGES, INIT_MESSAGES, CHECK_MESSAGES } from '../constants/ActionTypes.js'
+import { GET_MENTIONS } from '../constants/ActionTypes.js'
 import {CONFIG} from '../constants/Config.js'
 import { notification } from 'antd'
 
@@ -66,6 +67,11 @@ function logState(type, json) {
             return {
                 type: LOG_OUT
             }
+        case CHECK_MESSAGES:
+            return {
+                type: CHECK_MESSAGES,
+                info: json
+            }
     }
 
 }
@@ -107,9 +113,27 @@ export function initBlog() {
     }
 }
 
-export function checkMessages() {
-    return {
-        type: CHECK_MESSAGES
+export function getMessages(json, type) {
+    switch (type) {
+        case GET_MESSAGES:
+            return {
+                type: GET_MESSAGES,
+                posts: json
+            }
+        case INIT_MESSAGES:
+            return {
+                type: INIT_MESSAGES
+            }
+    }
+}
+
+export function getMentions(json, type) {
+    switch (type) {
+        case GET_MENTIONS:
+            return {
+                type: GET_MENTIONS,
+                posts: json
+            }
     }
 }
 
@@ -117,13 +141,6 @@ export function checkMessages() {
 // @param 请求参数
 export function fetchIssues(filter, param) {
     return dispatch => {
-        // dispatch(requestIssues(filter))
-
-        // let url = `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/issues`,
-        //     href = `https://github.com/${CONFIG.owner}/${CONFIG.repo}/issues`;
-        //
-        // // 添加参数
-        // url += `?fliter=${filter}&per_page=${perPage}`;
         let url
         let data
 
@@ -191,7 +208,9 @@ export function fetchIssues(filter, param) {
 
             case 'addComment':
                 url = DOMAIN + '/api/blog/' + param.blogId + '/comment'
-                data = `author=${param.author}&content=${param.content}&replyTo=${param.replyTo}`
+                var replyTo = param.replyTo || ''
+                var href = param.href || ''
+                data = `author=${param.author}&content=${param.content}&replyTo=${replyTo}&href=${href}`
                 return fetch(url, {
                     method: 'POST',
                     headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -276,7 +295,14 @@ export function fetchIssues(filter, param) {
                 return fetch(url, {
                     credentials: 'include',
                 }).then(
-                    response => response.json()
+                    (response) => {
+                        // fetch 状态码
+                        if (response.status == 200) {
+                            return response.json()
+                        } else {
+                            return
+                        }
+                    }
                 ).then(
                     json => {
                         if (json) {
@@ -286,20 +312,46 @@ export function fetchIssues(filter, param) {
                         }
                     }
                 ).catch(
-                    e => {console.log(e)}
+                    // e => {console.log(e)}
                 )
 
             case 'checkMessages':
                 url = DOMAIN + '/api/checkMessages'
                 return fetch(url, {
                     method: 'POST',
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
                     credentials: 'include'
                 }).then(
                     response => response.json()
                 ).then(
                     json => {
-                        // dispatch(checkMessages())
+                        // dispatch(logState(CHECK_MESSAGES, json))
+                        dispatch(getMessages(json, GET_MESSAGES))
                     }
+                )
+
+            case 'getMessages':
+                url = DOMAIN + '/api/message'
+                return fetch(url, {
+                    credentials: 'include'
+                }).then(
+                    response => response.json()
+                ).then(
+                    json => dispatch(getMessages(json, GET_MESSAGES))
+                )
+
+            case 'getMentions':
+                url = DOMAIN + '/api/usernameMention'
+                data = `name=${param}`
+                return fetch(url, {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: data
+                }).then(
+                    response => response.json()
+                ).then(
+                    json => dispatch(getMentions(json, GET_MENTIONS))
                 )
             // case 'archieve':
             //     url = 'http://127.0.0.1:5000/api/blog/archieve'

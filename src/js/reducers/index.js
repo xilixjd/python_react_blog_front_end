@@ -5,6 +5,8 @@ import getABlog from './getABlog.js'
 import getTags from './getTags.js'
 import isLoggedIn from './isLoggedIn.js'
 import logModalShow from './logModalShow.js'
+import messages from './messages.js'
+import mentions from './mentions.js'
 
 
 const rootReducer = combineReducers({
@@ -13,7 +15,9 @@ const rootReducer = combineReducers({
     getABlog,
     getTags,
     isLoggedIn,
-    logModalShow
+    logModalShow,
+    messages,
+    mentions
 })
 
 export default rootReducer

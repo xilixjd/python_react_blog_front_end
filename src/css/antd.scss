@@ -11,6 +11,10 @@
     padding: 0 24px;
 }
 
+.layout-header {
+    padding-left: 50px;
+}
+
 .layout-breadcrumb {
     padding: 10px;
 }
@@ -28,6 +32,10 @@
 @media only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 240dpi), only screen and (min-resolution: 2dppx) {
     li.ant-menu-item {
         padding: 0 8px;
+    }
+
+    .layout-header {
+        padding-left: 12px;
     }
 
     .ant-layout-footer {

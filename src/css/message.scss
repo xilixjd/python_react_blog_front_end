@@ -1,0 +1,35 @@
+.messageDiv {
+  margin: auto;
+  max-width: 650px;
+}
+
+.messageDiv li {
+  list-style: none;
+  border-bottom: 1px dashed #eee;
+  padding: 10px;
+}
+
+.unchecked {
+  background-color: azure;
+}
+
+.messageDiv li span a {
+  color: rgba(0, 0, 0, 0.65);
+  word-wrap:break-word;
+  word-break:break-all;
+}
+
+.messageDiv li span a:hover {
+  text-decoration: underline;
+}
+
+.messageType {
+  color: #ffce3d;
+  font-size: larger;
+}
+
+@media only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 240dpi), only screen and (min-resolution: 2dppx) {
+  .messageDiv {
+    max-width: 320px;
+  }
+}

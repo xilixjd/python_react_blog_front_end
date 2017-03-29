@@ -27,7 +27,7 @@ function getTags(state = defaultIssuesState, action) {
             }
 
         default:
-            return state;
+            return state
     }
 }
 

@@ -5,7 +5,9 @@
 import React, { Component } from 'react'
 import { fetchIssues } from '../actions/index.js'
 import { connect } from 'react-redux'
-import { Input, Icon, Button, notification } from 'antd'
+
+import { Input, Icon, Button, notification, Mention } from 'antd'
+const { toEditorState, toString } = Mention
 
 
 class CommentForm extends Component {
@@ -13,7 +15,10 @@ class CommentForm extends Component {
         super(props)
         this.state = {
             author: '',
-            content: ''
+            content: '',
+            suggestions: [],
+            mentions: [],
+            loading: false
         }
     }
 
@@ -22,7 +27,8 @@ class CommentForm extends Component {
 
     componentWillReceiveProps(nextProps, nextState) {
         this.setState({
-            content: nextProps.replyAuthor
+            content: nextProps.replyAuthor,
+            mentions: nextProps.mentions
         })
     }
 
@@ -40,10 +46,34 @@ class CommentForm extends Component {
         this.setState({ author: e.target.value})
     }
 
-    contentInputChange = (e) => {
+    contentInputChange = (editorState) => {
         this.setState({
-            content: e.target.value
+            content: toString(editorState)
         })
+    }
+
+    fetchSuggestions = (value, callback) => {
+        setTimeout(() => {
+            callback()
+        }, 500)
+    }
+
+    onSearchChange = (value) => {
+        this.getMentions(value)
+        this.fetchSuggestions(value, () => {
+            this.setState({
+                suggestions: this.state.mentions,
+                loading: false,
+            });
+        })
+        this.setState({
+            loading: true,
+        })
+    }
+
+    getMentions = (name) => {
+        const { dispatch } = this.props
+        dispatch(fetchIssues('getMentions', name))
     }
 
     commentSubmit() {
@@ -62,7 +92,8 @@ class CommentForm extends Component {
             author: author,
             content: content,
             time: new Date().valueOf(),
-            blogId: this.props.params.id
+            blogId: this.props.params.id,
+            href: this.props.location.pathname
         }
         dispatch(fetchIssues('addComment', param))
         this.state.author = ''
@@ -74,6 +105,7 @@ class CommentForm extends Component {
         let isLoggedIn = this.props.isLoggedIn
         let name = isLoggedIn.info.username || ''
         let content = this.state.content
+        const { suggestions, loading } = this.state
         return (
             <div style={{margin: '10px'}}>
                 <form onSubmit={
@@ -83,7 +115,7 @@ class CommentForm extends Component {
                     }
                 }>
                     <Input
-                        style={{marginBottom: '10px', maxWidth: '250px'}}
+                        style={{marginBottom: '10px', maxWidth: '250px', zIndex: 0}}
                         type="text"
                         name="author"
                         placeholder="Enter your userName"
@@ -91,12 +123,19 @@ class CommentForm extends Component {
                         onChange={this.authorInputChange}
                         value={name ? name : this.state.author}
                     />
-                    <Input type="textarea" placeholder="content" name="content" rows={4}
-                           style={{maxWidth: '410px', marginRight: '10px'}}
-                           onChange={this.contentInputChange}
-                           value={content}
-                    />
-                    <Button type="primary" htmlType="submit" size="large">评论</Button>
+                    <div className="mentionDiv">
+                        <Mention
+                            className="mention"
+                            style={{width: '100%', height: '100px'}}
+                            suggestions={suggestions}
+                            loading={loading}
+                            onSearchChange={this.onSearchChange}
+                            placeholder="可以 @用户"
+                            onChange={this.contentInputChange}
+                            multiLines
+                        />
+                        <Button type="primary" htmlType="submit" size="large">评论</Button>
+                    </div>
                 </form>
             </div>
         )
@@ -104,7 +143,7 @@ class CommentForm extends Component {
 }
 
 function mapStateToProps(state) {
-    const { getABlog, comments, isLoggedIn } = state
+    const { getABlog, comments, isLoggedIn, mentions } = state
     const {
         isFetching,
         blog
@@ -117,7 +156,8 @@ function mapStateToProps(state) {
         isFetching,
         blog,
         comments,
-        isLoggedIn
+        isLoggedIn,
+        mentions
     }
 }
 

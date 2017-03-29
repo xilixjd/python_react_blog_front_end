@@ -39,6 +39,15 @@ export const INIT_BLOG = 'INIT_BLOG'
 // 查看消息
 export const CHECK_MESSAGES = 'CHECK_MESSAGES'
 
+// 接收消息
+export const GET_MESSAGES = 'GET_MESSAGES'
+
+// 清除消息
+export const INIT_MESSAGES = 'INIT_MESSAGES'
+
+// 接收用户名 mention
+export const GET_MENTIONS = 'GET_MENTIONS'
+
 // 登录/注册 modal show
 export const LOGGING_SHOW = 'LOGGING_SHOW'
 export const REG_SHOW = 'REG_SHOW'

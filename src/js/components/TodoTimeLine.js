@@ -7,10 +7,12 @@ import ReactDOM from 'react-dom'
 
 import { Timeline } from 'antd'
 
+import '../../css/todo.scss'
+
 export default class TodoTimeLine extends React.Component {
     render() {
         return (
-            <div>
+            <div className="todoDiv">
                 <Timeline pending={<a href="">See more</a>}>
                     <Timeline.Item color="green">Todo</Timeline.Item>
                     <Timeline.Item>将所有提示框（提示框组件）根据返回的状态码来显示</Timeline.Item>

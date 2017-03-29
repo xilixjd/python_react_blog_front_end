@@ -95,10 +95,12 @@ class CommentItem extends Component {
     }
 
     makeATToHref = (content) => {
-        const regStr = /(@.*)\s/
+        const regStr = /(@.*?)\s/g
         if (content.match(regStr)) {
-            let ATHref = content.match(regStr)[1]
-            let ATHrefHtml = `<a href="JavaScript:void(0)">${ATHref}</a>`
+            let ATHref = content.match(regStr)
+            let ATHrefHtml = `<a href="JavaScript:void(0)">$1</a>`
+            // 正则技巧 (.*?) 贪婪匹配 匹配中间的内容
+            // $1 代表括号内的内容
             return content.replace(regStr, ATHrefHtml)
         }
         return content

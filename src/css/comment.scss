@@ -2,6 +2,8 @@
 .commentWrap {
   display: flex;
   padding: 8px;
+  word-wrap:break-word;
+  word-break:break-all;
   border-bottom:1px dashed rgba(0, 0, 0, 0.18);
 }
 
@@ -31,4 +33,15 @@
 
 .showBackgroundColor {
   background-color: antiquewhite;
+}
+
+.mentionDiv {
+  display: flex;
+  align-items: flex-end;
+}
+
+.mention {
+  width: 80%;
+  height: 100px;
+  margin-right: 10px;
 }

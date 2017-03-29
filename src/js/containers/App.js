@@ -76,7 +76,7 @@ class App extends Component {
         return (
             <div id="root">
                 <Layout className="layout">
-                    <Header>
+                    <Header className="layout-header">
                         <div className="logo"/>
                         <Menu
                             theme="dark"

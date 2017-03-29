@@ -23,11 +23,8 @@ const isLoggedIn = (state={ loggedIn: false, info: {} }, action) => {
         case CHECK_MESSAGES:
             return {
                 ...state,
-                info: {
-                    // 有没有更好的写法？
-                    username: state.info.username,
-                    messages: []
-                }
+                loggedIn: true,
+                info: action.info
             }
 
         default:

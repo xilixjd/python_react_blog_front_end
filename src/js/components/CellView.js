@@ -14,6 +14,6 @@ export default class CellView extends Component {
                     }
                 </ul>
             </div>
-        );
+        )
     }
-};
+}

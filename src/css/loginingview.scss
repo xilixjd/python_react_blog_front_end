@@ -2,6 +2,7 @@
   position: fixed;
   top: 645px;
   left: 86px;
+  z-index: 10;
 }
 
 .fixed-log-div i {
@@ -20,7 +21,7 @@
 }
 
 .logreg-form-div {
-  position: absolute;
+  position: fixed;
   top: 200px;
   background: #fff;
   width: 450px;
@@ -78,7 +79,7 @@
   .fixed-log-div {
     position: fixed;
     top: 500px;
-    left: 70px;
+    left: 40px;
   }
 
   .fixed-log-div i {
