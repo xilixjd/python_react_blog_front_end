@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="13c27034-4c08-4eb3-8336-3b1b30faa8a6" name="Default" comment="socketio 消息推送前端初步完成" />
+    <list default="true" id="13c27034-4c08-4eb3-8336-3b1b30faa8a6" name="Default" comment="socketio 消息推送前端初步完成">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/constants/ActionTypes.js" afterPath="$PROJECT_DIR$/src/js/constants/ActionTypes.js" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -57,8 +59,8 @@
       <file leaf-file-name="ActionTypes.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/js/constants/ActionTypes.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="2" column="43" lean-forward="true" selection-start-line="2" selection-start-column="43" selection-end-line="2" selection-end-column="43" />
+            <state relative-caret-position="76">
+              <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -177,13 +179,13 @@
         <option value="$PROJECT_DIR$/src/js/components/ReplyForm.js" />
         <option value="$PROJECT_DIR$/src/js/components/Article.js" />
         <option value="$PROJECT_DIR$/src/css/antd.scss" />
-        <option value="$PROJECT_DIR$/src/js/constants/ActionTypes.js" />
         <option value="$PROJECT_DIR$/src/js/actions/index.js" />
         <option value="$PROJECT_DIR$/src/js/components/logRegModal.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/js/components/Comment.js" />
         <option value="$PROJECT_DIR$/src/js/containers/App.js" />
         <option value="$PROJECT_DIR$/src/js/components/loginingView.js" />
+        <option value="$PROJECT_DIR$/src/js/constants/ActionTypes.js" />
       </list>
     </option>
   </component>
@@ -582,7 +584,7 @@
       <workItem from="1489416095339" duration="4786000" />
       <workItem from="1489931906701" duration="1411000" />
       <workItem from="1489933844807" duration="268000" />
-      <workItem from="1489936823774" duration="116100000" />
+      <workItem from="1489936823774" duration="116691000" />
     </task>
     <task id="LOCAL-00001" summary="gitignore">
       <created>1489112090990</created>
@@ -707,7 +709,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="132979000" />
+    <option name="totallyTimeSpent" value="133570000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="111" y="94" width="1342" height="813" extended-state="0" />
@@ -1197,8 +1199,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/constants/ActionTypes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="43" lean-forward="true" selection-start-line="2" selection-start-column="43" selection-end-line="2" selection-end-column="43" />
+        <state relative-caret-position="76">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
