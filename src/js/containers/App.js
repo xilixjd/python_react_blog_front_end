@@ -6,6 +6,9 @@ import {Link, hashHistory} from 'react-router'
 import NavTag from '../components/NavTag.js'
 import LoginingView from '../components/loginingView.js'
 import LogRegModal from '../components/logRegModal.js'
+import { DOMAIN } from '../constants/ActionTypes.js'
+
+import io from 'socket.io-client'
 
 import {Layout, Menu, Breadcrumb } from 'antd'
 const {Header, Content, Footer} = Layout
@@ -16,6 +19,9 @@ import '../../css/antd.scss'
 class App extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            socket: io.connect(DOMAIN)
+        }
     }
 
     componentDidMount() {
@@ -83,7 +89,7 @@ class App extends Component {
                         Ant Design @xilixjd Created by Ant UED
                     </Footer>
                 </Layout>
-                <LoginingView/>
+                <LoginingView socket={this.state.socket}/>
                 <LogRegModal/>
             </div>
         );

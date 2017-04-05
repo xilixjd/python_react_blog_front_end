@@ -4,10 +4,10 @@
 
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import { LOGGING_SHOW, REG_SHOW, MODAL_CLOSE, LOGIN_SUBMIT, REG_SUBMIT} from '../constants/ActionTypes.js'
+import { LOGGING_SHOW, REG_SHOW, DOMAIN } from '../constants/ActionTypes.js'
 import { logModalShow, fetchIssues } from '../actions/index.js'
 
-import { Icon, Popover } from 'antd'
+import { Icon, Popover, Button, message } from 'antd'
 
 import '../../css/loginingview.scss'
 import '../../css/antd.scss'
@@ -18,18 +18,40 @@ class LoginingView extends Component {
         super(props)
         this.state = {
             checked: false,
-            scrollToBottom: false
+            scrollToBottom: false,
+            messageLength: 0,
+            success: () => {
+                message.success('你有新消息')
+            },
+            username: ''
         }
     }
 
-    componentDidMount() {
+    componentWillMount() {
         const { dispatch } = this.props
         dispatch(fetchIssues('checkUser'))
         window.addEventListener('scroll', this.scrollToBottom.bind(this))
     }
 
+    componentDidMount() {
+        const { socket } = this.props
+        socket.on('new_message', (msg) => {
+            let currentUsername = this.props.info.username
+            let username = msg.username
+            if (currentUsername == username) {
+                this.setState({
+                    messageLength: msg.uncheckedMessagesLen
+                })
+                this.onNewMessage()
+            }
+        })
+    }
+
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps)
+        this.setState({
+            messageLength: nextProps.info.uncheckedMessagesLen,
+            username: nextProps.info.username
+        })
     }
 
     componentWillUnmount() {
@@ -38,8 +60,6 @@ class LoginingView extends Component {
     scrollToBottom = () => {
         const scrollHeight = document.documentElement.scrollHeight
         const eleScroll = document.body.scrollTop + document.documentElement.clientHeight
-        console.log('scrollheight', scrollHeight)
-        console.log('eleScroll', eleScroll)
         if (scrollHeight <= 800) {
             this.setState({
                 scrollToBottom: false
@@ -87,6 +107,10 @@ class LoginingView extends Component {
         return timeDifference <= 60 * 1000 * 60
     }
 
+    onNewMessage = () => {
+        this.state.success()
+    }
+
     render() {
         let { dispatch } = this.props
         let loggedIn = this.props.loggedIn
@@ -94,11 +118,7 @@ class LoginingView extends Component {
         let messages = this.props.messages
         let messageLength, content, contentWrap
         let checked = this.state.checked
-        try {
-            messageLength = info.uncheckedMessagesLen
-        } catch(e) {
-            messageLength = 0
-        }
+        messageLength = this.state.messageLength
         if (messages) {
             const regStr = /(@.*?)\s/g
             content = messages.map((item, index) =>{
@@ -150,6 +170,7 @@ class LoginingView extends Component {
         return (
             <div className={"fixed-log-div " + (this.state.scrollToBottom ? "log-div-showInMobile" : "")} >
                 {loggedIn ? logoutBox : logRegBox}
+                <Button style={{display: 'none'}} onClick={this.onNewMessage}>Success</Button>
             </div>
         )
     }

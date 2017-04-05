@@ -271,7 +271,7 @@ export function fetchIssues(filter, param) {
 
             case 'register':
                 url = DOMAIN + '/api/register'
-                data = `username=${param.username}&password=${param.password}`
+                data = `username=${param.username}&password=${param.password}&email=${param.email}`
                 return fetch(url, {
                     method: 'POST',
                     headers: { "Content-Type": "application/x-www-form-urlencoded" },

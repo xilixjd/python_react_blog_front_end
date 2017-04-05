@@ -138,7 +138,8 @@ class RegisterModal extends Component {
         super(props)
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            email: ''
         }
     }
 
@@ -157,10 +158,19 @@ class RegisterModal extends Component {
         this.setState({ password: e.target.value })
     }
 
+    emailInputChange = (e) => {
+        this.setState({ email: e.target.value })
+    }
+
     registerSubmit() {
         const { dispatch } = this.props
         let username = this.state.username.trim()
         let password = this.state.password.trim()
+        let email = this.state.email.trim()
+        const reg = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/
+        if (!reg.test(email)) {
+            return
+        }
         if (username.length < 1) {
             this.openNotificationWithIcon('error', '注册', '用户名不能为空')
             return
@@ -170,7 +180,8 @@ class RegisterModal extends Component {
         }
         let param = {
             username: username,
-            password: password
+            password: password,
+            email: email
         }
         dispatch(fetchIssues('register', param))
         this.state.username = ''
@@ -200,6 +211,12 @@ class RegisterModal extends Component {
                         <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password"
                                placeholder="Password"
                                onChange={this.passwordInputChange}
+                        />
+                    </FormItem>
+                    <FormItem>
+                        <Input prefix={<Icon type="mail" style={{ fontSize: 13 }} />} type="email"
+                               placeholder="Email"
+                               onChange={this.emailInputChange}
                         />
                     </FormItem>
                     <FormItem>

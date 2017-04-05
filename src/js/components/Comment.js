@@ -129,7 +129,6 @@ class CommentItem extends Component {
                     <div className="commentTime">
                         <span>{this.formatTime(this.props.time)}</span>
                         <a  onClick={() => {
-                            {/*this.onReplyClick('@' + this.props.author + ' ')*/}
                             this.onReplyClick()
                         }}
                             href="JavaScript:void(0)">回复</a>
