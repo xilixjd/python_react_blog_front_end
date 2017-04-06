@@ -24,20 +24,19 @@ class Article extends Component {
         // window.scrollTo(0, 0)
         // const { dispatch } = this.props
         // dispatch(fetchIssuesIfNeeded('blog', this.props.params.id, 'receiveBlog'))
-        // console.log(this.props)
 
         // 代码高亮
-        marked.setOptions({
-            highlight: function (code) {
-                return hljs.highlightAuto(code).value;
-            }
-        })
+        // marked.setOptions({
+        //     highlight: function (code) {
+        //         return hljs.highlightAuto(code).value;
+        //     }
+        // })
     }
 
     componentDidMount() {
         const { dispatch } = this.props
         dispatch(fetchIssuesIfNeeded('blog', this.props.params.id, 'receiveBlog'))
-        dispatch(fetchIssues('checkUser'))
+        // dispatch(fetchIssues('checkUser'))
     }
 
     componentWillReceiveProps(nextProps) {

@@ -80,6 +80,10 @@ class CommentItem extends Component {
         })
     }
 
+    onZanClick = () => {
+        console.log()
+    }
+
     scrollToAnchor = (anchorName) => {
         if (anchorName) {
             // 找到锚点
@@ -132,6 +136,10 @@ class CommentItem extends Component {
                             this.onReplyClick()
                         }}
                             href="JavaScript:void(0)">回复</a>
+                        <a onClick={() => {
+                            this.onZanClick()
+                        }}
+                            href="JavaScript:void(0)">点赞</a>
                     </div>
                     <div className="commentReply" style={{display: this.state.replyDisplay ? 'block' : 'none'}}>
                         <ReplyForm {...this.props} replyTo={this.props.id} />
