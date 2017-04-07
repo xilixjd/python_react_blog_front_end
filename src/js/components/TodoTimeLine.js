@@ -14,9 +14,9 @@ export default class TodoTimeLine extends React.Component {
         return (
             <div className="todoDiv">
                 <Timeline pending={<a href="">See more</a>}>
-                    <Timeline.Item color="green">Todo</Timeline.Item>
-                    <Timeline.Item>将所有提示框（提示框组件）根据返回的状态码来显示</Timeline.Item>
-                    <Timeline.Item>回复和 @ 未读提醒</Timeline.Item>
+                    <Timeline.Item color="green">文章 markdown，登录注册，注册邮件，评论，回复</Timeline.Item>
+                    <Timeline.Item color="green">在回复，评论框 @用户，并发送消息</Timeline.Item>
+                    <Timeline.Item color="green">未读提醒，根据 socketio 来获取新消息</Timeline.Item>
                     <Timeline.Item>后端还有很多细节和功能可以实现（如flask-security，redis缓存，admin，高并发，邮件，消息队列）</Timeline.Item>
                     <Timeline.Item>docker, fabric, supervise</Timeline.Item>
                     <Timeline.Item>加载页面</Timeline.Item>

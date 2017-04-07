@@ -8,6 +8,8 @@ import CommentForm from './CommentForm.js'
 import ReplyForm from './ReplyForm.js'
 import { fetchIssues } from '../actions/index.js'
 
+import { DOMAIN } from '../constants/ActionTypes.js'
+
 import '../../css/comment.scss'
 
 
@@ -58,8 +60,20 @@ class CommentItem extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            replyDisplay: false
+            replyDisplay: false,
+            liked: false,
+            zan_count: 0
         }
+    }
+
+    componentDidMount() {
+        this.setState({
+            liked: this.props.liked,
+            zan_count: this.props.zan_count
+        })
+    }
+
+    componentWillReceiveProps(nextProps) {
     }
 
     formatTime(timeStamp) {
@@ -80,8 +94,26 @@ class CommentItem extends Component {
         })
     }
 
-    onZanClick = () => {
-        console.log()
+    onZanClick = (loggedIn, id) => {
+        if (!loggedIn) {
+            return
+        }
+        let url = DOMAIN + `/api/comment/${id}/zan`
+        return fetch(url, {
+            method: 'POST',
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            credentials: 'include',
+            body: `href=${this.props.location.pathname}`
+        }).then(
+            response => response.json()
+        ).then(
+            json => {
+                this.setState({
+                    zan_count: json,
+                    liked: !this.state.liked
+                })
+            }
+        )
     }
 
     scrollToAnchor = (anchorName) => {
@@ -91,9 +123,6 @@ class CommentItem extends Component {
             // 如果对应id的锚点存在，就跳转到锚点
             if(anchorElement) {
                 anchorElement.scrollIntoView()
-                // let timeOut = setTimeout(() => {
-                //     this.removeClass(anchorElement, anchorDivClassName)
-                // }, 1500)
             }
         }
     }
@@ -118,6 +147,9 @@ class CommentItem extends Component {
         let reply = ' 回复 '
         let author = this.props.author
         let receiver = this.props.receiver
+        let liked = this.state.liked
+        let zan_count = this.state.zan_count
+        let loggedIn = this.props.isLoggedIn.loggedIn
         // this.props.reiceiver 不能及时追踪到
         return (
             <div className="commentWrap" id={'comment' + this.props.id}>
@@ -137,9 +169,12 @@ class CommentItem extends Component {
                         }}
                             href="JavaScript:void(0)">回复</a>
                         <a onClick={() => {
-                            this.onZanClick()
+                            this.onZanClick(loggedIn, this.props.id)
                         }}
-                            href="JavaScript:void(0)">点赞</a>
+                            href="JavaScript:void(0)">
+                            {liked == 0 ? '赞' : '取消赞'}
+                            <span>({zan_count})</span>
+                        </a>
                     </div>
                     <div className="commentReply" style={{display: this.state.replyDisplay ? 'block' : 'none'}}>
                         <ReplyForm {...this.props} replyTo={this.props.id} />
@@ -151,10 +186,11 @@ class CommentItem extends Component {
 }
 
 function mapStateToProps(state) {
-    const { comments } = state
+    const { comments, isLoggedIn } = state
 
     return {
-        comments
+        comments,
+        isLoggedIn
     }
 }
 

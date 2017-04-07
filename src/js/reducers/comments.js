@@ -21,7 +21,9 @@ const comments = (state=[], action) => {
                 content: action.param.content,
                 author: action.param.author,
                 time: action.param.time,
-                receiver: action.param.receiver
+                receiver: action.param.receiver,
+                zan_count: action.param.zan_count,
+                liked: action.param.liked
             }]
 
         case RECEIVE_COMMENTS:
