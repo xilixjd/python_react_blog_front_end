@@ -1,7 +1,11 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux'
-import { fetchIssuesIfNeeded } from '../actions/index.js'
+import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { receiveIssues, fetchIssuesIfNeeded } from '../actions/index.js'
 import CellView from '../components/CellView.js';
+import { INIT_ISSUES } from '../constants/ActionTypes.js'
+
+import { Spin } from 'antd'
+
 
 class Tags extends Component {
     constructor(props) {
@@ -18,6 +22,11 @@ class Tags extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+    }
+
+    componentWillUnmount() {
+        const { dispatch } = this.props
+        dispatch(receiveIssues(INIT_ISSUES, ''))
     }
 
     // 拼接 json
@@ -47,7 +56,11 @@ class Tags extends Component {
 
     render() {
         if (this.props.isFetching) {
-            return null;
+            return (
+                <div style={{textAlign: 'center'}}>
+                    <Spin size="large" />
+                </div>
+            )
         }
 
         let articles = this.spliceJson(this.props.items),
@@ -61,7 +74,7 @@ class Tags extends Component {
             <div className="list">
                 {view}
             </div>
-        );
+        )
     }
 }
 

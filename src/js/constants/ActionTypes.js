@@ -5,9 +5,9 @@ export const DOMAIN = 'http://0.0.0.0:5000'
 
 // 请求issues
 export const REQUEST_ISSUES = 'REQUEST_ISSUES'
-
 // 接收issues
 export const RECEIVE_ISSUES = 'RECEIVE_ISSUES'
+export const INIT_ISSUES = 'INIT_ISSUES'
 
 // 接收 tags
 export const RECEIVE_TAGS = 'RECEIVE_TAGS'
@@ -25,6 +25,7 @@ export const ADD_COMMENT = 'ADD_COMMENT'
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'
 
 // 接收某个 blog
+export const REQUEST_BLOG = 'REQUEST_BLOG'
 export const RECEIVE_BLOG = 'RECEIVE_BLOG'
 
 // 登录
@@ -40,8 +41,8 @@ export const INIT_BLOG = 'INIT_BLOG'
 export const CHECK_MESSAGES = 'CHECK_MESSAGES'
 
 // 接收消息
+export const REQUEST_MESSAGES = 'REQUEST_MESSAGES'
 export const GET_MESSAGES = 'GET_MESSAGES'
-
 // 清除消息
 export const INIT_MESSAGES = 'INIT_MESSAGES'
 

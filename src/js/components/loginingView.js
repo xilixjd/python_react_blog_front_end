@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import { LOGGING_SHOW, REG_SHOW, DOMAIN } from '../constants/ActionTypes.js'
 import { logModalShow, fetchIssues } from '../actions/index.js'
 
-import { Icon, Popover, Button, message } from 'antd'
+import { Icon, Popover, Button, message, Spin } from 'antd'
 
 import '../../css/loginingview.scss'
 import '../../css/antd.scss'
@@ -23,7 +23,8 @@ class LoginingView extends Component {
             success: () => {
                 message.success('你有新消息')
             },
-            username: ''
+            username: '',
+            isMessageFetching: false
         }
     }
 
@@ -50,7 +51,8 @@ class LoginingView extends Component {
     componentWillReceiveProps(nextProps) {
         this.setState({
             messageLength: nextProps.info.uncheckedMessagesLen,
-            username: nextProps.info.username
+            username: nextProps.info.username,
+            isMessageFetching: nextProps.messages.isMessageFetching
         })
     }
 
@@ -115,11 +117,21 @@ class LoginingView extends Component {
         let { dispatch } = this.props
         let loggedIn = this.props.loggedIn
         let info = this.props.info
-        let messages = this.props.messages
+        let isMessageFetching = this.props.messages.isMessageFetching
+        let messages = this.props.messages.messages
         let messageLength, content, contentWrap
         let checked = this.state.checked
         messageLength = this.state.messageLength
-        if (messages) {
+        if (isMessageFetching) {
+            contentWrap = (
+                <div className="loginingView-div">
+                    <div style={{textAlign: 'center', padding: '10px'}}>
+                        <Spin size="small" />
+                    </div>
+                    <p className="footer"><a href="/#/message">查看全部</a></p>
+                </div>
+            )
+        } else {
             const regStr = /(@.*?)\s/g
             content = messages.map((item, index) =>{
                 if (index > 4) {

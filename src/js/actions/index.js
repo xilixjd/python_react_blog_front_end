@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
-import { DOMAIN, RECEIVE_TAGS, REQUEST_ISSUES, RECEIVE_BLOG, RECEIVE_ISSUES, ADD_COMMENT, RECEIVE_COMMENTS, LOG_IN, LOG_OUT } from '../constants/ActionTypes.js'
-import { LOGGING_SHOW, REG_SHOW, MODAL_CLOSE, LOGIN_SUBMIT, REG_SUBMIT, INIT_BLOG, GET_MESSAGES, INIT_MESSAGES, CHECK_MESSAGES } from '../constants/ActionTypes.js'
+import { DOMAIN, RECEIVE_TAGS, REQUEST_ISSUES, REQUEST_BLOG, RECEIVE_BLOG, RECEIVE_ISSUES, INIT_ISSUES, ADD_COMMENT, RECEIVE_COMMENTS, LOG_IN, LOG_OUT } from '../constants/ActionTypes.js'
+import { LOGGING_SHOW, REG_SHOW, MODAL_CLOSE, LOGIN_SUBMIT, REG_SUBMIT, INIT_BLOG, REQUEST_MESSAGES, GET_MESSAGES, INIT_MESSAGES, CHECK_MESSAGES } from '../constants/ActionTypes.js'
 import { GET_MENTIONS } from '../constants/ActionTypes.js'
 import {CONFIG} from '../constants/Config.js'
 import { notification } from 'antd'
@@ -26,25 +26,38 @@ export const receiveComments = (json) => ({
 })
 
 // 接收 blog
-export const receiveBlog = (blog) => ({
-    type: RECEIVE_BLOG,
-    blog
-})
-
-// 获取issues
-function requestIssues(filter) {
-    return {
-        type: REQUEST_ISSUES,
-        filter
+export const receiveBlog = (type, blog) => {
+    switch (type) {
+        case REQUEST_BLOG:
+            return {
+                type: REQUEST_BLOG
+            }
+        case RECEIVE_BLOG:
+            return {
+                type: RECEIVE_BLOG,
+                blog
+            }
     }
 }
 
-// 接收issues
-function receiveIssues(json) {
-    return {
-        type: RECEIVE_ISSUES,
-        posts: json
-    };
+
+// 接收 文章列表
+export function receiveIssues(type, json) {
+    switch (type) {
+        case REQUEST_ISSUES:
+            return {
+                type: REQUEST_ISSUES
+            }
+        case RECEIVE_ISSUES:
+            return {
+                type: RECEIVE_ISSUES,
+                posts: json
+            }
+        case INIT_ISSUES:
+            return {
+                type: INIT_ISSUES
+            }
+    }
 }
 
 // 接收 tags
@@ -113,8 +126,12 @@ export function initBlog() {
     }
 }
 
-export function getMessages(json, type) {
+export function getMessages(type, json) {
     switch (type) {
+        case REQUEST_MESSAGES:
+            return {
+                type: REQUEST_MESSAGES
+            }
         case GET_MESSAGES:
             return {
                 type: GET_MESSAGES,
@@ -127,7 +144,7 @@ export function getMessages(json, type) {
     }
 }
 
-export function getMentions(json, type) {
+export function getMentions(type, json) {
     switch (type) {
         case GET_MENTIONS:
             return {
@@ -146,6 +163,7 @@ export function fetchIssues(filter, param) {
 
         switch (filter) {
             case 'all':
+                dispatch(receiveIssues(REQUEST_ISSUES, ''))
                 url = DOMAIN + '/api/blog/all'
                 return fetch(url, {
                     credentials: 'include'
@@ -153,7 +171,7 @@ export function fetchIssues(filter, param) {
                     response => response.json()
                 ).then(
                     json => {
-                            return (dispatch(receiveIssues(json)))
+                            return dispatch(receiveIssues(RECEIVE_ISSUES, json))
                         }
                 ).catch(e => {
                     console.log(e)
@@ -161,13 +179,14 @@ export function fetchIssues(filter, param) {
                 })
 
             case 'blog':
+                dispatch(receiveBlog(REQUEST_BLOG, ''))
                 url = DOMAIN + '/api/blog/' + param
                 return fetch(url, {
                     credentials: 'include'
                 }).then(
                     response => response.json()
                 ).then(
-                    json => dispatch(receiveBlog(json))
+                    json => dispatch(receiveBlog(RECEIVE_BLOG, json))
                 ).catch(
                     e => {
                         console.log(e)
@@ -176,6 +195,7 @@ export function fetchIssues(filter, param) {
                 )
 
             case 'tags':
+                dispatch(receiveIssues(REQUEST_ISSUES, ''))
                 if (param) {
                     url = DOMAIN + '/api/blog/tag/' + param
                     return fetch(url, {
@@ -183,7 +203,7 @@ export function fetchIssues(filter, param) {
                     }).then(
                         response => response.json()
                     ).then(
-                        json => dispatch(receiveIssues(json))
+                        json => dispatch(receiveIssues(RECEIVE_ISSUES, json))
                     ).catch(
                         e => {
                             console.log(e)
@@ -306,9 +326,9 @@ export function fetchIssues(filter, param) {
                 ).then(
                     json => {
                         if (json) {
-                            dispatch(logState(LOG_IN, json))
+                            return dispatch(logState(LOG_IN, json))
                         } else {
-                            dispatch(logState(LOG_OUT))
+                            return dispatch(logState(LOG_OUT))
                         }
                     }
                 ).catch(
@@ -316,6 +336,7 @@ export function fetchIssues(filter, param) {
                 )
 
             case 'checkMessages':
+                dispatch(getMessages(REQUEST_MESSAGES, ''))
                 url = DOMAIN + '/api/checkMessages'
                 return fetch(url, {
                     method: 'POST',
@@ -324,10 +345,7 @@ export function fetchIssues(filter, param) {
                 }).then(
                     response => response.json()
                 ).then(
-                    json => {
-                        // dispatch(logState(CHECK_MESSAGES, json))
-                        dispatch(getMessages(json, GET_MESSAGES))
-                    }
+                    json => dispatch(getMessages(GET_MESSAGES, json))
                 )
 
             case 'getMessages':
@@ -337,7 +355,7 @@ export function fetchIssues(filter, param) {
                 }).then(
                     response => response.json()
                 ).then(
-                    json => dispatch(getMessages(json, GET_MESSAGES))
+                    json => dispatch(getMessages(GET_MESSAGES, json))
                 )
 
             case 'getMentions':
@@ -351,7 +369,7 @@ export function fetchIssues(filter, param) {
                 }).then(
                     response => response.json()
                 ).then(
-                    json => dispatch(getMentions(json, GET_MENTIONS))
+                    json => dispatch(getMentions(GET_MENTIONS, json))
                 )
             // case 'archieve':
             //     url = 'http://127.0.0.1:5000/api/blog/archieve'

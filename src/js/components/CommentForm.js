@@ -98,6 +98,7 @@ class CommentForm extends Component {
         dispatch(fetchIssues('addComment', param))
         this.state.author = ''
         this.state.content = ''
+        document.querySelector("span[data-text='true']").innerText = ''
         this.openNotificationWithIcon('success', '发表评论', '评论成功')
     }
 

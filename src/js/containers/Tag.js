@@ -4,8 +4,11 @@
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { fetchIssuesIfNeeded } from '../actions/index.js'
+import { receiveIssues, fetchIssuesIfNeeded } from '../actions/index.js'
 import CellView from '../components/CellView.js'
+import { INIT_ISSUES } from '../constants/ActionTypes.js'
+
+import { Spin } from 'antd'
 
 
 class Tag extends Component {
@@ -24,9 +27,18 @@ class Tag extends Component {
         }
     }
 
+    componentWillUnmount() {
+        const { dispatch } = this.props
+        dispatch(receiveIssues(INIT_ISSUES, ''))
+    }
+
     render() {
         if (this.props.isFetching) {
-            return null;
+            return (
+                <div style={{textAlign: 'center'}}>
+                    <Spin size="large" />
+                </div>
+            )
         }
         let tagName
         const tagId = this.props.params.id

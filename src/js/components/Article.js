@@ -5,7 +5,8 @@ import marked from 'marked';
 import hljs from 'highlight.js';
 import {CONFIG} from '../constants/Config.js'
 import { fetchIssues, fetchIssuesIfNeeded, initBlog } from '../actions/index.js'
-import { BackTop } from 'antd'
+
+import { BackTop, Spin } from 'antd'
 
 import '../../css/zenburn.scss';
 import '../../css/article.scss';
@@ -110,13 +111,19 @@ class Article extends Component {
         }
         return (
             <div className="articleComment">
-                <div className="article">
-                    <h1 className="article-title">{this.props.blog.title}</h1>
-                    <p className="article-time">{this.state.contentShow ? this.formatTime(time) : ''}</p>
-                    <div className="article-desc article-content"
-                         dangerouslySetInnerHTML={{__html: marked(this.props.blog.content || '')}}>
+                {this.props.isFetching ?
+                    <div style={{textAlign: 'center'}}>
+                        <Spin size="large"/>
                     </div>
-                </div>
+                        :
+                    <div className="article">
+                        <h1 className="article-title">{this.props.blog.title}</h1>
+                        <p className="article-time">{this.state.contentShow ? this.formatTime(time) : ''}</p>
+                        <div className="article-desc article-content"
+                             dangerouslySetInnerHTML={{__html: marked(this.props.blog.content || '')}}>
+                        </div>
+                    </div>
+                }
                 <div className="comment">
                     {this.state.contentShow ? <Comment {...this.props}/> : ''}
                 </div>

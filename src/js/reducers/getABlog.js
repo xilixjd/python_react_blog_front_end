@@ -1,7 +1,7 @@
 /**
  * Created by xilixjd on 17/3/7.
  */
-import { RECEIVE_BLOG, INIT_BLOG } from '../constants/ActionTypes.js'
+import { RECEIVE_BLOG, INIT_BLOG, REQUEST_BLOG } from '../constants/ActionTypes.js'
 
 var defaultIssuesState = {
     isFetching: false,
@@ -10,6 +10,11 @@ var defaultIssuesState = {
 
 const getABlog = (state=defaultIssuesState, action) => {
     switch (action.type) {
+        case REQUEST_BLOG:
+            return {
+                ...state,
+                isFetching: true
+            }
         case RECEIVE_BLOG:
             return {
                 ...state,
@@ -22,7 +27,6 @@ const getABlog = (state=defaultIssuesState, action) => {
                 isFetching: false,
                 blog: ''
             }
-
         default:
             return state
     }

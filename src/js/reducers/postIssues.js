@@ -1,7 +1,7 @@
 /**
  * Created by xilixjd on 17/3/6.
  */
-import { REQUEST_ISSUES, RECEIVE_ISSUES } from '../constants/ActionTypes.js'
+import { REQUEST_ISSUES, RECEIVE_ISSUES, INIT_ISSUES } from '../constants/ActionTypes.js'
 
 
 var defaultIssuesState = {
@@ -24,7 +24,12 @@ function postIssues(state = defaultIssuesState, action) {
                 isFetching: false,
                 items: action.posts
             }
-
+        case INIT_ISSUES:
+            return {
+                ...state,
+                isFetching: false,
+                items: []
+            }
         default:
             return state;
     }

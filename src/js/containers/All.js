@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { fetchIssuesIfNeeded } from '../actions/index.js'
+import { receiveIssues, fetchIssuesIfNeeded } from '../actions/index.js'
+import { INIT_ISSUES } from '../constants/ActionTypes.js'
 import CellView from '../components/CellView.js'
+
+import { Spin } from 'antd'
 
 
 class All extends Component {
@@ -18,9 +21,18 @@ class All extends Component {
 
     }
 
+    componentWillUnmount() {
+        const { dispatch } = this.props
+        dispatch(receiveIssues(INIT_ISSUES, ''))
+    }
+
     render() {
         if (this.props.isFetching) {
-            return null;
+            return (
+                <div style={{textAlign: 'center'}}>
+                    <Spin size="large" />
+                </div>
+            )
         }
         return (
             <div className="list">
@@ -29,7 +41,7 @@ class All extends Component {
         );
     }
 }
-;
+
 
 function mapStateToProps(state) {
     const {postIssues} = state

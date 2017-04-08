@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { fetchIssues, getMessages } from '../actions/index.js'
 import { INIT_MESSAGES } from '../constants/ActionTypes.js'
 
+import { Spin } from 'antd'
+
 import '../../css/message.scss'
 
 class Message extends Component {
@@ -17,7 +19,7 @@ class Message extends Component {
 
     componentWillUnmount() {
         const { dispatch } = this.props
-        dispatch(getMessages('', INIT_MESSAGES))
+        dispatch(getMessages(INIT_MESSAGES, ''))
     }
 
     formatTime(timeStamp) {
@@ -64,7 +66,8 @@ class Message extends Component {
     }
 
     render() {
-        let messages = this.props.messages
+        let messages = this.props.messages.messages
+        let isMessageFetching = this.props.messages.isMessageFetching
         let timeDict = this.formatMessages(messages)
         let view = []
         for (let formattedTime in timeDict) {
@@ -89,7 +92,13 @@ class Message extends Component {
         }
         return (
             <div className="messageDiv">
-                {view}
+                {isMessageFetching ?
+                    <div style={{textAlign: 'center'}}>
+                        <Spin size="large"/>
+                    </div>
+                    :
+                    view
+                }
             </div>
         )
     }

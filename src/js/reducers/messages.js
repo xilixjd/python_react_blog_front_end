@@ -2,15 +2,34 @@
  * Created by xilixjd on 17/3/26.
  */
 
-import { GET_MESSAGES, INIT_MESSAGES, GET_MENTIONS } from '../constants/ActionTypes.js'
+import { GET_MESSAGES, INIT_MESSAGES, REQUEST_MESSAGES } from '../constants/ActionTypes.js'
 
 
-const messages = (state=[], action) => {
+var defaultState = {
+    isMessageFetching: false,
+    messages: []
+}
+
+
+const messages = (state=defaultState, action) => {
     switch (action.type) {
+        case REQUEST_MESSAGES:
+            return {
+                ...state,
+                isMessageFetching: true
+            }
         case GET_MESSAGES:
-            return action.posts
+            return {
+                ...state,
+                messages: action.posts,
+                isMessageFetching: false
+            }
         case INIT_MESSAGES:
-            return []
+            return {
+                ...state,
+                isMessageFetching: false,
+                messages: []
+            }
         default:
             return state
     }
