@@ -10,7 +10,7 @@ const openNotificationWithIcon = (type, message, description) => {
     notification[type]({
         message: message,
         description: description,
-    });
+    })
 }
 
 // 添加评论

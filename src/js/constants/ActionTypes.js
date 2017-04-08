@@ -1,7 +1,7 @@
 // 后端地址
 // export const DOMAIN = 'http://127.0.0.1:5000'
-export const DOMAIN = 'http://0.0.0.0:5000'
-// export const DOMAIN = 'http://118.89.143.159:5000'
+// export const DOMAIN = 'http://0.0.0.0:5000'
+export const DOMAIN = 'http://118.89.143.159:5000'
 
 // 请求issues
 export const REQUEST_ISSUES = 'REQUEST_ISSUES'
