@@ -22,6 +22,7 @@ export const RECEIVE_ARTICLE = 'RECEIVE_ARTICLE'
 export const ADD_COMMENT = 'ADD_COMMENT'
 
 // 接收评论
+export const REQUEST_COMMENTS = 'REQUEST_COMMENTS'
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'
 
 // 接收某个 blog

@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch';
-import { DOMAIN, RECEIVE_TAGS, REQUEST_ISSUES, REQUEST_BLOG, RECEIVE_BLOG, RECEIVE_ISSUES, INIT_ISSUES, ADD_COMMENT, RECEIVE_COMMENTS, LOG_IN, LOG_OUT } from '../constants/ActionTypes.js'
+import { DOMAIN, RECEIVE_TAGS, REQUEST_ISSUES, REQUEST_BLOG, RECEIVE_BLOG, RECEIVE_ISSUES, INIT_ISSUES, ADD_COMMENT, REQUEST_COMMENTS, RECEIVE_COMMENTS, LOG_IN, LOG_OUT } from '../constants/ActionTypes.js'
 import { LOGGING_SHOW, REG_SHOW, MODAL_CLOSE, LOGIN_SUBMIT, REG_SUBMIT, INIT_BLOG, REQUEST_MESSAGES, GET_MESSAGES, INIT_MESSAGES, CHECK_MESSAGES } from '../constants/ActionTypes.js'
 import { GET_MENTIONS } from '../constants/ActionTypes.js'
 import {CONFIG} from '../constants/Config.js'
@@ -13,17 +13,25 @@ const openNotificationWithIcon = (type, message, description) => {
     })
 }
 
-// 添加评论
-export const addComment = (param) => ({
-    type: ADD_COMMENT,
-    param
-})
-
 // 接收评论
-export const receiveComments = (json) => ({
-    type: RECEIVE_COMMENTS,
-    posts: json
-})
+export const receiveComments = (type, json) => {
+    switch (type) {
+        case ADD_COMMENT:
+            return {
+                type: ADD_COMMENT,
+                param: json
+            }
+        case REQUEST_COMMENTS:
+            return {
+                type: REQUEST_COMMENTS
+            }
+        case RECEIVE_COMMENTS:
+            return {
+                type: RECEIVE_COMMENTS,
+                posts: json
+            }
+    }
+}
 
 // 接收 blog
 export const receiveBlog = (type, blog) => {
@@ -239,19 +247,20 @@ export function fetchIssues(filter, param) {
                 }).then(
                     response => response.json()
                 ).then(
-                    json => dispatch(addComment(json))
+                    json => dispatch(receiveComments(ADD_COMMENT, json))
                 ).catch(
                     e => {console.log(e)}
                 )
 
             case 'getComments':
+                dispatch(receiveComments(REQUEST_COMMENTS, ''))
                 url = DOMAIN + '/api/blog/' + param.blogId + '/comment'
                 return fetch(url, {
                     credentials: 'include'
                 }).then(
                     response => response.json()
                 ).then(
-                    json => dispatch(receiveComments(json))
+                    json => dispatch(receiveComments(RECEIVE_COMMENTS, json))
                 ).catch(
                     e => {console.log(e)}
                 )

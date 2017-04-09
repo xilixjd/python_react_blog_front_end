@@ -9,6 +9,10 @@ import { connect } from 'react-redux'
 import { Input, Icon, Button, notification, Mention } from 'antd'
 const { toEditorState, toString } = Mention
 
+const Scroll = require('react-scroll')
+const scroller = Scroll.scroller
+const scroll = Scroll.animateScroll
+
 
 class CommentForm extends Component {
     constructor(props) {

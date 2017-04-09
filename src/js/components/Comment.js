@@ -10,7 +10,14 @@ import { fetchIssues } from '../actions/index.js'
 
 import { DOMAIN } from '../constants/ActionTypes.js'
 
+import { Spin } from 'antd'
+
 import '../../css/comment.scss'
+
+// https://github.com/fisshy/react-scroll
+const Scroll = require('react-scroll')
+const scroller = Scroll.scroller
+const Events = Scroll.Events
 
 
 class CommentComponent extends Component {
@@ -19,7 +26,7 @@ class CommentComponent extends Component {
         this.state = {
             replyAuthor: '',
             replyDisplay: false,
-            anchorDivClassName: ''
+            scrolled: false
         }
     }
 
@@ -29,6 +36,21 @@ class CommentComponent extends Component {
             blogId: this.props.params.id
         }
         dispatch(fetchIssues('getComments', param, ''))
+        // 注册一个 scroll 开始的函数，背景颜色会显示 2s
+        Events.scrollEvent.register('end', function(to, element) {
+            let anchorDivClassName = 'showBackgroundColor'
+            if (element.className.indexOf(anchorDivClassName) == -1) {
+                element.className += ` ${anchorDivClassName}`
+            }
+            let timeOut = setTimeout(() => {
+                this.removeClass(element, anchorDivClassName)
+            }, 2500)
+            this.state.scrolled = true
+        }.bind(this))
+    }
+
+    componentWillUnmount() {
+        Events.scrollEvent.remove('end')
     }
 
     onCommentItemChange = (newState) => {
@@ -37,16 +59,61 @@ class CommentComponent extends Component {
         })
     }
 
+    removeClass = (ele, cls) => {
+        let reg = new RegExp("(\\s|^)" + cls + "(\\s|$)")
+        ele.className = ele.className.replace(reg, " ")
+    }
+
+    getCheckHash = () => {
+        let hashStr = window.location.hash
+        let hashArray = hashStr.split('#')
+        let hash
+        if (hashArray.length > 2) {
+            hash = hashArray[hashArray.length - 1]
+            return hash
+        } else {
+            return false
+        }
+    }
+
+    scrollToComment = (elementName) => {
+        if (document.querySelector(`[name=${elementName}]`)) {
+            scroller.scrollTo(elementName, {
+                delay: 0,
+                duration: 1000,
+                smooth: 'easeInOutQuint'
+            })
+        }
+    }
+
     render() {
-        const comments = this.props.comments || []
+        let isCommentsFetching = this.props.comments.isCommentsFetching
+        if (isCommentsFetching) {
+            return (
+                <div style={{textAlign: 'center', marginTop: '50px'}}>
+                    <Spin size="large"/>
+                </div>
+            )
+        }else {
+            if (this.getCheckHash() && !this.state.scrolled) {
+                this.scrollToComment(this.getCheckHash())
+            }
+        }
+        const comments = this.props.comments.comments || []
         const replyAuthor = this.state.replyAuthor
         return (
             <div>
-                {comments.map(comment =>
-                    <CommentItem {...this.props}
-                                 {...comment} key={comment.id}
-                                 callbackParent={this.onCommentItemChange}
-                    />
+                {comments.map((comment, index) => {
+                    if (comment.new_sign && index == comments.length - 1) {
+                        this.scrollToComment('comment' + comment.new_sign)
+                    }
+                    return (
+                        <CommentItem {...this.props}
+                                     {...comment} key={comment.id}
+                                     callbackParent={this.onCommentItemChange}
+                        />
+                    )
+                }
                 )}
                 <CommentForm {...this.props}
                              replyAuthor={ replyAuthor }
@@ -72,7 +139,6 @@ class CommentItem extends Component {
             liked: this.props.liked,
             zan_count: this.props.zan_count
         })
-        this.scrollToHash()
     }
 
     componentWillReceiveProps(nextProps) {
@@ -129,44 +195,6 @@ class CommentItem extends Component {
         }
     }
 
-    removeClass = (ele, cls) => {
-        let reg = new RegExp("(\\s|^)" + cls + "(\\s|$)")
-        ele.className = ele.className.replace(reg, " ")
-    }
-
-    getCheckHash = () => {
-        let hashStr = window.location.hash
-        let hashArray = hashStr.split('#')
-        let hash
-        if (hashArray.length > 2) {
-            hash = hashArray[hashArray.length - 1]
-            return hash
-        } else {
-            return false
-        }
-    }
-
-    scrollToHash = () => {
-        let hash = this.getCheckHash()
-        if (hash) {
-            let anchorElement = document.getElementById(hash)
-            if(anchorElement) {
-                anchorElement.scrollIntoView()
-                this.state.anchorDivClassName = 'showBackgroundColor'
-                let anchorDivClassName = this.state.anchorDivClassName
-                anchorElement.className += ` ${anchorDivClassName}`
-                anchorElement.scrollIntoView()
-                let timeOut = setTimeout(() => {
-                    this.removeClass(anchorElement, anchorDivClassName)
-                }, 2500)
-            } else {
-                return
-            }
-        } else {
-            return
-        }
-    }
-
     makeATToHref = (content) => {
         const regStr = /(@.*?)\s/g
         if (content.match(regStr)) {
@@ -192,7 +220,7 @@ class CommentItem extends Component {
         let loggedIn = this.props.isLoggedIn.loggedIn
         // this.props.reiceiver 不能及时追踪到
         return (
-            <div className="commentWrap" id={'comment' + this.props.id}>
+            <div className="commentWrap" id={'comment' + this.props.id} name={'comment' + this.props.id}>
                 <a onClick={()=>this.scrollToAnchor('comment' + this.props.id)}>#</a>
                 <div className="commentAvatar"><img src={md5Url}></img></div>
                 <div style={{width: '100%'}}>
