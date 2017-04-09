@@ -21,7 +21,8 @@
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
     "antd": "^2.1.0",
-    "socket.io-client": "^1.7.2"
+    "socket.io-client": "^1.7.2",
+    "react-scroll": "^1.4.8"
   },
   "devDependencies": {
     "less": "^2.7.1",

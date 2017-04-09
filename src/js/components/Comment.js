@@ -18,7 +18,8 @@ class CommentComponent extends Component {
         super(props)
         this.state = {
             replyAuthor: '',
-            replyDisplay: false
+            replyDisplay: false,
+            anchorDivClassName: ''
         }
     }
 
@@ -71,6 +72,7 @@ class CommentItem extends Component {
             liked: this.props.liked,
             zan_count: this.props.zan_count
         })
+        this.scrollToHash()
     }
 
     componentWillReceiveProps(nextProps) {
@@ -124,6 +126,44 @@ class CommentItem extends Component {
             if(anchorElement) {
                 anchorElement.scrollIntoView()
             }
+        }
+    }
+
+    removeClass = (ele, cls) => {
+        let reg = new RegExp("(\\s|^)" + cls + "(\\s|$)")
+        ele.className = ele.className.replace(reg, " ")
+    }
+
+    getCheckHash = () => {
+        let hashStr = window.location.hash
+        let hashArray = hashStr.split('#')
+        let hash
+        if (hashArray.length > 2) {
+            hash = hashArray[hashArray.length - 1]
+            return hash
+        } else {
+            return false
+        }
+    }
+
+    scrollToHash = () => {
+        let hash = this.getCheckHash()
+        if (hash) {
+            let anchorElement = document.getElementById(hash)
+            if(anchorElement) {
+                anchorElement.scrollIntoView()
+                this.state.anchorDivClassName = 'showBackgroundColor'
+                let anchorDivClassName = this.state.anchorDivClassName
+                anchorElement.className += ` ${anchorDivClassName}`
+                anchorElement.scrollIntoView()
+                let timeOut = setTimeout(() => {
+                    this.removeClass(anchorElement, anchorDivClassName)
+                }, 2500)
+            } else {
+                return
+            }
+        } else {
+            return
         }
     }
 

@@ -1,15 +1,17 @@
 import React, {Component} from 'react'
 import Comment from './Comment.js'
 import { connect } from 'react-redux'
-import marked from 'marked';
-import hljs from 'highlight.js';
 import {CONFIG} from '../constants/Config.js'
 import { fetchIssues, fetchIssuesIfNeeded, initBlog } from '../actions/index.js'
 
+import marked from 'marked'
+import hljs from 'highlight.js'
+import { Scroll } from 'react-scroll'
+
 import { BackTop, Spin } from 'antd'
 
-import '../../css/zenburn.scss';
-import '../../css/article.scss';
+import '../../css/zenburn.scss'
+import '../../css/article.scss'
 
 class Article extends Component {
     constructor(props) {
@@ -37,7 +39,12 @@ class Article extends Component {
     componentDidMount() {
         const { dispatch } = this.props
         dispatch(fetchIssuesIfNeeded('blog', this.props.params.id, 'receiveBlog'))
-        // dispatch(fetchIssues('checkUser'))
+        // var scroller = Scroll.scroller
+        // scroller.scrollTo('', {
+        //     duration: 1500,
+        //     delay: 100,
+        //     smooth: true
+        // }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -78,22 +85,26 @@ class Article extends Component {
         ele.className = ele.className.replace(reg, " ")
     }
 
-    scrollToHash() {
-        let hash = this.getCheckHash()
-        if (hash) {
-            let anchorElement = document.getElementById(hash)
-            if(anchorElement) {
-                anchorElement.scrollIntoView()
-                this.state.anchorDivClassName = 'showBackgroundColor'
-                let anchorDivClassName = this.state.anchorDivClassName
-                anchorElement.className += ` ${anchorDivClassName}`
-                anchorElement.scrollIntoView()
-                let timeOut = setTimeout(() => {
-                    this.removeClass(anchorElement, anchorDivClassName)
-                }, 2500)
-            }
-        }
-    }
+    // scrollToHash() {
+    //     let hash = this.getCheckHash()
+    //     if (hash) {
+    //         let anchorElement = document.getElementById(hash)
+    //         if(anchorElement) {
+    //             anchorElement.scrollIntoView()
+    //             this.state.anchorDivClassName = 'showBackgroundColor'
+    //             let anchorDivClassName = this.state.anchorDivClassName
+    //             anchorElement.className += ` ${anchorDivClassName}`
+    //             anchorElement.scrollIntoView()
+    //             let timeOut = setTimeout(() => {
+    //                 this.removeClass(anchorElement, anchorDivClassName)
+    //             }, 2500)
+    //         } else {
+    //             return
+    //         }
+    //     } else {
+    //         return
+    //     }
+    // }
 
     intervalScroll() {
         // 比较野鸡 看有没有更好的方法 1. 渲染完成后 调用 scrollToHash 或 2. 找出不能实现正常功能的原因
@@ -107,7 +118,7 @@ class Article extends Component {
         let time = this.props.blog.time
         if (!this.props.isFetching) {
             this.state.contentShow = true
-            this.scrollToHash()
+            // this.scrollToHash()
         }
         return (
             <div className="articleComment">
