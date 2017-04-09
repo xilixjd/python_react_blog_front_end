@@ -97,17 +97,17 @@ class Article extends Component {
 
     intervalScroll() {
         // 比较野鸡 看有没有更好的方法 1. 渲染完成后 调用 scrollToHash 或 2. 找出不能实现正常功能的原因
-        this.state.timer = setInterval(() => {
-            this.scrollToHash()
-            clearInterval(this.state.timer)
-        }, 100)
+        // this.state.timer = setInterval(() => {
+        //     this.scrollToHash()
+            // clearInterval(this.state.timer)
+        // }, 100)
     }
 
     render() {
         let time = this.props.blog.time
-        if (this.props.blog.content) {
+        if (!this.props.isFetching) {
             this.state.contentShow = true
-            this.intervalScroll()
+            this.scrollToHash()
         }
         return (
             <div className="articleComment">

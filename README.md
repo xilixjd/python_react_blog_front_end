@@ -1,4 +1,5 @@
 # xilixjd's blog
+[xjd的博客](http://www.xilixjd.cc)
 
 ## 环境搭建
 
@@ -28,7 +29,7 @@ $ npm install -g webpack@1.13.2
 ### 安装
 
 ``` bash
-$ cd cobish.github.io
+$ cd python_react_blog_front_end
 $ npm install
 ```
 
@@ -56,15 +57,8 @@ $ npm run build
 - react@15.3.1
 - react-router@15.3.1
 - redux@3.6.0
-- webpack@1.13.2
+- socketio
 - es6
-
-## 浏览器兼容
-
-- Chrome
-- Firefox
-- Safari
-- IE10+
 
 ## 日志更新
 
