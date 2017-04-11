@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router'
-import NProgress from 'nprogress'
 
 import Animate from 'rc-animate'
 
