@@ -140,7 +140,7 @@ function getPlugins() {
         }
       }),
       new HtmlWebpackPlugin({
-        title: 'cobish - 写给未来的自己',
+        title: 'xilixjd - 练手',
         filename: '../index.html',
         template: './src/html/index.html'
       }),
