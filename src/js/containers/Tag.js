@@ -10,6 +10,8 @@ import { INIT_ISSUES } from '../constants/ActionTypes.js'
 
 import { Spin } from 'antd'
 
+import Animate from 'rc-animate'
+
 
 class Tag extends Component {
     componentWillMount() {
@@ -53,7 +55,12 @@ class Tag extends Component {
         }
         return (
             <div className="list">
-                <CellView title={tagName} items={this.props.items}/>
+                <Animate
+                    transitionName="fade"
+                    transitionAppear
+                >
+                    <CellView title="全部" items={this.props.items}/>
+                </Animate>
             </div>
         );
     }

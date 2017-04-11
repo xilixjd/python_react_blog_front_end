@@ -9,6 +9,8 @@ import hljs from 'highlight.js'
 
 import { BackTop, Spin } from 'antd'
 
+import Animate from 'rc-animate'
+
 import '../../css/zenburn.scss'
 import '../../css/article.scss'
 

@@ -6,6 +6,8 @@ import CellView from '../components/CellView.js'
 
 import { Spin } from 'antd'
 
+import Animate from 'rc-animate'
+
 
 class All extends Component {
     componentWillMount() {
@@ -36,9 +38,14 @@ class All extends Component {
         }
         return (
             <div className="list">
-                <CellView title="全部" items={this.props.items}/>
+                <Animate
+                    transitionName="fade"
+                    transitionAppear
+                >
+                    <CellView title="全部" items={this.props.items}/>
+                </Animate>
             </div>
-        );
+        )
     }
 }
 

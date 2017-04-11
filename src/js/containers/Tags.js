@@ -6,6 +6,8 @@ import { INIT_ISSUES } from '../constants/ActionTypes.js'
 
 import { Spin } from 'antd'
 
+import Animate from 'rc-animate'
+
 
 class Tags extends Component {
     constructor(props) {
@@ -72,7 +74,12 @@ class Tags extends Component {
 
         return (
             <div className="list">
-                {view}
+                <Animate
+                    transitionName="fade"
+                    transitionAppear
+                >
+                    {view}
+                </Animate>
             </div>
         )
     }
