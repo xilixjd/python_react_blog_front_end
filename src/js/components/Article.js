@@ -1,15 +1,15 @@
 import React, {Component} from 'react'
 import Comment from './Comment.js'
 import { connect } from 'react-redux'
-import {CONFIG} from '../constants/Config.js'
+// import {CONFIG} from '../constants/Config.js'
 import { fetchIssues, fetchIssuesIfNeeded, initBlog } from '../actions/index.js'
 
 import marked from 'marked'
-import hljs from 'highlight.js'
+// import hljs from 'highlight.js'
 
 import { BackTop, Spin } from 'antd'
 
-import Animate from 'rc-animate'
+// import Animate from 'rc-animate'
 
 import '../../css/zenburn.scss'
 import '../../css/article.scss'

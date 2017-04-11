@@ -40,13 +40,13 @@ var All = (location, cb) => {
     }, 'all');
 };
 
-var Archive = (location, cb) => {
-    document.title = CONFIG.titleLoad;
-    NProgress.start();
-    require.ensure([], require => {
-        cb(null, require('../containers/Archive.js').default);
-    }, 'archive');
-};
+// var Archive = (location, cb) => {
+//     document.title = CONFIG.titleLoad;
+//     NProgress.start();
+//     require.ensure([], require => {
+//         cb(null, require('../containers/Archive.js').default);
+//     }, 'archive');
+// };
 
 var Tags = (location, cb) => {
     document.title = CONFIG.titleLoad;
