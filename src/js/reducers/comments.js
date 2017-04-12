@@ -7,6 +7,11 @@ import { ADD_COMMENT, RECEIVE_COMMENTS, REQUEST_COMMENTS } from '../constants/Ac
 
 var defaultIssuesState = {
     comments: [],
+    paging: {
+        pageIdx: 1,
+        quantity: 20,
+        totalCount: 1
+    },
     isCommentsFetching: false
 }
 
@@ -28,6 +33,11 @@ const comments = (state=defaultIssuesState, action) => {
             comments.push(new_comment)
             return {
                 ...state,
+                paging: {
+                    pageIdx: state.paging.pageIdx,
+                    quantity: state.paging.quantity,
+                    totalCount: state.paging.totalCount += 1
+                },
                 comments: comments
             }
 
@@ -39,7 +49,9 @@ const comments = (state=defaultIssuesState, action) => {
 
         case RECEIVE_COMMENTS:
             return {
-                comments: action.posts,
+                ...state,
+                comments: action.posts.data,
+                paging: action.posts.paging,
                 isCommentsFetching: false
             }
 

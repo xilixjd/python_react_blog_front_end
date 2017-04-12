@@ -4,13 +4,16 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { hashHistory } from 'react-router'
 import CommentForm from './CommentForm.js'
 import ReplyForm from './ReplyForm.js'
 import { fetchIssues } from '../actions/index.js'
 
+import NProgress from 'nprogress'
+
 import { DOMAIN } from '../constants/ActionTypes.js'
 
-import { Spin } from 'antd'
+import { Spin, Pagination } from 'antd'
 
 import '../../css/comment.scss'
 
@@ -33,7 +36,8 @@ class CommentComponent extends Component {
     componentDidMount() {
         const { dispatch } = this.props
         const param = {
-            blogId: this.props.params.id
+            blogId: this.props.params.id,
+            pageIdx: this.props.location.query.pageIdx || ''
         }
         dispatch(fetchIssues('getComments', param, ''))
         // 注册一个 scroll 开始的函数，背景颜色会显示 2s
@@ -86,6 +90,24 @@ class CommentComponent extends Component {
         }
     }
 
+    onPageChange = (page, pageSize) => {
+        const { dispatch } = this.props
+        const param = {
+            blogId: this.props.params.id,
+            pageIdx: page,
+            quantity: pageSize
+        }
+        dispatch(fetchIssues('getComments', param, ''))
+        hashHistory.push({
+            pathname: `/post/${this.props.params.id}`,
+            query: { pageIdx: page }
+        })
+        let anchorElement = document.getElementById("allComments")
+        if(anchorElement) {
+            anchorElement.scrollIntoView()
+        }
+    }
+
     render() {
         let isCommentsFetching = this.props.comments.isCommentsFetching
         if (isCommentsFetching) {
@@ -98,11 +120,14 @@ class CommentComponent extends Component {
             if (this.getCheckHash() && !this.state.scrolled) {
                 this.scrollToComment(this.getCheckHash())
             }
+            NProgress.done()
         }
         const comments = this.props.comments.comments || []
+        const paging = this.props.comments.paging
+        const currentPage = parseInt(this.props.location.query.pageIdx) || 1
         const replyAuthor = this.state.replyAuthor
         return (
-            <div>
+            <div id="allComments">
                 {comments.map((comment, index) => {
                     if (comment.new_sign && index == comments.length - 1) {
                         this.scrollToComment('comment' + comment.new_sign)
@@ -115,6 +140,10 @@ class CommentComponent extends Component {
                     )
                 }
                 )}
+                <div className="page">
+                    <Pagination current={currentPage} total={paging.totalCount}
+                                pageSize={paging.quantity} onChange={this.onPageChange}/>
+                </div>
                 <CommentForm {...this.props}
                              replyAuthor={ replyAuthor }
                 />
@@ -171,7 +200,7 @@ class CommentItem extends Component {
             method: 'POST',
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             credentials: 'include',
-            body: `href=${this.props.location.pathname}`
+            body: `href=${this.props.location.pathname + this.props.location.search}`
         }).then(
             response => response.json()
         ).then(

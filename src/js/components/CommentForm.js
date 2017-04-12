@@ -97,7 +97,7 @@ class CommentForm extends Component {
             content: content,
             time: new Date().valueOf(),
             blogId: this.props.params.id,
-            href: this.props.location.pathname
+            href: this.props.location.pathname + this.props.location.search
         }
         dispatch(fetchIssues('addComment', param))
         this.state.author = ''

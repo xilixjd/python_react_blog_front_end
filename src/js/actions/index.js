@@ -254,7 +254,9 @@ export function fetchIssues(filter, param) {
 
             case 'getComments':
                 dispatch(receiveComments(REQUEST_COMMENTS, ''))
-                url = DOMAIN + '/api/blog/' + param.blogId + '/comment'
+                param.pageIdx = param.pageIdx || ''
+                param.quantity = param.quantity || ''
+                url = DOMAIN + '/api/blog/' + param.blogId + '/comment' + `?pageIdx=${param.pageIdx}&quantity=${param.quantity}`
                 return fetch(url, {
                     credentials: 'include'
                 }).then(

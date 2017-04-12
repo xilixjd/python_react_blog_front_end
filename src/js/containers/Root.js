@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {Router, Route, IndexRoute, useRouterHistory} from 'react-router';
-import {createHashHistory} from 'history';
+import React, { Component } from 'react';
+import { Router, Route, IndexRoute, useRouterHistory, browserHistory } from 'react-router';
+import { createHashHistory } from 'history';
 import {CONFIG} from '../constants/Config.js';
 import NProgress from 'nprogress';
 
@@ -99,14 +99,14 @@ var Message = (location, cb) => {
 const routes = (
     <Route path="/" component={App}>
         <IndexRoute component={Menu}/>
-        <Route path="all" getComponent={All}/>
+        <Route path="/all" getComponent={All}/>
         {/*<Route path="archive" getComponent={Archive} />*/}
-        <Route path="tags" getComponent={Tags}/>
-        <Route path="tag/:id" getComponent={Tag}/>
-        <Route path="post/:id" getComponent={Article}/>
-        <Route path="antd" getComponent={Antd}/>
-        <Route path="todo" getComponent={Todo}/>
-        <Route path="message" getComponent={Message}/>
+        <Route path="/tags" getComponent={Tags}/>
+        <Route path="/tag/:id" getComponent={Tag}/>
+        <Route path="/post/:id" getComponent={Article}/>
+        <Route path="/antd" getComponent={Antd}/>
+        <Route path="/todo" getComponent={Todo}/>
+        <Route path="/message" getComponent={Message}/>
     </Route>
 )
 
