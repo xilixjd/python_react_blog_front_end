@@ -7,7 +7,8 @@ import { connect } from 'react-redux'
 import { hashHistory } from 'react-router'
 import CommentForm from './CommentForm.js'
 import ReplyForm from './ReplyForm.js'
-import { fetchIssues } from '../actions/index.js'
+import { fetchIssues, receiveComments } from '../actions/index.js'
+import { INIT_COMMENTS } from '../constants/ActionTypes.js'
 
 import NProgress from 'nprogress'
 
@@ -29,8 +30,13 @@ class CommentComponent extends Component {
         this.state = {
             replyAuthor: '',
             replyDisplay: false,
-            scrolled: false
+            scrolled: false,
+            // comments: {},
+            // firstLoad: true
         }
+    }
+
+    componentWillMount() {
     }
 
     componentDidMount() {
@@ -53,8 +59,31 @@ class CommentComponent extends Component {
         }.bind(this))
     }
 
+    componentWillReceiveProps(nextProps) {
+        // if(this.state.firstLoadPage) {
+        //     const { dispatch } = nextProps
+        //     const param = {
+        //         blogId: nextProps.params.id,
+        //         pageIdx: nextProps.location.query.pageIdx || ''
+        //     }
+        //     dispatch(fetchIssues('getComments', param, ''))
+        //     this.state.firstLoadPage = false
+        // }
+
+        // if (!this.state.comments[this.props.location.query.pageIdx || 1] || this.state.firstLoad) {
+        //     if (nextProps.comments.comments.length) {
+        //         this.state.comments[this.props.location.query.pageIdx || 1] = nextProps.comments.comments
+        //         this.state.firstLoad = false
+        //     }
+        // }
+    }
+
+    componentDidUpdate() {
+    }
+
     componentWillUnmount() {
         Events.scrollEvent.remove('end')
+        receiveComments(INIT_COMMENTS, '')
     }
 
     onCommentItemChange = (newState) => {
@@ -123,6 +152,8 @@ class CommentComponent extends Component {
             NProgress.done()
         }
         const comments = this.props.comments.comments || []
+        // 丑陋的实现了前进后退时页面列表随之更新, 然而这时候增加评论时没有显示效果了
+        // const comments = this.state.comments[this.props.location.query.pageIdx || 1] || []
         const paging = this.props.comments.paging
         const currentPage = parseInt(this.props.location.query.pageIdx) || 1
         const replyAuthor = this.state.replyAuthor
@@ -142,6 +173,7 @@ class CommentComponent extends Component {
                 )}
                 <div className="page">
                     <Pagination current={currentPage} total={paging.totalCount}
+                                showQuickJumper
                                 pageSize={paging.quantity} onChange={this.onPageChange}/>
                 </div>
                 <CommentForm {...this.props}

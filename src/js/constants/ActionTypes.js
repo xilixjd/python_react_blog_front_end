@@ -1,7 +1,7 @@
 // 后端地址
 // export const DOMAIN = 'http://127.0.0.1:5000'
-// export const DOMAIN = 'http://0.0.0.0:5000'
-export const DOMAIN = 'http://118.89.143.159:5000'
+export const DOMAIN = 'http://0.0.0.0:5000'
+// export const DOMAIN = 'http://118.89.143.159:5000'
 
 // 请求issues
 export const REQUEST_ISSUES = 'REQUEST_ISSUES'
@@ -24,6 +24,7 @@ export const ADD_COMMENT = 'ADD_COMMENT'
 // 接收评论
 export const REQUEST_COMMENTS = 'REQUEST_COMMENTS'
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'
+export const INIT_COMMENTS = 'INIT_COMMENTS'
 
 // 接收某个 blog
 export const REQUEST_BLOG = 'REQUEST_BLOG'

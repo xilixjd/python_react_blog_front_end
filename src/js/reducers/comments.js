@@ -2,7 +2,7 @@
  * Created by xilixjd on 17/3/6.
  */
 
-import { ADD_COMMENT, RECEIVE_COMMENTS, REQUEST_COMMENTS } from '../constants/ActionTypes.js'
+import { ADD_COMMENT, RECEIVE_COMMENTS, REQUEST_COMMENTS, INIT_COMMENTS } from '../constants/ActionTypes.js'
 
 
 var defaultIssuesState = {
@@ -53,6 +53,12 @@ const comments = (state=defaultIssuesState, action) => {
                 comments: action.posts.data,
                 paging: action.posts.paging,
                 isCommentsFetching: false
+            }
+
+        case INIT_COMMENTS:
+            return {
+                ...state,
+                comments: []
             }
 
         default:

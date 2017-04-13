@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch';
-import { DOMAIN, RECEIVE_TAGS, REQUEST_ISSUES, REQUEST_BLOG, RECEIVE_BLOG, RECEIVE_ISSUES, INIT_ISSUES, ADD_COMMENT, REQUEST_COMMENTS, RECEIVE_COMMENTS, LOG_IN, LOG_OUT } from '../constants/ActionTypes.js'
+import { DOMAIN, RECEIVE_TAGS, REQUEST_ISSUES, REQUEST_BLOG, RECEIVE_BLOG, RECEIVE_ISSUES, INIT_ISSUES, ADD_COMMENT, REQUEST_COMMENTS, RECEIVE_COMMENTS, INIT_COMMENTS, LOG_IN, LOG_OUT } from '../constants/ActionTypes.js'
 import { LOGGING_SHOW, REG_SHOW, MODAL_CLOSE, LOGIN_SUBMIT, REG_SUBMIT, INIT_BLOG, REQUEST_MESSAGES, GET_MESSAGES, INIT_MESSAGES, CHECK_MESSAGES } from '../constants/ActionTypes.js'
 import { GET_MENTIONS } from '../constants/ActionTypes.js'
 import {CONFIG} from '../constants/Config.js'
@@ -29,6 +29,10 @@ export const receiveComments = (type, json) => {
             return {
                 type: RECEIVE_COMMENTS,
                 posts: json
+            }
+        case INIT_COMMENTS:
+            return {
+                type: INIT_COMMENTS
             }
     }
 }
