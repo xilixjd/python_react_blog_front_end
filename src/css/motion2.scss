@@ -1,13 +1,10 @@
-/* 外壳样式 */
 .pic-details-demo-wrapper {
   position: relative;
+  background: #DEEDCC;
   overflow: hidden;
-  height: 540px;
-  margin: 40px auto;
-  width: 74.4%;
+  height: 500px;
 }
 
-/*
 .pic-details-demo {
   margin: 40px auto;
   box-shadow: 0 10px 40px #C7D7B5;
@@ -18,7 +15,6 @@
   border-radius: 6px;
   overflow: hidden;
 }
-*/
 
 .pic-details-demo-header {
   height: 32px;
@@ -105,7 +101,6 @@
 }
 
 /* 图片 */
-/*
 .pic-details-demo-image-wrapper {
   position: relative;
   list-style: none;
@@ -113,10 +108,10 @@
   height: 290px;
   margin: auto;
 }
-*/
+
 .pic-details-demo-image-wrapper li {
-  width: 220px;
-  height: 152px;
+  width: 110px;
+  height: 76px;
   position: absolute;
 }
 
@@ -131,7 +126,7 @@
 }
 
 .pic-details-demo-image-wrapper li a {
-  width: 220px;
+  width: 110px;
   z-index: 1;
   display: inline-block;
   position: absolute;
@@ -145,7 +140,7 @@
   width: 50%;
   background: #fff;
   padding: 10px 15px;
-  height: 350px;
+  height: 175px;
   vertical-align: top;
   display: inline-block;
   position: absolute;
@@ -176,7 +171,6 @@
   margin-top: 10px;
   line-height: 16px;
 }
-/*
 @media screen and (max-width: 414px) {
   .pic-details-demo{
     transform: scale(.65) translateX(12px);
@@ -191,105 +185,5 @@
 @media screen and (max-width: 320px) {
   .pic-details-demo{
     transform: scale(.5) translateX(12px);
-  }
-}
-*/
-
-
-@media only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 240dpi), only screen and (min-resolution: 2dppx) {
-  /*
-  .pic-details-demo{
-    transform: scale(.259) translateX(12px);
-    transform-origin: left center;
-  }
-  .pic-details-demo-wrapper {
-    height: 140px;
-  }
-  */
-  .pic-details-demo-wrapper {
-    position: relative;
-    height: inherit;
-    overflow: hidden;
-    margin: 0;
-    width: inherit;
-  }
-  .pic-details-demo {
-    display: flex;
-    justify-content: center;
-  }
-  .pic-details-demo-image-wrapper li {
-    width: 220px;
-    height: 152px;
-    margin: 3px;
-    position: inherit;
-    display: inline;
-  }
-  .pic-details-demo-image-wrapper li a, .pic-details-demo-image-wrapper li a img {
-    display: block;
-    position: relative;
-    width: 220px;
-  }
-  .pic-details-demo-text-wrapper {
-    width: 220px;
-    position: relative;
-    display: block;
-    height: initial;
-    padding: 0;
-  }
-}
-
-.fade-enter {
-  opacity: 0;
-  animation-duration: .5s;
-  animation-fill-mode: both;
-  animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
-  animation-play-state: paused;
-}
-
-.fade-appear {
-  opacity: 0;
-  animation-duration: .5s;
-  animation-fill-mode: both;
-  animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
-  animation-play-state: paused;
-}
-
-.fade-leave {
-  animation-duration: .5s;
-  animation-fill-mode: both;
-  animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
-  animation-play-state: paused;
-}
-
-.fade-enter.fade-enter-active {
-  animation-name: fadeIn;
-  animation-play-state: running;
-}
-
-.fade-appear.fade-appear-active {
-  animation-name: fadeIn;
-  animation-play-state: running;
-}
-
-.fade-leave.fade-leave-active {
-  animation-name: fadeOut;
-  animation-play-state: running;
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
   }
 }

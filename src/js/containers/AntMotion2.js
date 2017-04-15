@@ -2,18 +2,14 @@
  * Created by xilixjd on 17/4/15.
  */
 
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-
-import NProgress from 'nprogress'
-
 import QueueAnim from 'rc-queue-anim';
 import TweenOne, { TweenOneGroup } from 'rc-tween-one';
-import Animate from 'rc-animate'
-
 import { Icon } from 'antd';
 
-import '../../css/motion.scss'
+import '../../css/motion2.scss'
+
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 const textData = {
     content: 'Taiwan called motorcycle, motor bike [1] or a motorcycle,' +
@@ -35,10 +31,8 @@ let dataArray = [
     { image: 'https://zos.alipayobjects.com/rmsportal/QqWQKvgLSJaYbpr.png' },
     { image: 'https://zos.alipayobjects.com/rmsportal/pTfNdthdsUpLPLJ.png' },
 ];
-dataArray = dataArray.map(item => ({ ...item, ...textData }))
-
-
-class PicDetailsDemo extends React.Component {
+dataArray = dataArray.map(item => ({ ...item, ...textData }));
+class AntMotion2 extends React.Component {
     static propTypes = {
         className: React.PropTypes.string,
     };
@@ -52,10 +46,6 @@ class PicDetailsDemo extends React.Component {
         this.state = {
             picOpen: {},
         };
-    }
-
-    componentDidUpdate() {
-        NProgress.done()
     }
 
     onImgClick = (e, i) => {
@@ -93,8 +83,8 @@ class PicDetailsDemo extends React.Component {
     };
 
     getLiChildren = () => {
-        const imgWidth = 110 * 2;
-        const imgHeight = 76 * 2;
+        const imgWidth = 110;
+        const imgHeight = 76;
         const imgBoxWidth = 130;
         const imgBoxHeight = 96;
         return dataArray.map((item, i) => {
@@ -102,14 +92,14 @@ class PicDetailsDemo extends React.Component {
             const isEnter = typeof this.state.picOpen[i] === 'boolean';
             const isOpen = this.state.picOpen[i];
 
-            const left = isEnter ? 0 : imgBoxWidth * (i % 4) * 2;
-            const imgLeft = isEnter ? imgBoxWidth * (i % 4) * 2 : 0;
+            const left = isEnter ? 0 : imgBoxWidth * (i % 4);
+            const imgLeft = isEnter ? imgBoxWidth * (i % 4) : 0;
             const isRight = Math.floor((i % 4) / 2);
             const isTop = Math.floor(i / 4);
             let top = isTop ? (isTop - 1) * imgBoxHeight : 0;
-            top = isEnter ? top * 2 : imgBoxHeight * isTop * 2;
+            top = isEnter ? top : imgBoxHeight * isTop;
             let imgTop = isTop ? imgBoxHeight : 0;
-            imgTop = isEnter ? imgTop * 2 : 0;
+            imgTop = isEnter ? imgTop : 0;
 
             const liStyle = isEnter ? { width: '100%', height: 175, zIndex: 1 } : null;
             const liAnimation = isOpen ?
@@ -122,15 +112,15 @@ class PicDetailsDemo extends React.Component {
                     width: imgWidth,
                     height: imgHeight,
                     onComplete: this.onTweenEnd.bind(this, i),
-                    left: imgBoxWidth * (i % 4)*2,
-                    top: isTop ? imgBoxHeight*2 : 0,
+                    left: imgBoxWidth * (i % 4),
+                    top: isTop ? imgBoxHeight : 0,
                 }) : null;
             aAnimation = isOpen ?
                 ({
                     ease: 'easeInOutCubic',
-                    left: isRight ? ((imgBoxWidth * 2) - 10)*2 : 0,
+                    left: isRight ? (imgBoxWidth * 2) - 10 : 0,
                     width: '50%',
-                    height: 350,
+                    height: 175,
                     top: 0,
                 }) : aAnimation;
 
@@ -143,11 +133,6 @@ class PicDetailsDemo extends React.Component {
                     ...liStyle,
                 }}
                 component="li"
-                onClick={e => {
-                    if (isOpen) {
-                        return this.onClose(e, i)
-                    }
-                }}
                 className={isOpen ? 'open' : ''}
                 animation={liAnimation}
             >
@@ -156,7 +141,7 @@ class PicDetailsDemo extends React.Component {
                     onClick={e => this.onImgClick(e, i)}
                     style={{
                         left: imgLeft,
-                        top: imgTop
+                        top: imgTop,
                     }}
                     animation={aAnimation}
                 >
@@ -188,81 +173,35 @@ class PicDetailsDemo extends React.Component {
     };
 
     render() {
-        let className = this.props.className
-        if (document.documentElement.clientWidth >= 400) {
-            return (
-                <div>
-                    <div className={`${this.props.className}-wrapper`}>
-                        <div className={this.props.className}>
-                            {/*<div className={`${this.props.className}-header`}>*/}
-                            {/*<ul>*/}
-                            {/*<li />*/}
-                            {/*<li />*/}
-                            {/*<li />*/}
-                            {/*<li />*/}
-                            {/*<li />*/}
-                            {/*</ul>*/}
-                            {/*</div>*/}
-                            {/*<QueueAnim type="bottom" className={`${this.props.className}-title`}>*/}
-                            {/*<h1 key="h1">Motion Design</h1>*/}
-                            {/*<p key="p">The react animation solution</p>*/}
-                            {/*</QueueAnim>*/}
-                            <QueueAnim
-                                delay={this.getDelay}
-                                component="ul"
-                                className={`${this.props.className}-image-wrapper`}
-                                interval={0}
-                                type="bottom"
-                            >
-                                {this.getLiChildren()}
-                            </QueueAnim>
-                        </div>
-                    </div>
-                </div>
-            )
-        } else {
-            return (
-                <div className={className + '-wrapper'}>
-                    <div className={className}>
-                        <ul className={className + '-image-wrapper'}>
-                            {dataArray.map((item, i) => {
-                                const isOpen = this.state.picOpen[i]
-                                const { image, title, content } = item
-                                return (
-                                    <li key={i} className={className} onClick={
-                                        (e) => {
-                                            if (isOpen){
-                                                this.onClose(e, i)
-                                            }
-                                        }
-                                    }>
-                                        <a onClick={(e) => this.onImgClick(e, i)}>
-                                            <img src={image}/>
-                                        </a>
-                                        {isOpen ?
-                                            <Animate
-                                                transitionAppear
-                                                component="div"
-                                                transitionName="fade"
-                                            >
-                                                <div key={i} className={className + '-text-wrapper'}>
-                                                    <h1>{title}</h1>
-                                                    <em></em>
-                                                    <p>{content}</p>
-                                                </div>
-                                            </Animate>
-                                            : null
-                                        }
-                                    </li>
-                                )
-                            })}
+        return (<div>
+            <div className={`${this.props.className}-wrapper`}>
+                <div className={this.props.className}>
+                    <div className={`${this.props.className}-header`}>
+                        <ul>
+                            <li />
+                            <li />
+                            <li />
+                            <li />
+                            <li />
                         </ul>
                     </div>
+                    <QueueAnim type="bottom" className={`${this.props.className}-title`}>
+                        <h1 key="h1">Motion Design</h1>
+                        <p key="p">The react animation solution</p>
+                    </QueueAnim>
+                    <QueueAnim
+                        delay={this.getDelay}
+                        component="ul"
+                        className={`${this.props.className}-image-wrapper`}
+                        interval={0}
+                        type="bottom"
+                    >
+                        {this.getLiChildren()}
+                    </QueueAnim>
                 </div>
-            )
-        }
+            </div>
+        </div>);
     }
 }
 
-
-export default connect()(PicDetailsDemo)
+export default connect()(AntMotion2)

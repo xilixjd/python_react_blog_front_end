@@ -28,14 +28,14 @@ class App extends Component {
         document.title = CONFIG.title;
 
         if (!this.props.isFetching) {
-            NProgress.done();
+            NProgress.done()
         }
     }
 
     componentWillReceiveProps(nextProps) {
         if (!nextProps.isFetching) {
             document.title = CONFIG.title;
-            NProgress.done();
+            NProgress.done()
         }
     }
 
@@ -65,6 +65,7 @@ class App extends Component {
                             <NavTag/>
                             {/*<Menu.Item key="6"><Link to="antd">Antd</Link></Menu.Item>*/}
                             <Menu.Item key="7"><Link to="todo">Todo</Link></Menu.Item>
+                            <Menu.Item key="8"><Link to="motion">Motion</Link></Menu.Item>
                         </Menu>
                     </Header>
                     <Content className="layout-content">
