@@ -5,7 +5,7 @@ import {CONFIG} from '../constants/Config.js';
 import NProgress from 'nprogress';
 
 import Menu from '../components/Menu.js';
-import App from '../containers/App.js';
+import App from '../containers/App.js'
 
 import '../../css/reset.scss';
 import '../../css/fonts.scss';
@@ -96,6 +96,14 @@ var Message = (location, cb) => {
     }, 'message')
 }
 
+var AntMotion = (location, cb) => {
+    document.title = CONFIG.titleLoad;
+    NProgress.start();
+    require.ensure([], require => {
+        cb(null, require('../containers/AntMotion.js').default);
+    }, 'motion')
+}
+
 const routes = (
     <Route path="/" component={App}>
         <IndexRoute component={Menu}/>
@@ -107,6 +115,7 @@ const routes = (
         <Route path="/antd" getComponent={Antd}/>
         <Route path="/todo" getComponent={Todo}/>
         <Route path="/message" getComponent={Message}/>
+        <Route path="/motion" getComponent={AntMotion}/>
     </Route>
 )
 
