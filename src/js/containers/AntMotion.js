@@ -135,8 +135,14 @@ class PicDetailsDemo extends React.Component {
         let imgsLength = this.props.imgs.imgs.length
         // 应该显示的总高度
         let imgsHeightShould = 240 * imgsLength
-        if (!this.props.imgs.addFetching && (imgsHeightShould <= contentH + 200)) {
-            dispatch(fetchIssues('addImgs', pageIdx + 1))
+        if (document.documentElement.clientWidth < 400) {
+            if (!this.props.imgs.addFetching && (imgsHeightShould <= contentH + 200)) {
+                dispatch(fetchIssues('addImgs', pageIdx + 1))
+            }
+        } else {
+            if (!this.props.imgs.addFetching) {
+                dispatch(fetchIssues('addImgs', pageIdx + 1))
+            }
         }
     }
 

@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13c27034-4c08-4eb3-8336-3b1b30faa8a6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/js/reducers/imgs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/css/motion.scss" afterPath="$PROJECT_DIR$/src/css/motion.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/actions/index.js" afterPath="$PROJECT_DIR$/src/js/actions/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/components/TodoTimeLine.js" afterPath="$PROJECT_DIR$/src/js/components/TodoTimeLine.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/constants/ActionTypes.js" afterPath="$PROJECT_DIR$/src/js/constants/ActionTypes.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/containers/AntMotion.js" afterPath="$PROJECT_DIR$/src/js/containers/AntMotion.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/reducers/index.js" afterPath="$PROJECT_DIR$/src/js/reducers/index.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -38,7 +31,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ActionTypes.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ActionTypes.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/constants/ActionTypes.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="171">
@@ -50,15 +43,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AntMotion.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AntMotion.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/js/containers/AntMotion.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
-              <caret line="84" column="5" lean-forward="true" selection-start-line="84" selection-start-column="5" selection-end-line="84" selection-end-column="5" />
+            <state relative-caret-position="361">
+              <caret line="142" column="47" lean-forward="true" selection-start-line="142" selection-start-column="47" selection-end-line="142" selection-end-column="47" />
               <folding>
                 <element signature="e#43#83#0" expanded="true" />
-                <element signature="e#9546#10309#0" expanded="false" />
-                <element signature="e#10912#13499#0" expanded="false" />
+                <element signature="e#9767#10530#0" expanded="false" />
+                <element signature="e#11133#13720#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -216,8 +209,8 @@
         <option value="$PROJECT_DIR$/src/css/motion.scss" />
         <option value="$PROJECT_DIR$/src/js/actions/index.js" />
         <option value="$PROJECT_DIR$/src/js/reducers/imgs.js" />
-        <option value="$PROJECT_DIR$/src/js/containers/AntMotion.js" />
         <option value="$PROJECT_DIR$/src/js/constants/ActionTypes.js" />
+        <option value="$PROJECT_DIR$/src/js/containers/AntMotion.js" />
       </list>
     </option>
   </component>
@@ -500,7 +493,7 @@
       <workItem from="1489931906701" duration="1411000" />
       <workItem from="1489933844807" duration="268000" />
       <workItem from="1489936823774" duration="165360000" />
-      <workItem from="1491929413379" duration="83608000" />
+      <workItem from="1491929413379" duration="84540000" />
     </task>
     <task id="LOCAL-00001" summary="gitignore">
       <created>1489112090990</created>
@@ -653,7 +646,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="265847000" />
+    <option name="totallyTimeSpent" value="266779000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="61" y="61" width="1342" height="813" extended-state="0" />
@@ -964,8 +957,8 @@
         <state relative-caret-position="114">
           <caret line="6" column="7" lean-forward="false" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
           <folding>
-            <marker date="1492271235000" expanded="true" signature="21:190" ph="..." />
-            <marker date="1492271235000" expanded="true" signature="467:473" ph="..." />
+            <marker date="1492511727000" expanded="true" signature="21:190" ph="..." />
+            <marker date="1492511727000" expanded="true" signature="467:473" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1106,14 +1099,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/reducers/comments.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-44">
-          <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/components/Comment.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="526">
@@ -1132,18 +1117,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/containers/AntMotion.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="84" column="5" lean-forward="true" selection-start-line="84" selection-start-column="5" selection-end-line="84" selection-end-column="5" />
-          <folding>
-            <element signature="e#43#83#0" expanded="true" />
-            <element signature="e#9546#10309#0" expanded="false" />
-            <element signature="e#10912#13499#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/actions/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
@@ -1158,6 +1131,26 @@
           <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/reducers/comments.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-44">
+          <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/containers/AntMotion.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="142" column="47" lean-forward="true" selection-start-line="142" selection-start-column="47" selection-end-line="142" selection-end-column="47" />
+          <folding>
+            <element signature="e#43#83#0" expanded="true" />
+            <element signature="e#9767#10530#0" expanded="false" />
+            <element signature="e#11133#13720#0" expanded="false" />
           </folding>
         </state>
       </provider>
