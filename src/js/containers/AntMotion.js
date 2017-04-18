@@ -5,13 +5,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import { fetchIssues, getImgs } from '../actions/index.js'
+
 import NProgress from 'nprogress'
 
 import QueueAnim from 'rc-queue-anim';
 import TweenOne, { TweenOneGroup } from 'rc-tween-one';
 import Animate from 'rc-animate'
 
-import { Icon } from 'antd';
+import { Icon, Spin } from 'antd';
 
 import '../../css/motion.scss'
 
@@ -22,7 +24,7 @@ const textData = {
     title: 'Motorcycle',
 };
 let dataArray = [
-    { image: 'https://zos.alipayobjects.com/rmsportal/DGOtoWASeguMJgV.png' },
+    { image: 'http://img.ivsky.com/img/bizhi/pre/201703/27/luca-001.jpg' },
     { image: 'https://zos.alipayobjects.com/rmsportal/BXJNKCeUSkhQoSS.png' },
     { image: 'https://zos.alipayobjects.com/rmsportal/TDIbcrKdLWVeWJM.png' },
     { image: 'https://zos.alipayobjects.com/rmsportal/SDLiKqyfBvnKMrA.png' },
@@ -34,7 +36,19 @@ let dataArray = [
     { image: 'https://zos.alipayobjects.com/rmsportal/dvQuFtUoRmvWLsZ.png' },
     { image: 'https://zos.alipayobjects.com/rmsportal/QqWQKvgLSJaYbpr.png' },
     { image: 'https://zos.alipayobjects.com/rmsportal/pTfNdthdsUpLPLJ.png' },
-];
+    { image: 'https://zos.alipayobjects.com/rmsportal/pTfNdthdsUpLPLJ.png' },
+    { image: 'https://zos.alipayobjects.com/rmsportal/pTfNdthdsUpLPLJ.png' },
+    { image: 'https://zos.alipayobjects.com/rmsportal/pTfNdthdsUpLPLJ.png' },
+    { image: 'https://zos.alipayobjects.com/rmsportal/pTfNdthdsUpLPLJ.png' },
+    { image: 'https://zos.alipayobjects.com/rmsportal/QqWQKvgLSJaYbpr.png' },
+    { image: 'https://zos.alipayobjects.com/rmsportal/QqWQKvgLSJaYbpr.png' },
+    { image: 'https://zos.alipayobjects.com/rmsportal/QqWQKvgLSJaYbpr.png' },
+    { image: 'https://zos.alipayobjects.com/rmsportal/QqWQKvgLSJaYbpr.png' },
+    { image: 'https://zos.alipayobjects.com/rmsportal/UcVbOrSDHCLPqLG.png' },
+    { image: 'https://zos.alipayobjects.com/rmsportal/UcVbOrSDHCLPqLG.png' },
+    { image: 'https://zos.alipayobjects.com/rmsportal/UcVbOrSDHCLPqLG.png' },
+    { image: 'https://zos.alipayobjects.com/rmsportal/UcVbOrSDHCLPqLG.png' },
+]
 dataArray = dataArray.map(item => ({ ...item, ...textData }))
 
 
@@ -51,7 +65,19 @@ class PicDetailsDemo extends React.Component {
         super(props);
         this.state = {
             picOpen: {},
+            loadingBeforeWindowHeight: 0
         };
+    }
+
+    componentDidMount() {
+        const { dispatch } = this.props
+        dispatch(fetchIssues('getImgs', ''))
+        window.onscroll = () => {
+            let {windowH, contentH, scrollT} = this.getSize()
+            if (windowH + scrollT + 100 > contentH) {
+                this.loadMoreImgs()
+            }
+        }
     }
 
     componentDidUpdate() {
@@ -77,7 +103,7 @@ class PicDetailsDemo extends React.Component {
         this.setState({
             picOpen,
         });
-    };
+    }
 
     onTweenEnd = (i) => {
         const picOpen = this.state.picOpen;
@@ -87,17 +113,39 @@ class PicDetailsDemo extends React.Component {
         });
     };
 
-    getDelay = (e) => {
-        const i = e.index + dataArray.length % 4;
+    getDelay = (e, imgs) => {
+        const i = e.index + imgs.length % 4;
         return (i % 4) * 100 + Math.floor(i / 4) * 100 + 200;
-    };
+    }
 
-    getLiChildren = () => {
+    getSize = () => {
+        let windowW,windowH,contentH,contentW,scrollT;
+        windowH = window.innerHeight;
+        windowW = window.innerWidth;
+        scrollT = document.documentElement.scrollTop || document.body.scrollTop;
+        contentH = (document.documentElement.scrollHeight > document.body.scrollHeight) ? document.documentElement.scrollHeight : document.body.scrollHeight;
+        contentW = (document.documentElement.scrollWidth > document.body.scrollWidth) ? document.documentElement.scrollWidth : document.body.scrollWidth;
+        return {windowW,windowH,contentH,contentW,scrollT}
+    }
+
+    loadMoreImgs = () => {
+        const { dispatch } = this.props
+        const pageIdx = this.props.imgs.pageIdx
+        let {windowH, contentH, scrollT} = this.getSize()
+        let imgsLength = this.props.imgs.imgs.length
+        // 应该显示的总高度
+        let imgsHeightShould = 240 * imgsLength
+        if (!this.props.imgs.addFetching && (imgsHeightShould <= contentH + 200)) {
+            dispatch(fetchIssues('addImgs', pageIdx + 1))
+        }
+    }
+
+    getLiChildren = (imgs) => {
         const imgWidth = 110 * 2;
         const imgHeight = 76 * 2;
         const imgBoxWidth = 130;
         const imgBoxHeight = 96;
-        return dataArray.map((item, i) => {
+        return imgs.map((item, i) => {
             const { image, title, content } = item;
             const isEnter = typeof this.state.picOpen[i] === 'boolean';
             const isOpen = this.state.picOpen[i];
@@ -189,80 +237,107 @@ class PicDetailsDemo extends React.Component {
 
     render() {
         let className = this.props.className
+        let imgs = this.props.imgs.imgs
+        let imgsLen = imgs.length
+        let isFetching = this.props.imgs.isFetching
+        let addFetching = this.props.imgs.addFetching
+        // 单张图片的高度
+        let imgHeight = 180
+        let data = []
         if (document.documentElement.clientWidth >= 400) {
             return (
                 <div>
-                    <div className={`${this.props.className}-wrapper`}>
-                        <div className={this.props.className}>
-                            {/*<div className={`${this.props.className}-header`}>*/}
-                            {/*<ul>*/}
-                            {/*<li />*/}
-                            {/*<li />*/}
-                            {/*<li />*/}
-                            {/*<li />*/}
-                            {/*<li />*/}
-                            {/*</ul>*/}
-                            {/*</div>*/}
-                            {/*<QueueAnim type="bottom" className={`${this.props.className}-title`}>*/}
-                            {/*<h1 key="h1">Motion Design</h1>*/}
-                            {/*<p key="p">The react animation solution</p>*/}
-                            {/*</QueueAnim>*/}
-                            <QueueAnim
-                                delay={this.getDelay}
-                                component="ul"
-                                className={`${this.props.className}-image-wrapper`}
-                                interval={0}
-                                type="bottom"
-                            >
-                                {this.getLiChildren()}
-                            </QueueAnim>
+                    {isFetching ?
+                        <div style={{textAlign: 'center'}}>
+                            <Spin size="large"/>
                         </div>
-                    </div>
+                        :
+                        <div>
+                            <div className={`${this.props.className}-wrapper`} style={{height: imgsLen / 4 * 180}}>
+                                <div className={this.props.className}>
+                                    <QueueAnim
+                                        delay={e => this.getDelay(e, imgs)}
+                                        component="ul"
+                                        className={`${this.props.className}-image-wrapper`}
+                                        interval={0}
+                                        type="bottom"
+                                    >
+                                        {this.getLiChildren(imgs)}
+                                    </QueueAnim>
+                                </div>
+                            </div>
+                            <div style={{textAlign: 'center'}}>
+                                {addFetching ? <Spin size="large"/> : <span>下划加载更多</span>}
+                            </div>
+                        </div>
+                    }
                 </div>
             )
         } else {
             return (
-                <div className={className + '-wrapper'}>
-                    <div className={className}>
-                        <ul className={className + '-image-wrapper'}>
-                            {dataArray.map((item, i) => {
-                                const isOpen = this.state.picOpen[i]
-                                const { image, title, content } = item
-                                return (
-                                    <li key={i} className={className} onClick={
-                                        (e) => {
-                                            if (isOpen){
-                                                this.onClose(e, i)
-                                            }
-                                        }
-                                    }>
-                                        <a onClick={(e) => this.onImgClick(e, i)}>
-                                            <img src={image}/>
-                                        </a>
-                                        {isOpen ?
-                                            <Animate
-                                                transitionAppear
-                                                component="div"
-                                                transitionName="fade"
-                                            >
-                                                <div key={i} className={className + '-text-wrapper'}>
-                                                    <h1>{title}</h1>
-                                                    <em></em>
-                                                    <p>{content}</p>
-                                                </div>
-                                            </Animate>
-                                            : null
-                                        }
-                                    </li>
-                                )
-                            })}
-                        </ul>
-                    </div>
+                <div>
+                    {isFetching ?
+                        <div style={{textAlign: 'center'}}>
+                            <Spin size="large"/>
+                        </div>
+                            :
+                        <div>
+                            <div className={className + '-wrapper'}>
+                                <div className={className}>
+                                    <QueueAnim component="ul" type={['right', 'left']} leaveReverse
+                                               className={className + '-image-wrapper'}
+                                    >
+                                        {imgs.map((item, i) => {
+                                            const isOpen = this.state.picOpen[i]
+                                            const { image, title, content } = item
+                                            return (
+                                                <li key={i} className={className} onClick={
+                                                    (e) => {
+                                                        if (isOpen){
+                                                            this.onClose(e, i)
+                                                        }
+                                                    }
+                                                }>
+                                                    <a onClick={(e) => this.onImgClick(e, i)}>
+                                                        <img src={image}/>
+                                                    </a>
+                                                    {isOpen ?
+                                                        <Animate
+                                                            transitionAppear
+                                                            component="div"
+                                                            transitionName="fade"
+                                                        >
+                                                            <div key={i} className={className + '-text-wrapper'}>
+                                                                <h1>{title}</h1>
+                                                                <em></em>
+                                                                <p>{content}</p>
+                                                            </div>
+                                                        </Animate>
+                                                        : null
+                                                    }
+                                                </li>
+                                            )
+                                        })}
+                                    </QueueAnim>
+                                </div>
+                            </div>
+                            <div style={{textAlign: 'center'}}>
+                                {addFetching ? <Spin size="large"/> : <span>下划加载更多</span>}
+                            </div>
+                        </div>
+                    }
                 </div>
             )
         }
     }
 }
 
+function mapStateToProps(state) {
+    const { imgs } = state
 
-export default connect()(PicDetailsDemo)
+    return {
+        imgs
+    }
+}
+
+export default connect(mapStateToProps)(PicDetailsDemo)

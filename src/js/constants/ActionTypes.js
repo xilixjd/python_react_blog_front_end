@@ -57,3 +57,10 @@ export const REG_SHOW = 'REG_SHOW'
 export const MODAL_CLOSE = 'MODAL_CLOSE'
 export const LOGIN_SUBMIT = 'LOGIN_SUBMIT'
 export const REG_SUBMIT = 'REG_SUBMIT'
+
+// IMGS
+export const REQUEST_IMGS = 'REQUEST_IMGS'
+export const RECEIVE_IMGS = 'RECEIVE_IMGS'
+export const INIT_IMGS = 'INIT_IMGS'
+export const ADD_IMGS = 'ADD_IMGS'
+export const REQUEST_ADD_IMGS = 'REQUEST_ADD_IMGS'

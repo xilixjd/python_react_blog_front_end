@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import { DOMAIN, RECEIVE_TAGS, REQUEST_ISSUES, REQUEST_BLOG, RECEIVE_BLOG, RECEIVE_ISSUES, INIT_ISSUES, ADD_COMMENT, REQUEST_COMMENTS, RECEIVE_COMMENTS, INIT_COMMENTS, LOG_IN, LOG_OUT } from '../constants/ActionTypes.js'
 import { LOGGING_SHOW, REG_SHOW, MODAL_CLOSE, LOGIN_SUBMIT, REG_SUBMIT, INIT_BLOG, REQUEST_MESSAGES, GET_MESSAGES, INIT_MESSAGES, CHECK_MESSAGES } from '../constants/ActionTypes.js'
+import { REQUEST_IMGS, RECEIVE_IMGS, ADD_IMGS, INIT_IMGS, REQUEST_ADD_IMGS }from '../constants/ActionTypes.js'
 import { GET_MENTIONS } from '../constants/ActionTypes.js'
 import {CONFIG} from '../constants/Config.js'
 import { notification } from 'antd'
@@ -166,12 +167,40 @@ export function getMentions(type, json) {
     }
 }
 
+export function getImgs(type, json) {
+    switch (type) {
+        case REQUEST_IMGS:
+            return {
+                type: REQUEST_IMGS
+            }
+        case RECEIVE_IMGS:
+            return {
+                posts: json,
+                type: RECEIVE_IMGS
+            }
+        case REQUEST_ADD_IMGS:
+            return {
+                type: REQUEST_ADD_IMGS
+            }
+        case ADD_IMGS:
+            return {
+                posts: json,
+                type: ADD_IMGS
+            }
+        case INIT_IMGS:
+            return {
+                type: INIT_IMGS
+            }
+    }
+}
+
 // thunk action creater
 // @param 请求参数
 export function fetchIssues(filter, param) {
     return dispatch => {
         let url
         let data
+        let page
 
         switch (filter) {
             case 'all':
@@ -385,6 +414,34 @@ export function fetchIssues(filter, param) {
                     response => response.json()
                 ).then(
                     json => dispatch(getMentions(GET_MENTIONS, json))
+                )
+
+            case 'getImgs':
+                dispatch(getImgs(REQUEST_IMGS, ''))
+                page = param.pageIdx || 1
+                url = DOMAIN + '/api/imgs?pageIdx=' + page
+                return fetch(url, {
+                    credentials: 'include'
+                }).then(
+                    response => {
+                        return response.json()
+                    }
+                ).then(
+                    json => dispatch(getImgs(RECEIVE_IMGS, json))
+                )
+
+            case 'addImgs':
+                dispatch(getImgs(REQUEST_ADD_IMGS, ''))
+                page = param || 1
+                url = DOMAIN + '/api/imgs?pageIdx=' + page
+                return fetch(url, {
+                    credentials: 'include'
+                }).then(
+                    response => {
+                        return response.json()
+                    }
+                ).then(
+                    json => dispatch(getImgs(ADD_IMGS, json))
                 )
             // case 'archieve':
             //     url = 'http://127.0.0.1:5000/api/blog/archieve'

@@ -7,11 +7,18 @@ import ReactDOM from 'react-dom'
 
 import { Timeline } from 'antd'
 
+import NProgress from 'nprogress'
+
 import Animate from 'rc-animate'
 
 import '../../css/todo.scss'
 
 export default class TodoTimeLine extends React.Component {
+
+    componentDidUpdate() {
+        NProgress.done()
+    }
+
     render() {
         return (
             <Animate

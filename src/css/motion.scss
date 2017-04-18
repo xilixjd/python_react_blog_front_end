@@ -2,7 +2,6 @@
 .pic-details-demo-wrapper {
   position: relative;
   overflow: hidden;
-  height: 540px;
   margin: 40px auto;
   width: 74.4%;
 }
@@ -132,6 +131,7 @@
 
 .pic-details-demo-image-wrapper li a {
   width: 220px;
+  height: 152px;
   z-index: 1;
   display: inline-block;
   position: absolute;
@@ -227,10 +227,11 @@
   .pic-details-demo-image-wrapper li a, .pic-details-demo-image-wrapper li a img {
     display: block;
     position: relative;
-    width: 220px;
+    height: 224px;
+    width: 320px;
   }
   .pic-details-demo-text-wrapper {
-    width: 220px;
+    width: 320px;
     position: relative;
     display: block;
     height: initial;

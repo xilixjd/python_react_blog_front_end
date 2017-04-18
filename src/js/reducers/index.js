@@ -7,6 +7,7 @@ import isLoggedIn from './isLoggedIn.js'
 import logModalShow from './logModalShow.js'
 import messages from './messages.js'
 import mentions from './mentions.js'
+import imgs from './imgs.js'
 
 
 const rootReducer = combineReducers({
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
     isLoggedIn,
     logModalShow,
     messages,
-    mentions
+    mentions,
+    imgs
 })
 
 export default rootReducer
