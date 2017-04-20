@@ -24,6 +24,7 @@
   position: fixed;
   top: 200px;
   background: #fff;
+  z-index: 1000;
   width: 450px;
   padding: 30px 60px;
   left: 50%;
@@ -34,6 +35,7 @@
 .logRegModalBox-background {
   position: fixed;
   background: rgba(0, 0, 0, 0.6);
+  z-index: 100;
   width: 100%;
   height: 100%;
   top: 0;
