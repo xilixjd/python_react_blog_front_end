@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13c27034-4c08-4eb3-8336-3b1b30faa8a6" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/actions/index.js" afterPath="$PROJECT_DIR$/src/js/actions/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/constants/ActionTypes.js" afterPath="$PROJECT_DIR$/src/js/constants/ActionTypes.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/containers/AntMotion.js" afterPath="$PROJECT_DIR$/src/js/containers/AntMotion.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -25,7 +28,7 @@
         <entry file="file://$PROJECT_DIR$/src/js/actions/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="19">
-              <caret line="1" column="13" lean-forward="false" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+              <caret line="1" column="12" lean-forward="false" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -34,11 +37,9 @@
       <file leaf-file-name="ActionTypes.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/constants/ActionTypes.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
+            <state relative-caret-position="57">
+              <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -46,12 +47,11 @@
       <file leaf-file-name="AntMotion.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/js/containers/AntMotion.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="142" column="47" lean-forward="true" selection-start-line="142" selection-start-column="47" selection-end-line="142" selection-end-column="47" />
+            <state relative-caret-position="38">
+              <caret line="26" column="73" lean-forward="false" selection-start-line="26" selection-start-column="73" selection-end-line="26" selection-end-column="73" />
               <folding>
                 <element signature="e#43#83#0" expanded="true" />
-                <element signature="e#9767#10530#0" expanded="false" />
-                <element signature="e#11133#13720#0" expanded="false" />
+                <element signature="e#11213#13800#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -70,8 +70,8 @@
       <file leaf-file-name="comments.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/reducers/comments.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-44">
-              <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+            <state relative-caret-position="89">
+              <caret line="17" column="51" lean-forward="false" selection-start-line="17" selection-start-column="51" selection-end-line="17" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -80,21 +80,9 @@
       <file leaf-file-name="imgs.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/reducers/imgs.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="10" column="14" lean-forward="false" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="14" />
+            <state relative-caret-position="114">
+              <caret line="9" column="15" lean-forward="true" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/js/containers/App.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="703">
-              <caret line="37" column="28" lean-forward="false" selection-start-line="37" selection-start-column="28" selection-end-line="37" selection-end-column="28" />
-              <folding>
-                <element signature="e#0#38#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -102,8 +90,8 @@
       <file leaf-file-name="Comment.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/components/Comment.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="526">
-              <caret line="320" column="17" lean-forward="true" selection-start-line="320" selection-start-column="17" selection-end-line="320" selection-end-column="17" />
+            <state relative-caret-position="2238">
+              <caret line="137" column="5" lean-forward="true" selection-start-line="137" selection-start-column="5" selection-end-line="137" selection-end-column="5" />
               <folding>
                 <element signature="e#42#82#0" expanded="true" />
               </folding>
@@ -207,8 +195,8 @@
         <option value="$PROJECT_DIR$/src/js/components/TodoTimeLine.js" />
         <option value="$PROJECT_DIR$/src/js/reducers/index.js" />
         <option value="$PROJECT_DIR$/src/css/motion.scss" />
-        <option value="$PROJECT_DIR$/src/js/actions/index.js" />
         <option value="$PROJECT_DIR$/src/js/reducers/imgs.js" />
+        <option value="$PROJECT_DIR$/src/js/actions/index.js" />
         <option value="$PROJECT_DIR$/src/js/constants/ActionTypes.js" />
         <option value="$PROJECT_DIR$/src/js/containers/AntMotion.js" />
       </list>
@@ -378,6 +366,28 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="actions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="python_react_blog_front_end" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="python_react_blog_front_end" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -493,7 +503,7 @@
       <workItem from="1489931906701" duration="1411000" />
       <workItem from="1489933844807" duration="268000" />
       <workItem from="1489936823774" duration="165360000" />
-      <workItem from="1491929413379" duration="84540000" />
+      <workItem from="1491929413379" duration="89192000" />
     </task>
     <task id="LOCAL-00001" summary="gitignore">
       <created>1489112090990</created>
@@ -646,13 +656,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="266779000" />
+    <option name="totallyTimeSpent" value="271431000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="61" y="61" width="1342" height="813" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962743" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24962743" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293011" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3293011" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -957,8 +967,8 @@
         <state relative-caret-position="114">
           <caret line="6" column="7" lean-forward="false" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
           <folding>
-            <marker date="1492511727000" expanded="true" signature="21:190" ph="..." />
-            <marker date="1492511727000" expanded="true" signature="467:473" ph="..." />
+            <marker date="1492516740000" expanded="true" signature="21:190" ph="..." />
+            <marker date="1492516740000" expanded="true" signature="467:473" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1081,14 +1091,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/css/motion.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="4" column="2" lean-forward="false" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/containers/App.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="703">
@@ -1099,58 +1101,63 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/css/motion.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="4" column="2" lean-forward="false" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/components/Comment.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="526">
-          <caret line="320" column="17" lean-forward="true" selection-start-line="320" selection-start-column="17" selection-end-line="320" selection-end-column="17" />
+        <state relative-caret-position="2238">
+          <caret line="137" column="5" lean-forward="true" selection-start-line="137" selection-start-column="5" selection-end-line="137" selection-end-column="5" />
           <folding>
             <element signature="e#42#82#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/reducers/imgs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="10" column="14" lean-forward="false" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/actions/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
-          <caret line="1" column="13" lean-forward="false" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+          <caret line="1" column="12" lean-forward="false" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/constants/ActionTypes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+        <state relative-caret-position="57">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/reducers/imgs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="9" column="15" lean-forward="true" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/reducers/comments.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-44">
-          <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+        <state relative-caret-position="89">
+          <caret line="17" column="51" lean-forward="false" selection-start-line="17" selection-start-column="51" selection-end-line="17" selection-end-column="51" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/containers/AntMotion.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="142" column="47" lean-forward="true" selection-start-line="142" selection-start-column="47" selection-end-line="142" selection-end-column="47" />
+        <state relative-caret-position="38">
+          <caret line="26" column="73" lean-forward="false" selection-start-line="26" selection-start-column="73" selection-end-line="26" selection-end-column="73" />
           <folding>
             <element signature="e#43#83#0" expanded="true" />
-            <element signature="e#9767#10530#0" expanded="false" />
-            <element signature="e#11133#13720#0" expanded="false" />
+            <element signature="e#11213#13800#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -24,10 +24,22 @@ const textData = {
     title: 'Motorcycle',
 };
 let dataArray = [
-    { image: 'http://img.ivsky.com/img/bizhi/pre/201703/27/luca-001.jpg' },
-    { image: 'https://zos.alipayobjects.com/rmsportal/BXJNKCeUSkhQoSS.png' },
-    { image: 'https://zos.alipayobjects.com/rmsportal/TDIbcrKdLWVeWJM.png' },
-    { image: 'https://zos.alipayobjects.com/rmsportal/SDLiKqyfBvnKMrA.png' },
+    { image: 'https://zos.alipayobjects.com/rmsportal/UcVbOrSDHCLPqLG.png',
+      content: 'Taiwan called motorcycle, motor bike [1] or a motorcycle,' +
+    ' the motorcycle referred to in the mainland, Hong Kong and Southeast' +
+    ' Asia known as motorcycles.', title: 'Motorcycle' },
+    { image: 'https://zos.alipayobjects.com/rmsportal/BXJNKCeUSkhQoSS.png',
+      content: 'Taiwan called motorcycle, motor bike [1] or a motorcycle,' +
+    ' the motorcycle referred to in the mainland, Hong Kong and Southeast' +
+    ' Asia known as motorcycles.', title: 'Motorcycle' },
+    { image: 'https://zos.alipayobjects.com/rmsportal/TDIbcrKdLWVeWJM.png',
+        content: 'Taiwan called motorcycle, motor bike [1] or a motorcycle,' +
+        ' the motorcycle referred to in the mainland, Hong Kong and Southeast' +
+        ' Asia known as motorcycles.', title: 'Motorcycle'},
+    { image: 'https://zos.alipayobjects.com/rmsportal/SDLiKqyfBvnKMrA.png',
+        content: 'Taiwan called motorcycle, motor bike [1] or a motorcycle,' +
+        ' the motorcycle referred to in the mainland, Hong Kong and Southeast' +
+        ' Asia known as motorcycles.', title: 'Motorcycle'},
     { image: 'https://zos.alipayobjects.com/rmsportal/UcVbOrSDHCLPqLG.png' },
     { image: 'https://zos.alipayobjects.com/rmsportal/QJmGZYJBRLkxFSy.png' },
     { image: 'https://zos.alipayobjects.com/rmsportal/PDiTkHViQNVHddN.png' },
@@ -35,19 +47,6 @@ let dataArray = [
     { image: 'https://zos.alipayobjects.com/rmsportal/vJcpMCTaSKSVWyH.png' },
     { image: 'https://zos.alipayobjects.com/rmsportal/dvQuFtUoRmvWLsZ.png' },
     { image: 'https://zos.alipayobjects.com/rmsportal/QqWQKvgLSJaYbpr.png' },
-    { image: 'https://zos.alipayobjects.com/rmsportal/pTfNdthdsUpLPLJ.png' },
-    { image: 'https://zos.alipayobjects.com/rmsportal/pTfNdthdsUpLPLJ.png' },
-    { image: 'https://zos.alipayobjects.com/rmsportal/pTfNdthdsUpLPLJ.png' },
-    { image: 'https://zos.alipayobjects.com/rmsportal/pTfNdthdsUpLPLJ.png' },
-    { image: 'https://zos.alipayobjects.com/rmsportal/pTfNdthdsUpLPLJ.png' },
-    { image: 'https://zos.alipayobjects.com/rmsportal/QqWQKvgLSJaYbpr.png' },
-    { image: 'https://zos.alipayobjects.com/rmsportal/QqWQKvgLSJaYbpr.png' },
-    { image: 'https://zos.alipayobjects.com/rmsportal/QqWQKvgLSJaYbpr.png' },
-    { image: 'https://zos.alipayobjects.com/rmsportal/QqWQKvgLSJaYbpr.png' },
-    { image: 'https://zos.alipayobjects.com/rmsportal/UcVbOrSDHCLPqLG.png' },
-    { image: 'https://zos.alipayobjects.com/rmsportal/UcVbOrSDHCLPqLG.png' },
-    { image: 'https://zos.alipayobjects.com/rmsportal/UcVbOrSDHCLPqLG.png' },
-    { image: 'https://zos.alipayobjects.com/rmsportal/UcVbOrSDHCLPqLG.png' },
 ]
 dataArray = dataArray.map(item => ({ ...item, ...textData }))
 
@@ -165,7 +164,7 @@ class PicDetailsDemo extends React.Component {
             let imgTop = isTop ? imgBoxHeight : 0;
             imgTop = isEnter ? imgTop * 2 : 0;
 
-            const liStyle = isEnter ? { width: '100%', height: 175, zIndex: 1 } : null;
+            const liStyle = isEnter ? { width: '100%', height: 350, zIndex: 1 } : null;
             const liAnimation = isOpen ?
                 ({ boxShadow: '0 2px 8px rgba(140, 140, 140, .35)' }) :
                 ({ boxShadow: '0 0px 0px rgba(140, 140, 140, 0)' });
@@ -245,6 +244,11 @@ class PicDetailsDemo extends React.Component {
         let className = this.props.className
         let imgs = this.props.imgs.imgs
         let imgsLen = imgs.length
+        if (imgsLen && (imgsLen % 4) != 0) {
+            // 图片加载不够，取余数，余数即截取 dataArray 的数组数
+            let remainderDataArray = dataArray.splice(0, imgsLen % 4)
+            imgs = imgs.concat(remainderDataArray)
+        }
         let isFetching = this.props.imgs.isFetching
         let addFetching = this.props.imgs.addFetching
         // 单张图片的高度
@@ -259,7 +263,7 @@ class PicDetailsDemo extends React.Component {
                         </div>
                         :
                         <div>
-                            <div className={`${this.props.className}-wrapper`} style={{height: imgsLen / 4 * 180}}>
+                            <div className={`${this.props.className}-wrapper`} style={{height: Math.ceil(imgsLen / 4) * 180}}>
                                 <div className={this.props.className}>
                                     <QueueAnim
                                         delay={e => this.getDelay(e, imgs)}
