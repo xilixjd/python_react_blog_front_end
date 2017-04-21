@@ -145,6 +145,10 @@ class PicDetailsDemo extends React.Component {
         }
     }
 
+    loadImgs = (e) => {
+        e.target.className = ''
+    }
+
     getLiChildren = (imgs) => {
         const imgWidth = 110 * 2;
         const imgHeight = 76 * 2;
@@ -213,7 +217,7 @@ class PicDetailsDemo extends React.Component {
                     }}
                     animation={aAnimation}
                 >
-                    <img src={image} width="100%" height="100%" />
+                    <img src={image} className="blur-img" width="100%" height="100%" onLoad={(e) => this.loadImgs(e)}/>
                 </TweenOne>
                 <TweenOneGroup
                     enter={[
@@ -309,7 +313,7 @@ class PicDetailsDemo extends React.Component {
                                                     }
                                                 }>
                                                     <a onClick={(e) => this.onImgClick(e, i)}>
-                                                        <img src={image}/>
+                                                        <img src={image} className="blur-img" onLoad={(e) => this.loadImgs(e)}/>
                                                     </a>
                                                     {isOpen ?
                                                         <Animate
