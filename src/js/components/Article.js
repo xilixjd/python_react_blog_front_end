@@ -82,9 +82,30 @@ class Article extends Component {
         return (
             <div className="articleComment">
                 {this.props.isFetching ?
-                    <div style={{textAlign: 'center'}}>
-                        <Spin size="large"/>
+                    <ul className="column-entry-list" >
+                    <li className="entry-masker">
+                    <div className="info-row user-meta-row">
+                    <div  className="user-avatar masker"></div>
+                    <div  className="username masker">
                     </div>
+                    </div>
+                    <div  className="info-row screenshot-row masker"></div>
+                    <div  className="info-row entry-abstract-row">
+                    <div  className="entry-title masker">
+                    </div>
+                    <div  className="entry-description masker">
+                    </div>
+                    </div>
+                    <div  className="info-row entry-meta-row">
+                    <div  className="meta-badge masker">
+                    </div>
+                    <div  className="entry-action-box">
+                    <div  className="entry-action masker">
+                    </div>
+                    </div>
+                    </div>
+                    </li>
+                    </ul>
                         :
                     <div className="article">
                         <h1 className="article-title">{this.props.blog.title}</h1>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Router, Route, IndexRoute, useRouterHistory, browserHistory } from 'react-router';
 import { createHashHistory } from 'history';
-import {CONFIG} from '../constants/Config.js';
+import { CONFIG } from '../constants/Config.js';
 import NProgress from 'nprogress';
 
 import Menu from '../components/Menu.js';

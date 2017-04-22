@@ -7,13 +7,15 @@ import { connect } from 'react-redux'
 
 import { fetchIssues, getImgs } from '../actions/index.js'
 
+import { CONFIG } from '../constants/Config.js'
+
 import NProgress from 'nprogress'
 
 import QueueAnim from 'rc-queue-anim';
 import TweenOne, { TweenOneGroup } from 'rc-tween-one';
 import Animate from 'rc-animate'
 
-import { Icon, Spin } from 'antd';
+import { Icon, Spin, BackTop } from 'antd';
 
 import '../../css/motion.scss'
 
@@ -70,6 +72,7 @@ class PicDetailsDemo extends React.Component {
 
     componentDidMount() {
         const { dispatch } = this.props
+        document.title = CONFIG.title
         dispatch(fetchIssues('getImgs', ''))
         window.onscroll = () => {
             let {windowH, contentH, scrollT} = this.getSize()
@@ -285,6 +288,9 @@ class PicDetailsDemo extends React.Component {
                             </div>
                         </div>
                     }
+                    <div>
+                        <BackTop/>
+                    </div>
                 </div>
             )
         } else {
@@ -340,6 +346,9 @@ class PicDetailsDemo extends React.Component {
                             </div>
                         </div>
                     }
+                    <div>
+                        <BackTop/>
+                    </div>
                 </div>
             )
         }

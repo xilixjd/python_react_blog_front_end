@@ -25,8 +25,7 @@ class App extends Component {
     }
 
     componentDidMount() {
-        document.title = CONFIG.title;
-
+        document.title = CONFIG.title
         if (!this.props.isFetching) {
             NProgress.done()
         }

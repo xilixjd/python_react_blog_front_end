@@ -119,6 +119,105 @@
   text-align: center;
 }
 
+.column-entry-list {
+  max-width: 650px;
+  background-color: #fff;
+  border-radius: 2px;
+}
+.entry-masker, .info-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.entry-masker {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding: 2rem;
+  border-bottom: 1px solid hsla(0,0%,95%,.5);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.user-meta-row {
+  padding-top: 0;
+}
+.user-meta-row .user-avatar {
+  margin-right: 1rem;
+  width: 25%;
+  height: 22px;
+}
+.masker {
+  border-color: hsla(0,0%,95%,.1);
+  background-color: hsla(0,0%,95%,.5);
+}
+.info-row {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 1.6rem 0;
+  min-width: 0;
+}
+.entry-masker, .info-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
+.entry-abstract-row {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+.entry-meta-row {
+  padding: 0 0 .26rem;
+  color: #d2d2d2;
+}
+.entry-meta-row .meta-badge {
+  position: relative;
+  padding: 0 1rem;
+  width: 8rem;
+  height: 25px;
+}
+.entry-meta-row .entry-action-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+.entry-action {
+  width: 5.33rem;
+  height: .93rem;
+}
+.entry-abstract-row .entry-title {
+  margin-bottom: 1.3rem;
+  width: 100%;
+  height: 3rem;
+}
+.entry-abstract-row .entry-description {
+  width: 100%;
+  height: 1.73rem;
+}
+.screenshot-row {
+  padding-top: 30%;
+}
+
 @media only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 240dpi), only screen and (min-resolution: 2dppx) {
   .article {
     width: 100%;

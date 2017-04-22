@@ -5,6 +5,8 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
+import { CONFIG } from '../constants/Config.js'
+
 import { Timeline } from 'antd'
 
 import NProgress from 'nprogress'
@@ -17,6 +19,7 @@ export default class TodoTimeLine extends React.Component {
 
     componentDidUpdate() {
         NProgress.done()
+        document.title = CONFIG.title
     }
 
     render() {
