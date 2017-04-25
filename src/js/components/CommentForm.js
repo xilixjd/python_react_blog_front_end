@@ -92,6 +92,9 @@ class CommentForm extends Component {
             this.openNotificationWithIcon('error', '发表评论', '评论内容不能为空')
             return
         }
+        if (content.indexOf('script') >= 0 || content.indexOf('<img') >= 0) {
+            return
+        }
         let param = {
             author: author,
             content: content,
