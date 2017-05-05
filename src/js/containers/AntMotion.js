@@ -29,20 +29,27 @@ let dataArray = [
     { image: 'https://zos.alipayobjects.com/rmsportal/UcVbOrSDHCLPqLG.png',
       content: 'Taiwan called motorcycle, motor bike [1] or a motorcycle,' +
     ' the motorcycle referred to in the mainland, Hong Kong and Southeast' +
-    ' Asia known as motorcycles.', title: 'Motorcycle' },
+    ' Asia known as motorcycles.', title: 'Motorcycle' 
+    },
     { image: 'https://zos.alipayobjects.com/rmsportal/BXJNKCeUSkhQoSS.png',
       content: 'Taiwan called motorcycle, motor bike [1] or a motorcycle,' +
     ' the motorcycle referred to in the mainland, Hong Kong and Southeast' +
-    ' Asia known as motorcycles.', title: 'Motorcycle' },
+    ' Asia known as motorcycles.', title: 'Motorcycle' 
+    },
     { image: 'https://zos.alipayobjects.com/rmsportal/TDIbcrKdLWVeWJM.png',
         content: 'Taiwan called motorcycle, motor bike [1] or a motorcycle,' +
         ' the motorcycle referred to in the mainland, Hong Kong and Southeast' +
-        ' Asia known as motorcycles.', title: 'Motorcycle'},
+        ' Asia known as motorcycles.', title: 'Motorcycle'
+    },
     { image: 'https://zos.alipayobjects.com/rmsportal/SDLiKqyfBvnKMrA.png',
         content: 'Taiwan called motorcycle, motor bike [1] or a motorcycle,' +
         ' the motorcycle referred to in the mainland, Hong Kong and Southeast' +
-        ' Asia known as motorcycles.', title: 'Motorcycle'},
-    { image: 'https://zos.alipayobjects.com/rmsportal/UcVbOrSDHCLPqLG.png' },
+        ' Asia known as motorcycles.', title: 'Motorcycle'
+    },
+    { image: 'https://zos.alipayobjects.com/rmsportal/UcVbOrSDHCLPqLG.png',
+        content: 'Taiwan called motorcycle, motor bike [1] or a motorcycle,',
+        title: 'Motocycle'
+    },
     { image: 'https://zos.alipayobjects.com/rmsportal/QJmGZYJBRLkxFSy.png' },
     { image: 'https://zos.alipayobjects.com/rmsportal/PDiTkHViQNVHddN.png' },
     { image: 'https://zos.alipayobjects.com/rmsportal/beHtidyjUMOXbkI.png' },

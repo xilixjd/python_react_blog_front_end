@@ -1,10 +1,12 @@
 /* 外壳样式 */
+
 .pic-details-demo-wrapper {
   position: relative;
   overflow: hidden;
   margin: 40px auto;
   width: 74.4%;
 }
+
 
 /*
 .pic-details-demo {
@@ -85,8 +87,12 @@
   top: 6px;
 }
 
+
 /* 外壳 end */
+
+
 /* 标题 */
+
 .pic-details-demo-title {
   width: 95%;
   margin: 20px auto;
@@ -103,7 +109,10 @@
   font-size: 12px;
 }
 
+
 /* 图片 */
+
+
 /*
 .pic-details-demo-image-wrapper {
   position: relative;
@@ -113,6 +122,7 @@
   margin: auto;
 }
 */
+
 .pic-details-demo-image-wrapper li {
   width: 220px;
   height: 152px;
@@ -137,7 +147,8 @@
   position: absolute;
 }
 
-.pic-details-demo-image-wrapper li a, .pic-details-demo-image-wrapper li a img {
+.pic-details-demo-image-wrapper li a,
+.pic-details-demo-image-wrapper li a img {
   display: block;
 }
 
@@ -176,6 +187,8 @@
   margin-top: 10px;
   line-height: 16px;
 }
+
+
 /*
 @media screen and (max-width: 414px) {
   .pic-details-demo{
@@ -195,8 +208,11 @@
 }
 */
 
-
-@media only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 240dpi), only screen and (min-resolution: 2dppx) {
+@media only screen and (-o-min-device-pixel-ratio: 3/2),
+only screen and (min--moz-device-pixel-ratio: 1.5),
+only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (min-resolution: 240dpi),
+only screen and (min-resolution: 2dppx) {
   /*
   .pic-details-demo{
     transform: scale(.259) translateX(12px);
@@ -224,7 +240,8 @@
     position: inherit;
     display: inline;
   }
-  .pic-details-demo-image-wrapper li a, .pic-details-demo-image-wrapper li a img {
+  .pic-details-demo-image-wrapper li a,
+  .pic-details-demo-image-wrapper li a img {
     display: block;
     position: relative;
     height: 224px;
