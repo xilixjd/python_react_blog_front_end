@@ -14,12 +14,19 @@ import { BackTop, Spin } from 'antd'
 import '../../css/zenburn.scss'
 import '../../css/article.scss'
 
+// import pureRender from 'pure-render-decorator'
+
+/*
+<span color="black" bgcolor="#FF4500" style="
+    background-color: #FF4500;">面把闭包</span>
+*/
+
+
 class Article extends Component {
     constructor(props) {
         super(props)
         this.state = {
             contentShow: false,
-            timer: '',
         }
     }
 
@@ -41,17 +48,23 @@ class Article extends Component {
         dispatch(fetchIssuesIfNeeded('blog', this.props.params.id, 'receiveBlog'))
     }
 
+    // shouldComponentUpdate = (nextProps, nextState) => {
+    //     return !(this.props === nextProps || is(this.props, nextProps)) ||
+    //             !(this.state === nextState || is(this.state, nextState))
+    // }
+
     componentWillReceiveProps(nextProps) {
+        if (nextProps.params !== this.props.params) {
+            const { dispatch } = nextProps
+            dispatch(initBlog())
+            dispatch(fetchIssuesIfNeeded('blog', nextProps.params.id, 'receiveBlog'))
+        }
     }
 
     // 组件销毁前，将 reducer 中的缓存删除
     componentWillUnmount() {
         const { dispatch } = this.props
         dispatch(initBlog())
-        clearInterval(this.state.timer)
-        this.setState({
-            anchorDivClassName: ''
-        })
     }
 
     formatTime(timeStamp) {
@@ -74,10 +87,44 @@ class Article extends Component {
         }
     }
 
+    // 转换 search 参数 为正则表达式（或运算）
+    switchSearchQueryToReg = (query) => {
+        let regStr = ""
+        if (Array.isArray(query)) {
+            for (let i = 0; i < query.length; i++) {
+                if (query[i].replace(/(^\s*)|(\s*$)/g, "")) {
+                    regStr += query[i] + '|'
+                }
+            }
+            if (regStr.replace(/(^\s*)|(\s*$)/g, "")) {
+                return new RegExp('(' + regStr.substring(0, regStr.length - 1) + ')', 'gi')
+            } else {
+                return false
+            }
+        } else {
+            regStr += query
+            if (regStr.replace(/(^\s*)|(\s*$)/g, "")) {
+                return new RegExp('(' + regStr + ')', 'gi')
+            } else {
+                return false
+            }
+        }
+    }
+
     render() {
         let time = this.props.blog.time
         if (!this.props.isFetching) {
             this.state.contentShow = true
+        }
+        let title = this.props.blog.title
+        let content = this.props.blog.content
+        let reg = this.switchSearchQueryToReg(this.props.location.query.search)
+        // markdown bug 空格 bug 得到分词结果
+        if (content && title && reg) {
+            content = content.replace(reg,
+            `<span style="color: black; background-color: #FF4500; display: inline-block;">$1</span>`)
+            title = title.replace(reg,
+            `<span style="color: black; background-color: #FF4500; display: inline-block;">$1</span>`)
         }
         return (
             <div className="articleComment">
@@ -103,10 +150,10 @@ class Article extends Component {
                     </ul>
                         :
                     <div className="article">
-                        <h1 className="article-title">{this.props.blog.title}</h1>
+                        <h1 className="article-title" dangerouslySetInnerHTML={{__html: title || ''}}></h1>
                         <p className="article-time">{this.state.contentShow ? this.formatTime(time) : ''}</p>
                         <div className="article-desc article-content"
-                             dangerouslySetInnerHTML={{__html: marked(this.props.blog.content || '')}}>
+                             dangerouslySetInnerHTML={{__html: marked(content || '')}}>
                         </div>
                     </div>
                 }

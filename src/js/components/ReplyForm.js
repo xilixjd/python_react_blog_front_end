@@ -8,6 +8,9 @@ import { connect } from 'react-redux'
 
 import { Input, Button } from 'antd'
 
+const Scroll = require('react-scroll')
+const scrollToBottom = Scroll.animateScroll.scrollToBottom
+
 
 class ReplyForm extends Component {
     constructor(props) {
@@ -37,6 +40,7 @@ class ReplyForm extends Component {
         }
         dispatch(fetchIssues('addComment', param))
         this.state.content = ''
+        scrollToBottom()
     }
 
     render() {

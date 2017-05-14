@@ -142,8 +142,12 @@ class LoginingView extends Component {
                     <p key={index}
                        className={(item.checked == '0' || this.timeFromNowLittleThan2Hour(item.time)) ? 'unchecked' : ''}>
                         <a href="JavaScript:void(0)">@{item.sender}</a>
-                        <span>: <a href={'/#' + item.href}>{this.strLength(itemContent) > 16 ?
-                            itemContent.substring(0, 8) + '..' : itemContent}</a></span>
+                        <span>: 
+                            <a href={'/#' + item.href}>
+                                {this.strLength(itemContent) > 16 ?
+                                    itemContent.substring(0, 8) + '..' : itemContent}
+                            </a>
+                        </span>
                     </p>
                 )
             })

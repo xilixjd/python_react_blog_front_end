@@ -105,8 +105,10 @@ class CommentForm extends Component {
         dispatch(fetchIssues('addComment', param))
         this.state.author = ''
         this.state.content = ''
+        // 只想到了以 dom 方式去解决清除 Input 框的问题
         document.querySelector("span[data-text='true']").innerText = ''
         this.openNotificationWithIcon('success', '发表评论', '评论成功')
+        this.props.scrollToBottom()
     }
 
     render() {

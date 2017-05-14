@@ -18,9 +18,14 @@ import { Spin, Pagination } from 'antd'
 
 import '../../css/comment.scss'
 
+// https://github.com/felixgirault/pure-render-decorator
+// 采用 pureRender 后渲染次数降低一次。。
+// import pureRender from 'pure-render-decorator'
+
 // https://github.com/fisshy/react-scroll
 const Scroll = require('react-scroll')
 const scroller = Scroll.scroller
+const scrollToBottom = Scroll.animateScroll.scrollToBottom
 const Events = Scroll.Events
 
 
@@ -55,7 +60,9 @@ class CommentComponent extends Component {
             let timeOut = setTimeout(() => {
                 this.removeClass(element, anchorDivClassName)
             }, 2500)
-            this.state.scrolled = true
+            this.setState({
+                scrolled: true
+            })
         }.bind(this))
     }
 
@@ -76,10 +83,28 @@ class CommentComponent extends Component {
         //         this.state.firstLoad = false
         //     }
         // }
+        if (nextProps.location.query !== this.props.location.query) {
+            const { dispatch } = nextProps
+            const param = {
+                blogId: nextProps.params.id,
+                pageIdx: nextProps.location.query.pageIdx || ''
+            }
+            this.setState({
+                scrolled: false
+            })
+            receiveComments(INIT_COMMENTS, '')
+            dispatch(fetchIssues('getComments', param, ''))
+        }
     }
 
     componentDidUpdate() {
     }
+
+    // import { is } from 'immutable'
+    // shouldComponentUpdate = (nextProps, nextState) => {
+    //     return !(this.props === nextProps || is(this.props, nextProps)) ||
+    //             !(this.state === nextState || is(this.state, nextState))
+    // }
 
     componentWillUnmount() {
         Events.scrollEvent.remove('end')
@@ -132,8 +157,9 @@ class CommentComponent extends Component {
             query: { pageIdx: page }
         })
         let anchorElement = document.getElementById("allComments")
-        if(anchorElement) {
-            anchorElement.scrollIntoView()
+        if(anchorElement && !this.props.comments.isCommentsFetching) {
+            // anchorElement.scrollIntoView()
+            this.scrollToComment("allComments")
         }
     }
 
@@ -152,16 +178,14 @@ class CommentComponent extends Component {
             NProgress.done()
         }
         const comments = this.props.comments.comments || []
-        // 丑陋的实现了前进后退时页面列表随之更新, 然而这时候增加评论时没有显示效果了
-        // const comments = this.state.comments[this.props.location.query.pageIdx || 1] || []
         const paging = this.props.comments.paging
         const currentPage = parseInt(this.props.location.query.pageIdx) || 1
         const replyAuthor = this.state.replyAuthor
         return (
-            <div id="allComments">
+            <div id="allComments" name="allComments">
                 {comments.map((comment, index) => {
                     if (comment.new_sign && index == comments.length - 1) {
-                        this.scrollToComment('comment' + comment.new_sign)
+                        {/*this.scrollToComment('comment' + comment.new_sign)*/}
                     }
                     return (
                         <CommentItem {...this.props}
@@ -178,6 +202,7 @@ class CommentComponent extends Component {
                 </div>
                 <CommentForm {...this.props}
                              replyAuthor={ replyAuthor }
+                             scrollToBottom={ scrollToBottom }
                 />
             </div>
         )

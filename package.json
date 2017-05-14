@@ -7,7 +7,7 @@
     "build": "cross-env NODE_ENV=production webpack"
   },
   "dependencies": {
-    "antd": "^2.1.0",
+    "antd": "^2.10.0",
     "bootstrap": "^3.3.7",
     "es6-promise": "^3.3.1",
     "highlight.js": "^9.6.0",
@@ -28,7 +28,9 @@
     "react-scroll": "^1.4.8",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
-    "socket.io-client": "^1.7.2"
+    "socket.io-client": "^1.7.2",
+    "immutable": "4.0.0-rc.2",
+    "pure-render-decorator": "1.2.1"
   },
   "devDependencies": {
     "less": "^2.7.1",

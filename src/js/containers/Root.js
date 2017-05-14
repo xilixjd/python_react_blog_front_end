@@ -112,6 +112,13 @@ var AntMotion2 = (location, cb) => {
     }, 'motion')
 }
 
+var NotFoundPage = (location, cb) => {
+    document.title = CONFIG.titleLoad;
+    require.ensure([], require => {
+        cb(null, require('../containers/NotFoundPage.js').default);
+    }, '404')
+}
+
 const routes = (
     <Route path="/" component={App}>
         <IndexRoute component={Menu}/>
@@ -125,6 +132,7 @@ const routes = (
         <Route path="/message" getComponent={Message}/>
         <Route path="/motion" getComponent={AntMotion}/>
         <Route path="/motion2" getComponent={AntMotion2}/>
+        <Route path="*" getComponent={NotFoundPage} />
     </Route>
 )
 
