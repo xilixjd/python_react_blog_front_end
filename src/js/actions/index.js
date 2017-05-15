@@ -2,17 +2,9 @@ import fetch from 'isomorphic-fetch';
 import { DOMAIN, RECEIVE_TAGS, REQUEST_ISSUES, REQUEST_BLOG, RECEIVE_BLOG, RECEIVE_ISSUES, INIT_ISSUES, ADD_COMMENT, REQUEST_COMMENTS, RECEIVE_COMMENTS, INIT_COMMENTS, LOG_IN, LOG_OUT } from '../constants/ActionTypes.js'
 import { LOGGING_SHOW, REG_SHOW, MODAL_CLOSE, LOGIN_SUBMIT, REG_SUBMIT, INIT_BLOG, REQUEST_MESSAGES, GET_MESSAGES, INIT_MESSAGES, CHECK_MESSAGES } from '../constants/ActionTypes.js'
 import { REQUEST_IMGS, RECEIVE_IMGS, ADD_IMGS, INIT_IMGS, REQUEST_ADD_IMGS }from '../constants/ActionTypes.js'
-import { GET_MENTIONS } from '../constants/ActionTypes.js'
+import { GET_MENTIONS, REQUEST_SUCCESS, REQUEST_FAIL } from '../constants/ActionTypes.js'
 import {CONFIG} from '../constants/Config.js'
-import { notification } from 'antd'
 
-
-const openNotificationWithIcon = (type, message, description) => {
-    notification[type]({
-        message: message,
-        description: description,
-    })
-}
 
 // 接收评论
 export const receiveComments = (type, json) => {
@@ -194,6 +186,29 @@ export function getImgs(type, json) {
     }
 }
 
+export function commitStatus(type, message, description) {
+    switch(type) {
+        case REQUEST_SUCCESS:
+            return {
+                type: REQUEST_SUCCESS,
+                message: message,
+                description: description
+            }
+        case REQUEST_FAIL:
+            return {
+                type: REQUEST_FAIL,
+                message: message,
+                description: description
+            }
+        default:
+            return {
+                type: type,
+                message: '',
+                description: ''
+            }
+    }
+}
+
 // thunk action creater
 // @param 请求参数
 export function fetchIssues(filter, param) {
@@ -216,7 +231,6 @@ export function fetchIssues(filter, param) {
                         }
                 ).catch(e => {
                     console.log(e)
-                    openNotificationWithIcon('error', 'error', e)
                 })
 
             case 'blog':
@@ -231,7 +245,6 @@ export function fetchIssues(filter, param) {
                 ).catch(
                     e => {
                         console.log(e)
-                        openNotificationWithIcon('error', 'error', e)
                     }
                 )
 
@@ -248,7 +261,6 @@ export function fetchIssues(filter, param) {
                     ).catch(
                         e => {
                             console.log(e)
-                            openNotificationWithIcon('error', 'error', e)
                         }
                     )
                 } else {
@@ -262,7 +274,6 @@ export function fetchIssues(filter, param) {
                     ).catch(
                         e => {
                             console.log(e)
-                            openNotificationWithIcon('error', 'error', e)
                         }
                     )
                 }
@@ -278,7 +289,23 @@ export function fetchIssues(filter, param) {
                     body: data,
                     credentials: 'include'
                 }).then(
-                    response => response.json()
+                    response => {
+                        if (response.status === 200 || response.status === 202) {
+                            if (replyTo) {
+                                dispatch(commitStatus(REQUEST_SUCCESS, '回复', '回复成功'))
+                            } else {
+                                dispatch(commitStatus(REQUEST_SUCCESS, '评论', '评论成功'))
+                            }
+                            return response.json()
+                        } else {
+                            if (replyTo) {
+                                dispatch(commitStatus(REQUEST_FAIL, '回复', '回复失败'))
+                            } else {
+                                dispatch(commitStatus(REQUEST_FAIL, '评论', '评论失败'))
+                            }
+                            return Promise.reject(response.json())
+                        }
+                    }
                 ).then(
                     json => dispatch(receiveComments(ADD_COMMENT, json))
                 ).catch(
@@ -309,13 +336,23 @@ export function fetchIssues(filter, param) {
                     credentials: 'include',
                     body: data
                 }).then(
-                    response => response.json()
+                    response => {
+                        if (response.status === 200) {
+                            dispatch(commitStatus(REQUEST_SUCCESS, '登录', '登录成功'))
+                            return response.json()
+                        } else {
+                            dispatch(commitStatus(REQUEST_FAIL, '登录', '登录失败'))
+                            return Promise.reject(response.json())
+                        }
+                    }
                 ).then(
                     json => {
-                        if (json) {
+                        if (json.username) {
                             dispatch(logState(LOG_IN, json))
                             dispatch(logModalShow(MODAL_CLOSE))
                         }
+                    }, fail => {
+                        console.log('fail', fail)
                     }
                 ).catch(
                     e => {console.log(e)}
@@ -326,7 +363,15 @@ export function fetchIssues(filter, param) {
                 return fetch(url, {
                     credentials: 'include'
                 }).then(
-                    response => response.json()
+                    response => {
+                        if (response.status === 200) {
+                            dispatch(commitStatus(REQUEST_SUCCESS, '注销', '注销成功'))
+                            return response.json()
+                        } else {
+                            dispatch(commitStatus(REQUEST_FAIL, '注销', '注销失败'))
+                            return Promise.reject(response.json())
+                        }
+                    }
                 ).then(
                     json => dispatch(logState(LOG_OUT, json))
                 ).catch(
@@ -342,7 +387,15 @@ export function fetchIssues(filter, param) {
                     credentials: 'include',
                     body: data
                 }).then(
-                    response => response.json()
+                    response => {
+                        if (response.status === 200 || response.status === 202) {
+                            dispatch(commitStatus(REQUEST_SUCCESS, '注册', '注册成功'))
+                            return response.json()
+                        } else {
+                            dispatch(commitStatus(REQUEST_FAIL, '注册', '注册失败'))
+                            return Promise.reject(response.json())
+                        }
+                    }
                 ).then(
                     json => {
                         if (json) {

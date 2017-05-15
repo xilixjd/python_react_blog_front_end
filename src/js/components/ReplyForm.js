@@ -39,7 +39,7 @@ class ReplyForm extends Component {
             href: this.props.location.pathname + this.props.location.search
         }
         dispatch(fetchIssues('addComment', param))
-        this.state.content = ''
+        this.setState({ content: '' })
         scrollToBottom()
     }
 

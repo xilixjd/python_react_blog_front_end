@@ -8,6 +8,7 @@ import logModalShow from './logModalShow.js'
 import messages from './messages.js'
 import mentions from './mentions.js'
 import imgs from './imgs.js'
+import infoMessage from './infoMessage.js'
 
 
 const rootReducer = combineReducers({
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
     logModalShow,
     messages,
     mentions,
-    imgs
+    imgs,
+    infoMessage
 })
 
 export default rootReducer

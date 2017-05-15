@@ -36,7 +36,7 @@ class LogRegModal extends Component {
 }
 
 function mapStateToProps(state) {
-    const { logModalShow } = state
+    const { logModalShow, infoMessage } = state
     const {
         isShow,
         data
@@ -47,7 +47,8 @@ function mapStateToProps(state) {
 
     return {
         isShow,
-        data
+        data,
+        infoMessage
     }
 }
 
@@ -92,7 +93,7 @@ class LoginModal extends Component {
         dispatch(fetchIssues('logIn', param))
         this.state.username = ''
         this.state.password = ''
-        this.openNotificationWithIcon('success', '登录', '登录成功')
+        // this.openNotificationWithIcon('success', '登录', '登录成功')
     }
 
     render() {
@@ -162,21 +163,30 @@ class RegisterModal extends Component {
         this.setState({ email: e.target.value })
     }
 
+    emptyInput = () => {
+        this.setState({ username: '' })
+        this.setState({ password: '' })
+        this.setState({ email: '' })
+    }
+
     registerSubmit() {
         const { dispatch } = this.props
         let username = this.state.username.trim()
         let password = this.state.password.trim()
         let email = this.state.email.trim()
-        const reg = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/
-        if (!reg.test(email)) {
-            return
-        }
+        // const reg = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/
+        // if (!reg.test(email)) {
+        //     return
+        // }
         if (username.length < 1) {
             this.openNotificationWithIcon('error', '注册', '用户名不能为空')
+            this.emptyInput()
             return
         }
         if (password.length < 1) {
             this.openNotificationWithIcon('error', '注册', '密码不能为空')
+            this.emptyInput()
+            return
         }
         let param = {
             username: username,
@@ -184,9 +194,8 @@ class RegisterModal extends Component {
             email: email
         }
         dispatch(fetchIssues('register', param))
-        this.state.username = ''
-        this.state.password = ''
-        this.openNotificationWithIcon('success', '注册', '注册成功')
+        this.emptyInput()
+        // this.openNotificationWithIcon('success', '注册', '注册成功')
     }
 
     render() {
@@ -205,18 +214,21 @@ class RegisterModal extends Component {
                         <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />}
                                placeholder="Username"
                                onChange={this.usernameInputChange}
+                               value={this.state.username}
                         />
                     </FormItem>
                     <FormItem>
                         <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password"
                                placeholder="Password"
                                onChange={this.passwordInputChange}
+                               value={this.state.password}
                         />
                     </FormItem>
                     <FormItem>
                         <Input prefix={<Icon type="mail" style={{ fontSize: 13 }} />} type="email"
                                placeholder="Email"
                                onChange={this.emailInputChange}
+                               value={this.state.email}
                         />
                     </FormItem>
                     <FormItem>

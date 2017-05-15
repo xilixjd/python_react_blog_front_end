@@ -2,9 +2,9 @@
 // export const DOMAIN = 'http://127.0.0.1:5000'
 // export const DOMAIN = 'http://0.0.0.0:5000'
 // export const DOMAIN = '//118.89.143.159:5000'
-// export const DOMAIN = 'http://127.0.0.1:5000'
+export const DOMAIN = 'http://127.0.0.1:5000'
 
-export const DOMAIN = 'https://www.xilixjd.cc'
+// export const DOMAIN = 'https://www.xilixjd.cc'
 
 // 请求issues
 export const REQUEST_ISSUES = 'REQUEST_ISSUES'
@@ -67,3 +67,7 @@ export const RECEIVE_IMGS = 'RECEIVE_IMGS'
 export const INIT_IMGS = 'INIT_IMGS'
 export const ADD_IMGS = 'ADD_IMGS'
 export const REQUEST_ADD_IMGS = 'REQUEST_ADD_IMGS'
+
+// 状态成功失败提醒
+export const REQUEST_SUCCESS = 'REQUEST_SUCCESS'
+export const REQUEST_FAIL = 'REQUEST_FAIL'

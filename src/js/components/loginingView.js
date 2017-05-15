@@ -205,7 +205,7 @@ function mapStateToProps(state) {
     return {
         loggedIn,
         info,
-        messages
+        messages,
     }
 }
 

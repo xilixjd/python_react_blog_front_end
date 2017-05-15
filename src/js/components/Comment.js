@@ -54,7 +54,7 @@ class CommentComponent extends Component {
         // 注册一个 scroll 开始的函数，背景颜色会显示 2s
         Events.scrollEvent.register('end', function(to, element) {
             let anchorDivClassName = 'showBackgroundColor'
-            if (element.className.indexOf(anchorDivClassName) == -1) {
+            if (element && element.className.indexOf(anchorDivClassName) == -1) {
                 element.className += ` ${anchorDivClassName}`
             }
             let timeOut = setTimeout(() => {
@@ -118,8 +118,10 @@ class CommentComponent extends Component {
     }
 
     removeClass = (ele, cls) => {
-        let reg = new RegExp("(\\s|^)" + cls + "(\\s|$)")
-        ele.className = ele.className.replace(reg, " ")
+        if (ele) {
+            let reg = new RegExp("(\\s|^)" + cls + "(\\s|$)")
+            ele.className = ele.className.replace(reg, " ")
+        }
     }
 
     getCheckHash = () => {

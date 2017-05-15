@@ -8,6 +8,7 @@ import NavTag from '../components/NavTag.js'
 import LoginingView from '../components/loginingView.js'
 import LogRegModal from '../components/logRegModal.js'
 import SearchBar from '../components/SearchBar.js'
+import Notificate from '../components/Notificate.js'
 
 import { DOMAIN } from '../constants/ActionTypes.js'
 
@@ -118,6 +119,7 @@ class App extends Component {
                             searchBarLocation={this.props.location}
                             confirmLoading={this.state.confirmLoading}
                 />
+                <Notificate/>
             </div>
         );
     }
