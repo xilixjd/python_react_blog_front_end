@@ -13,7 +13,6 @@ class Notificate extends Component {
     componentWillReceiveProps(nextProps) {
         if (this.props.infoMessage !== nextProps.infoMessage) {
             let infoMessage = nextProps.infoMessage
-            console.log(infoMessage)
             this.checkInfoMessage(infoMessage.status, infoMessage.message, infoMessage.description)
         }
     }
