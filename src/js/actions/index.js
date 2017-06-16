@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch';
-import { DOMAIN, RECEIVE_TAGS, REQUEST_ISSUES, REQUEST_BLOG, RECEIVE_BLOG, RECEIVE_ISSUES, INIT_ISSUES, ADD_COMMENT, REQUEST_COMMENTS, RECEIVE_COMMENTS, INIT_COMMENTS, LOG_IN, LOG_OUT } from '../constants/ActionTypes.js'
+import { DOMAIN, RECEIVE_TAGS, REQUEST_ISSUES, REQUEST_BLOG, RECEIVE_BLOG, RECEIVE_ISSUES, INIT_ISSUES, ADD_COMMENT, DELETE_COMMENT, REQUEST_COMMENTS, RECEIVE_COMMENTS, INIT_COMMENTS, LOG_IN, LOG_OUT } from '../constants/ActionTypes.js'
 import { LOGGING_SHOW, REG_SHOW, MODAL_CLOSE, LOGIN_SUBMIT, REG_SUBMIT, INIT_BLOG, REQUEST_MESSAGES, GET_MESSAGES, INIT_MESSAGES, CHECK_MESSAGES } from '../constants/ActionTypes.js'
 import { REQUEST_IMGS, RECEIVE_IMGS, ADD_IMGS, INIT_IMGS, REQUEST_ADD_IMGS }from '../constants/ActionTypes.js'
 import { GET_MENTIONS, REQUEST_SUCCESS, REQUEST_FAIL } from '../constants/ActionTypes.js'
@@ -13,6 +13,11 @@ export const receiveComments = (type, json) => {
             return {
                 type: ADD_COMMENT,
                 param: json
+            }
+        case DELETE_COMMENT:
+            return {
+                type: DELETE_COMMENT,
+                posts: json
             }
         case REQUEST_COMMENTS:
             return {
@@ -311,6 +316,35 @@ export function fetchIssues(filter, param) {
                 ).catch(
                     e => {console.log(e)}
                 )
+
+            case 'deleteComment':
+                url = DOMAIN + '/api/blog/' + param.blogId + '/comment'
+                data = `commentId=${param.commentId}`
+                return fetch(url, {
+                    method: 'DELETE',
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: data,
+                    credentials: 'include'
+                }).then(
+                    response => {
+                        if (response.status === 200 || response.status === 202) {
+                            dispatch(commitStatus(REQUEST_SUCCESS, '删除评论', '删除评论成功'))
+                            return response.json()
+                        } else {
+                            dispatch(commitStatus(REQUEST_FAIL, '删除评论', '删除评论失败'))
+                            return Promise.reject(response.json())
+                        }
+                    }
+                ).then(
+                    json => {
+                        if (json) {
+                            dispatch(receiveComments(DELETE_COMMENT, json))
+                        }
+                    }, fail => {
+                        console.log('fail', fail)
+                    }
+                )
+                
 
             case 'getComments':
                 dispatch(receiveComments(REQUEST_COMMENTS, ''))

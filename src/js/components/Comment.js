@@ -272,6 +272,18 @@ class CommentItem extends Component {
         )
     }
 
+    deleteComment = (id, allow_delete) => {
+        if (allow_delete !== null && !allow_delete) {
+            return
+        }
+        const { dispatch } = this.props
+        const param = {
+            blogId: this.props.params.id,
+            commentId: id
+        }
+        dispatch(fetchIssues('deleteComment', param))
+    }
+
     scrollToAnchor = (anchorName) => {
         if (anchorName) {
             // 找到锚点
@@ -312,15 +324,20 @@ class CommentItem extends Component {
                 <a onClick={()=>this.scrollToAnchor('comment' + this.props.id)}>#</a>
                 <div className="commentAvatar"><img src={md5Url}></img></div>
                 <div style={{width: '100%'}}>
-                    <div className="commentAuthor">{author}
+                    <div className="commentAuthor">
+                        <span>{author}</span>
                         {this.props.receiver ? <span>{reply}{receiver}</span> : ''}
+                        <span onClick={() => {
+                                this.deleteComment(this.props.id, this.props.allow_delete)
+                            }
+                        }>x</span>
                     </div>
                     <div className="commentContent"
                          dangerouslySetInnerHTML={{__html: this.makeATToHref(content)}}>
                     </div>
                     <div className="commentTime">
                         <span>{this.formatTime(this.props.time)}</span>
-                        <a  onClick={() => {
+                        <a onClick={() => {
                             this.onReplyClick()
                         }}
                             href="JavaScript:void(0)">回复</a>

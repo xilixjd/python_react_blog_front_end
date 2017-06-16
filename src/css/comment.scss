@@ -2,9 +2,10 @@
 .commentWrap {
   display: flex;
   padding: 8px;
-  word-wrap:break-word;
-  word-break:break-all;
-  border-bottom:1px dashed rgba(0, 0, 0, 0.18);
+  word-wrap: break-word;
+  word-break: break-all;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.18);
+  border-top: 1px dashed rgba(0, 0, 0, 0.18);
 }
 
 .commentAvatar {
@@ -13,6 +14,15 @@
 
 .commentAuthor {
   font-weight: bold;
+  display: flex;
+  padding: 0 5px;
+}
+
+.commentAuthor span:last-child {
+  margin-left: auto;
+  cursor: pointer;
+  color: red;
+
 }
 
 .commentContent {

@@ -2,7 +2,7 @@
  * Created by xilixjd on 17/3/6.
  */
 
-import { ADD_COMMENT, RECEIVE_COMMENTS, REQUEST_COMMENTS, INIT_COMMENTS } from '../constants/ActionTypes.js'
+import { ADD_COMMENT, RECEIVE_COMMENTS, REQUEST_COMMENTS, INIT_COMMENTS, DELETE_COMMENT } from '../constants/ActionTypes.js'
 
 
 var defaultIssuesState = {
@@ -27,7 +27,8 @@ const comments = (state=defaultIssuesState, action) => {
                 receiver: action.param.receiver,
                 zan_count: action.param.zan_count,
                 liked: action.param.liked,
-                new_sign: action.param.id
+                new_sign: action.param.id,
+                allow_delete: action.param.allow_delete
             }
             let comments = state.comments
             comments.push(new_comment)
@@ -39,6 +40,14 @@ const comments = (state=defaultIssuesState, action) => {
                     totalCount: state.paging.totalCount += 1
                 },
                 comments: comments
+            }
+        
+        case DELETE_COMMENT:
+            return {
+                ...state,
+                comments: state.comments.filter(comment =>
+                    comment.id !== action.posts.id
+                )
             }
 
         case REQUEST_COMMENTS:

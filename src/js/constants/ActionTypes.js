@@ -24,6 +24,9 @@ export const RECEIVE_ARTICLE = 'RECEIVE_ARTICLE'
 // 发表评论
 export const ADD_COMMENT = 'ADD_COMMENT'
 
+// 删除评论
+export const DELETE_COMMENT = 'DELETE_COMMENT'
+
 // 接收评论
 export const REQUEST_COMMENTS = 'REQUEST_COMMENTS'
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'
