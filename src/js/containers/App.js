@@ -14,7 +14,7 @@ import { DOMAIN } from '../constants/ActionTypes.js'
 
 import io from 'socket.io-client'
 
-import {Layout, Menu, Breadcrumb } from 'antd'
+import {Layout, Menu, Breadcrumb, Tooltip } from 'antd'
 const {Header, Content, Footer} = Layout
 
 import '../../css/antd.scss'
@@ -89,7 +89,11 @@ class App extends Component {
                             {/*<Menu.Item key="6"><Link to="antd">Antd</Link></Menu.Item>*/}
                             <Menu.Item key="7"><Link to="todo">Todo</Link></Menu.Item>
                             <Menu.Item key="8"><Link to="motion">Motion</Link></Menu.Item>
-                            <Menu.Item key="9"><a onClick={this.showSearchModal}>Search</a></Menu.Item>
+                            <Menu.Item key="9">
+                                <Tooltip placement="bottom" title="此功能在远程服务器上开启celery后无法使用并导致服务器崩溃">
+                                    <a onClick={this.showSearchModal}>Search</a>
+                                </Tooltip>
+                            </Menu.Item>
                         </Menu>
                     </Header>
                     <Content className="layout-content">

@@ -46,6 +46,7 @@ class LoginingView extends Component {
                 this.onNewMessage()
             }
         })
+        socket.emit('new', 'msg')
     }
 
     componentWillReceiveProps(nextProps) {
