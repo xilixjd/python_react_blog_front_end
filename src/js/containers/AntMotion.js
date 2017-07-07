@@ -50,12 +50,30 @@ let dataArray = [
         content: 'Taiwan called motorcycle, motor bike [1] or a motorcycle,',
         title: 'Motocycle'
     },
-    { image: 'https://zos.alipayobjects.com/rmsportal/QJmGZYJBRLkxFSy.png' },
-    { image: 'https://zos.alipayobjects.com/rmsportal/PDiTkHViQNVHddN.png' },
-    { image: 'https://zos.alipayobjects.com/rmsportal/beHtidyjUMOXbkI.png' },
-    { image: 'https://zos.alipayobjects.com/rmsportal/vJcpMCTaSKSVWyH.png' },
-    { image: 'https://zos.alipayobjects.com/rmsportal/dvQuFtUoRmvWLsZ.png' },
-    { image: 'https://zos.alipayobjects.com/rmsportal/QqWQKvgLSJaYbpr.png' },
+    { image: 'https://zos.alipayobjects.com/rmsportal/QJmGZYJBRLkxFSy.png',
+        content: 'Taiwan called motorcycle, motor bike [1] or a motorcycle,',
+        title: 'Motocycle'
+     },
+    { image: 'https://zos.alipayobjects.com/rmsportal/PDiTkHViQNVHddN.png',
+        content: 'Taiwan called motorcycle, motor bike [1] or a motorcycle,',
+        title: 'Motocycle'
+    },
+    { image: 'https://zos.alipayobjects.com/rmsportal/beHtidyjUMOXbkI.png',
+        content: 'Taiwan called motorcycle, motor bike [1] or a motorcycle,',
+        title: 'Motocycle'
+    },
+    { image: 'https://zos.alipayobjects.com/rmsportal/vJcpMCTaSKSVWyH.png',
+        content: 'Taiwan called motorcycle, motor bike [1] or a motorcycle,',
+        title: 'Motocycle'
+    },
+    { image: 'https://zos.alipayobjects.com/rmsportal/dvQuFtUoRmvWLsZ.png',
+        content: 'Taiwan called motorcycle, motor bike [1] or a motorcycle,',
+        title: 'Motocycle' 
+    },
+    { image: 'https://zos.alipayobjects.com/rmsportal/QqWQKvgLSJaYbpr.png',
+        content: 'Taiwan called motorcycle, motor bike [1] or a motorcycle,',
+        title: 'Motocycle' 
+    },
 ]
 dataArray = dataArray.map(item => ({ ...item, ...textData }))
 
@@ -160,6 +178,13 @@ class PicDetailsDemo extends React.Component {
     }
 
     getLiChildren = (imgs) => {
+        let remainderDataArray
+        if (imgs.length && (imgs.length % 4) != 0) {
+            let addingImgs = imgs.length > 8 ? (4 - (imgs.length % 4)) : (8 - (imgs.length % 4))
+            // 图片加载不够，取余数，余数即截取 dataArray 的数组数
+            remainderDataArray = dataArray.slice(0, addingImgs)
+            imgs = imgs.concat(remainderDataArray)
+        }
         const imgWidth = 110 * 2;
         const imgHeight = 76 * 2;
         const imgBoxWidth = 130;
@@ -257,12 +282,7 @@ class PicDetailsDemo extends React.Component {
     render() {
         let className = this.props.className
         let imgs = this.props.imgs.imgs
-        let imgsLen = imgs.length
-        if (imgsLen && (imgsLen % 4) != 0) {
-            // 图片加载不够，取余数，余数即截取 dataArray 的数组数
-            let remainderDataArray = dataArray.splice(0, imgsLen % 4)
-            imgs = imgs.concat(remainderDataArray)
-        }
+        
         let isFetching = this.props.imgs.isFetching
         let addFetching = this.props.imgs.addFetching
         // 单张图片的高度
@@ -277,7 +297,7 @@ class PicDetailsDemo extends React.Component {
                         </div>
                         :
                         <div>
-                            <div className={`${this.props.className}-wrapper`} style={{height: Math.ceil(imgsLen / 4) * 180}}>
+                            <div className={`${this.props.className}-wrapper`} style={{height: Math.ceil(imgs.length / 4) * 180}}>
                                 <div className={this.props.className}>
                                     <QueueAnim
                                         delay={e => this.getDelay(e, imgs)}
