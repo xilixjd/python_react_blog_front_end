@@ -178,13 +178,6 @@ class PicDetailsDemo extends React.Component {
     }
 
     getLiChildren = (imgs) => {
-        let remainderDataArray
-        if (imgs.length && (imgs.length % 4) != 0) {
-            let addingImgs = imgs.length > 8 ? (4 - (imgs.length % 4)) : (8 - (imgs.length % 4))
-            // 图片加载不够，取余数，余数即截取 dataArray 的数组数
-            remainderDataArray = dataArray.slice(0, addingImgs)
-            imgs = imgs.concat(remainderDataArray)
-        }
         const imgWidth = 110 * 2;
         const imgHeight = 76 * 2;
         const imgBoxWidth = 130;
@@ -282,6 +275,18 @@ class PicDetailsDemo extends React.Component {
     render() {
         let className = this.props.className
         let imgs = this.props.imgs.imgs
+
+        let remainderDataArray
+        if (imgs.length && (imgs.length % 4) != 0) {
+            let addingImgs = imgs.length > 8 ? (4 - (imgs.length % 4)) : (8 - (imgs.length % 4))
+            // 图片加载不够，取余数，余数即截取 dataArray 的数组数
+            remainderDataArray = dataArray.slice(0, addingImgs)
+            imgs = imgs.concat(remainderDataArray)
+        }
+        if (imgs.length && imgs.length <= 8) {
+            remainderDataArray = dataArray.slice(0, 12 - imgs.length)
+            imgs = imgs.concat(remainderDataArray)
+        }
         
         let isFetching = this.props.imgs.isFetching
         let addFetching = this.props.imgs.addFetching
