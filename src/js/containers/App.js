@@ -37,11 +37,11 @@ class App extends Component {
         }
         var _hmt = _hmt || [];
         (function() {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?2c57dc2aa86010c3428a43ee24e48d32";
-        var s = document.getElementsByTagName("script")[0]; 
-        s.parentNode.insertBefore(hm, s);
-        })();
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?2c57dc2aa86010c3428a43ee24e48d32";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })()
     }
 
     componentWillReceiveProps(nextProps) {
