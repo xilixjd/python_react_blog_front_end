@@ -27,6 +27,7 @@ class Article extends Component {
         super(props)
         this.state = {
             contentShow: false,
+            test: 1,
         }
     }
 
@@ -40,6 +41,11 @@ class Article extends Component {
         //     highlight: function (code) {
         //         return hljs.highlightAuto(code).value;
         //     }
+        // })
+        // const { dispatch } = this.props
+        // dispatch(fetchIssuesIfNeeded('blog', this.props.params.id, 'receiveBlog'))
+        // this.setState({
+        //     test: this.props.blog
         // })
     }
 
@@ -60,6 +66,12 @@ class Article extends Component {
             dispatch(fetchIssuesIfNeeded('blog', nextProps.params.id, 'receiveBlog'))
         }
     }
+
+    // componentDidUpdate() {
+    //     this.setState({
+    //         test: 2
+    //     })
+    // }
 
     // 组件销毁前，将 reducer 中的缓存删除
     componentWillUnmount() {
@@ -112,6 +124,7 @@ class Article extends Component {
     }
 
     render() {
+        // console.log(this.state.test)
         let time = this.props.blog.time
         if (!this.props.isFetching) {
             this.state.contentShow = true
